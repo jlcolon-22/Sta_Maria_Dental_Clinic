@@ -25,7 +25,7 @@
                 <div class="transition-all ease-in-out duration-500  bg-ylw w-0 h-[2px] peer-hover:w-full absolute bottom-0"></div>
             </div>
 
-            <a href="/auth/login" class="text-base rounded bg-btnPrimary px-6 py-2 ">Login</a>
+            <a href="/auth/type" class="text-base rounded bg-btnPrimary px-6 py-2 ">Login</a>
         </nav>
     </div>
 </header>

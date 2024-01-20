@@ -11,6 +11,7 @@ export default {
             ylw: '#feba02',
             btnPrimary: '#0c71cf',
             btnSecondary: '#1c98f7',
+            btnDark: '#003580',
         }
     },
   },

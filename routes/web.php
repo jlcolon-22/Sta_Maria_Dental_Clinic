@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Type;
 use App\Livewire\Loading;
 use App\Livewire\Pages\Homepage;
 use App\Livewire\Pages\Location;
@@ -21,4 +22,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Homepage::class);
 Route::get('/services', Services::class)->name('page_services')->lazy();
 Route::get('/location', Location::class)->name('page.location');
-Route::get('/auth/login', Login::class);
+Route::get('/auth/type', Type::class);
