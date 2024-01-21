@@ -8,3 +8,9 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Roboto-bold';
+    src: url('/public/font/Roboto-Bold.ttf')  format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}

@@ -2,10 +2,10 @@
 
     {{-- main --}}
     <main class="py-20">
-        <div class="bg-white w-[40rem] mx-auto py-6">
+        <div class="bg-white w-[40rem] mx-auto py-6 rounded shadow-md">
             <div class="flex items-center justify-center pb-10">
                 <img src="{{ asset('favicon.ico') }}" alt="">
-                <h2 class="text-4xl font-bold">
+                <h2 class="text-4xl font-robotoBold">
                     Sta.Maria Dental CLinic </h2>
             </div>
 

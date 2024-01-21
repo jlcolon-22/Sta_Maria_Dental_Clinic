@@ -1,33 +1,26 @@
-@assets
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <style>
-        /* Hide the scrollbar for Chrome, Safari and Opera */
-        .swiper::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Hide the scrollbar for Internet Explorer, Edge and Firefox */
-        .swiper {
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        .swiper-slide {
-            max-height: 33rem;
-            object-fit: cover;
-
-        }
-    </style>
-@endassets
 <div>
 
 
     {{-- carousel --}}
-    <div class="swiper text-violet-500 ">
+   <section x-data="{swiper: null}"  x-init="swiper = new Swiper($refs.container, {
+
+    direction: 'horizontal',
+    loop: true,
+
+
+    pagination: {
+        el: '.swiper-pagination',
+    },
+
+
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+})">
+    <div class="swiper text-violet-500 " x-ref="container">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper ">
             <!-- Slides -->
@@ -45,6 +38,7 @@
         <div class="swiper-button-next"></div>
     </div>
 
+   </section>
     {{-- schedule appointment --}}
     <section class="text-btnPrimary flex flex-col items-center gap-y-5 py-28">
         <h2 class="text-6xl font-bold font-serif">Schedule your Appointment</h2>
@@ -160,28 +154,4 @@
 
 </div>
 
-@script
-    <script>
-        const swiper = new Swiper('.swiper', {
-            // Optional parameters
-            direction: 'horizontal',
-            loop: true,
 
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
-
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-
-            // And if we need scrollbar
-            // scrollbar: {
-            //   el: '.swiper-scrollbar',
-            // },
-        });
-    </script>
-@endscript

@@ -12,9 +12,14 @@ export default {
             btnPrimary: '#0c71cf',
             btnSecondary: '#1c98f7',
             btnDark: '#003580',
+        },
+        fontFamily:{
+            robotoBold: ['Roboto-Bold','sans-serif']
         }
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animate"),
+  ],
 }
 
