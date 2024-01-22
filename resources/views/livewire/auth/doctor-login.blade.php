@@ -1,7 +1,7 @@
-<div class="bg-[#f2f6fa] text-primary">
-
+<div class="bg-[#f2f6fa] ">
+    <x-pages.header  />
     {{-- main --}}
-    <main class="py-20">
+    <main class="py-20 text-primary">
         <div class="bg-white w-[40rem] mx-auto pb-20 pt-10 rounded shadow-md">
             <div class="flex items-center justify-center pb-10">
                 <img src="{{ asset('favicon.ico') }}" alt="">

@@ -1,6 +1,6 @@
 
 <div>
-
+    <x-pages.header  />
 
     {{-- carousel --}}
    <section x-data="{swiper: null}"  x-init="swiper = new Swiper($refs.container, {
@@ -19,8 +19,8 @@
         prevEl: '.swiper-button-prev',
     },
 
-})">
-    <div class="swiper text-violet-500 " x-ref="container">
+}) ">
+    <div class="swiper text-violet-500 " x-ref="container" >
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper ">
             <!-- Slides -->
@@ -69,8 +69,8 @@
         <h1 class="font-serif font-bold text-6xl text-center  z-20">Services</h1>
 
         {{-- card container --}}
-        <div class="container mx-auto grid grid-cols-3 gap-x-16 px-20 py-10 mt-10">
-            <a href="/services#generals" class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw">
+        <div  x-data="{ shown: false }" x-intersect.threshold.100="shown = true" class="container mx-auto grid grid-cols-3 gap-x-16 px-20 py-10 mt-10">
+            <a   href="/services#generals" class=" transition-all border border-white px-2 py-5  justify-center items-center flex-col group hover:border-ylw" :class="shown ? 'flex animate-in fade-in zoom-in  duration-100' : 'hidden'" >
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="512" height="512" x="0" y="0" viewBox="0 0 496 496"
                     style="enable-background:new 0 0 512 512" xml:space="preserve"
@@ -86,7 +86,7 @@
                 </svg>
                 <h3 class="text-2xl group-hover:text-ylw group-hover:underline">General dentistry</h3>
             </a>
-            <a href="/services#Cosmetics" class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw">
+            <a href="/services#Cosmetics" class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw" :class="shown ? 'flex animate-in fade-in zoom-in  duration-500' : 'hidden'">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve"
                     class="h-[5rem] fill-white group-hover:fill-ylw">
@@ -99,7 +99,7 @@
                 <h3 class="text-2xl group-hover:text-ylw group-hover:underline">Cosmetics</h3>
             </a>
             <a href="/services#Orthodontics"
-                class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw">
+                class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw" :class="shown ? 'flex animate-in fade-in zoom-in  duration-1000' : 'hidden'">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 48 48" style="enable-background:new 0 0 512 512" xml:space="preserve"
                     class="h-[5rem] fill-white group-hover:fill-ylw">
@@ -128,7 +128,7 @@
             </div>
 
 
-                <div x-show="map" class="px-20" id="map1">
+                <div x-show="map" x-transition class="px-20" id="map1">
                     <h2 class="text-center text-black text-2xl mt-10">43 Camilo Osias Street, New haven Village,
                         Novaliches Q.C.</h2>
                     <iframe
@@ -138,7 +138,7 @@
                 </div>
 
 
-                <div x-show="!map" class="px-20" id="map2">
+                <div x-show="!map" x-transition class="px-20" id="map2">
                     <h2 class="text-center text-black text-2xl mt-10">168 Gen. Luna Street, Malabon, Metro Manila</h2>
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d964.963551986337!2d120.94960032667348!3d14.664213907402948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4511cb0e409%3A0x24228184ec2ba42f!2s168%20Gen.%20Luna%20St%2C%20Malabon%2C%201470%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1680637820563!5m2!1sen!2sph"

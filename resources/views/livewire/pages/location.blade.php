@@ -1,4 +1,6 @@
 <div>
+    <x-pages.header  />
+
     <section class=" bg-[#f2f6fa] pb-28 pt-20">
         <div x-data="{map: true}" class=" container mx-auto">
             <h2 class="text-6xl font-bold text-center font-serif text-btnPrimary mb-6">Dental Clinic Locations</h2>

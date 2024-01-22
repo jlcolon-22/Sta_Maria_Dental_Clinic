@@ -7,6 +7,7 @@ use App\Livewire\Pages\Homepage;
 use App\Livewire\Pages\Location;
 use App\Livewire\Pages\Services;
 use App\Livewire\Admin\Dashboard;
+use App\Livewire\Admin\Inventory;
 use App\Livewire\Auth\DoctorLogin;
 use App\Livewire\Auth\PatientLogin;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,6 @@ Route::get('/auth/patient/login', PatientLogin::class);
 Route::get('/auth/doctor/login', DoctorLogin::class);
 
 Route::group(['prefix'=> 'admin'], function () {
-    Route::get('dashboard', Dashboard::class)->lazy();
+    Route::get('dashboard', Dashboard::class);
+    Route::get('inventory', Inventory::class);
 });

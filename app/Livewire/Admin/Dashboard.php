@@ -6,8 +6,8 @@ use Livewire\Attributes\Layout;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
-#[Layout("components.layouts.admin")]
 
+#[Lazy]
 class Dashboard extends Component
 {
 

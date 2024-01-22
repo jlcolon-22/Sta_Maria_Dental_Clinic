@@ -14,6 +14,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@alpinejs/intersect": "^3.13.3",
         "swiper": "^11.0.5",
         "tailwindcss-animate": "^1.0.7"
     }

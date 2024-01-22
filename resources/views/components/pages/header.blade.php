@@ -6,19 +6,20 @@
          <h2 class="text-3xl">Sta.Maria Dental Clinic</h2>
        </a>
         {{-- nav / links --}}
-        <nav class="flex items-center gap-x-7">
+        <nav x-data="{path: window.location.pathname}" class="flex items-center gap-x-7">
             <div class="relative">
-                <a href="/" class="text-lg {{ request()->is('/') ? 'text-ylw font-bold' : 'font-medium' }} peer">Home</a>
-                <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 {{ request()->is('/') ? 'w-full' : 'w-0' }}"></div>
-            </div>
-            <div class="relative">
-                <a href="/services"   class="text-lg  {{ request()->routeIs('page_services') ? 'text-ylw font-bold' : 'font-medium' }} peer">Services</a>
 
-                <div class="{{request()->is('services') ? 'w-full' : 'w-0' }} transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 "></div>
+                <a href="/" class="text-lg  peer" :class="path == '/'  ? 'text-ylw font-bold' : 'font-medium'">Home</a>
+                <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/' ? 'w-full' : 'w-0'"></div>
             </div>
             <div class="relative">
-                <a href="/location" class="text-lg {{ request()->is('location') ? 'text-ylw font-bold' : 'font-medium' }} peer">Location</a>
-                <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 {{ request()->is('location') ? 'w-full' : 'w-0' }}"></div>
+                <a href="/services"   class="text-lg peer" :class="path == '/services'  ? 'text-ylw font-bold' : 'font-medium'">Services</a>
+
+                <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/services' ? 'w-full' : 'w-0'"></div>
+            </div>
+            <div class="relative">
+                <a href="/location" class="text-lg peer"  :class="path == '/location'  ? 'text-ylw font-bold' : 'font-medium'">Location</a>
+                <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/location' ? 'w-full' : 'w-0'"></div>
             </div>
             <div class="relative mr-10">
                 <a href="" class="text-lg font-medium  hover:text-ylw transition-all ease-in-out duration-500 peer ">Appointment</a>

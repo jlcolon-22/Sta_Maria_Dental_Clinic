@@ -28,13 +28,14 @@
                 object-fit: cover;
 
             }
+
         </style>
     @vite('resources/css/app.css')
+    @livewireStyles
     <style>
         * {
             font-family: 'Roboto', sans-serif;
         }
-
 
     </style>
 
@@ -42,10 +43,11 @@
 </head>
 
 <body class="text-gray-50">
-    <x-pages.header  />
+
     {{ $slot }}
     @stack('scripts')
 
+    @livewireScripts
 </body>
 
 

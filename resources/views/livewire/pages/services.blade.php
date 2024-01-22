@@ -1,6 +1,6 @@
 <div class="bg-[#f2f6fa]">
     {{-- include header --}}
-
+    <x-pages.header  />
 
 
     {{-- main section --}}
@@ -14,7 +14,7 @@
 
 
         {{-- generals --}}
-        <section id="generals" class="container mx-auto  py-10 ">
+        <section id="generals" class="container mx-auto  py-10 " >
             <h1 class="text-primary text-center text-4xl font-bold ">General Services</h1>
             <p class="text-primary/85 text-center mb-4">Fast, simple and routine procedures to maintain oral health </p>
             <hr>
@@ -29,7 +29,7 @@
                     <button  x-on:click="gen = 5"  class="whitespace-nowrap py-3 " :class="gen == 5 ? 'bg-white text-primary' : 'bg-ylw'">EXTRACTION</button>
                 </div>
                 {{-- Dental Consultation --}}
-                <section id="gen1" x-show="gen == 1" class="w-[60rem] flex  shadow-md">
+                <section id="gen1" x-show="gen == 1" x-transition class="w-[60rem] flex  shadow-md">
                     <img src="{{ asset('assets/consult.jpg') }}" class="max-w-[40%] h-fit  pl-10" alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Dental Consultation</h2>
@@ -47,7 +47,7 @@
                     </div>
                 </section>
                 {{-- Dental Filling / Pasta --}}
-                <section id="gen2" x-show="gen == 2" class="w-[60rem] flex shadow-md">
+                <section id="gen2" x-show="gen == 2" x-transition class="w-[60rem] flex shadow-md">
 
                     <video controls muted src="{{ asset('video/pasta.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
@@ -65,7 +65,7 @@
                     </div>
                 </section>
                 {{-- Oral Prophylaxis / Cleaning --}}
-                <section id="gen3"  x-show="gen == 3" class="w-[60rem] flex shadow-md">
+                <section id="gen3"  x-show="gen == 3" x-transition class="w-[60rem] flex shadow-md">
 
                     <video controls muted src="{{ asset('video/prophylaxis.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
@@ -84,7 +84,7 @@
                     </div>
                 </section>
                 {{-- Flouride Therapy --}}
-                <section id="gen4"  x-show="gen == 4" class="w-[60rem] flex shadow-md">
+                <section id="gen4"  x-show="gen == 4" x-transition class="w-[60rem] flex shadow-md">
                     <img src="{{ asset('assets/flouride.png') }}" class="max-w-[40%] h-fit  pl-10 py-10" alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Flouride Therapy</h2>
@@ -100,7 +100,7 @@
                     </div>
                 </section>
                 {{-- Tooth Extraction --}}
-                <section id="gen5"  x-show="gen == 5" class="w-[60rem] flex shadow-md">
+                <section id="gen5"  x-show="gen == 5" x-transition class="w-[60rem] flex shadow-md">
 
                     <video controls muted src="{{ asset('video/extraction.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
@@ -136,7 +136,7 @@
 
                 </div>
                 {{-- Veneers / Laminates --}}
-                <section id="cos1" x-show="cos == 1" class="w-[60rem] flex shadow-md">
+                <section id="cos1" x-show="cos == 1" x-transition class="w-[60rem] flex shadow-md">
                     <video controls muted src="{{ asset('video/veneers.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
                     <div class="py-10 px-10">
@@ -153,7 +153,7 @@
                     </div>
                 </section>
                 {{-- Crown / Bridge --}}
-                <section id="cos2" x-show="cos == 2" class="w-[60rem] flex shadow-md">
+                <section id="cos2" x-show="cos == 2" x-transition class="w-[60rem] flex shadow-md">
 
                     <video controls muted src="{{ asset('video/bridge.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
@@ -173,7 +173,7 @@
                     </div>
                 </section>
                 {{-- Dentures --}}
-                <section id="cos3" x-show="cos == 3" class="w-[60rem] flex shadow-md">
+                <section id="cos3" x-show="cos == 3" x-transition class="w-[60rem] flex shadow-md">
 
                     <video controls muted src="{{ asset('video/denture.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
@@ -189,7 +189,7 @@
                     </div>
                 </section>
                 {{-- Laser Teeth Whitening --}}
-                <section id="cos4" x-show="cos == 4" class="w-[60rem] flex shadow-md">
+                <section id="cos4" x-show="cos == 4" x-transition class="w-[60rem] flex shadow-md">
                     <img src="{{ asset('assets/laser.jpg') }}" class="max-w-[40%] h-fit  pl-10 py-10" alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Laser Teeth Whitening</h2>
@@ -222,7 +222,7 @@
                     <button   x-on:click="ort = 5" class="whitespace-nowrap py-3" :class="ort == 5 ? 'bg-white text-primary' : 'bg-ylw'">SELF LIGATING</button>
                 </div>
                 {{-- Clear Aligners --}}
-                <section id="ort1" x-show="ort == 1" class="w-[60rem] flex shadow-md">
+                <section id="ort1" x-show="ort == 1" x-transition class="w-[60rem] flex shadow-md">
                     <video controls muted src="{{ asset('video/aligners.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
                     <div class="py-10 px-10">
@@ -238,7 +238,7 @@
                     </div>
                 </section>
                 {{-- Metal Braces --}}
-                <section id="ort2" x-show="ort == 2" class="w-[60rem] flex shadow-md">
+                <section id="ort2" x-show="ort == 2" x-transition class="w-[60rem] flex shadow-md">
 
                     <video controls muted src="{{ asset('video/metal.mp4') }}"
                         class="max-w-[40%] h-fit py-10 pl-10"></video>
@@ -255,7 +255,7 @@
                     </div>
                 </section>
                 {{-- Ceramic Braces --}}
-                <section id="ort3" x-show="ort == 3" class="w-[60rem] flex shadow-md">
+                <section id="ort3" x-show="ort == 3" x-transition class="w-[60rem] flex shadow-md">
 
                     <img src="{{ asset('assets/ceramic.jpg') }}" class="max-w-[40%] h-fit  pl-10 py-10"
                         alt="">
@@ -273,7 +273,7 @@
                     </div>
                 </section>
                 {{-- Sapphire Braces --}}
-                <section id="ort4" x-show="ort == 4" class="w-[60rem] flex shadow-md">
+                <section id="ort4" x-show="ort == 4" x-transition class="w-[60rem] flex shadow-md">
                     <img src="{{ asset('assets/laser.jpg') }}" class="max-w-[40%] h-fit  pl-10 py-10"
                         alt="">
                     <div class="py-10 px-10">
@@ -288,7 +288,7 @@
                     </div>
                 </section>
                 {{-- Self Ligating Braces --}}
-                <section id="ort5"x-show="ort == 5"  class="w-[60rem] flex shadow-md">
+                <section id="ort5"x-show="ort == 5" x-transition  class="w-[60rem] flex shadow-md">
 
                     <img src="{{ asset('assets/ligited.png') }}" class="max-w-[40%] h-fit  pl-10 py-10"
                         alt="">
