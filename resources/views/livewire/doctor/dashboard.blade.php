@@ -1,9 +1,9 @@
 <div class="bg-[#f2f6fa] max-h-[100svh]  ">
 
 
-    <x-admin.aside>
+    <x-doctor.aside>
         <section
-            class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative " :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
+            class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  max-w-[calc(100svw-17rem)]">
 
 
             <!-- Breadcrumb -->
@@ -116,7 +116,7 @@
             </div>
         </section>
 
-    </x-admin.aside>
+    </x-doctor.aside>
 
 
 </div>

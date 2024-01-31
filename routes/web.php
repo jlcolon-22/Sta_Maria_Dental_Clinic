@@ -8,9 +8,15 @@ use App\Livewire\Pages\Location;
 use App\Livewire\Pages\Services;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Inventory;
+use App\Livewire\Auth\AdminLogin;
 use App\Livewire\Auth\DoctorLogin;
 use App\Livewire\Auth\PatientLogin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Livewire\Admin\DoctorAccount;
+use App\Livewire\Admin\Setting;
+use App\Livewire\Doctor\Dashboard as DoctorDashboard;
+use App\Livewire\Doctor\Schedule;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +30,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Homepage::class);
+Route::get('/x',function(){
+    return view('welcome');
+});
 Route::get('/services', Services::class)->name('page_services')->lazy();
 Route::get('/location', Location::class)->name('page.location');
 // auth route
@@ -31,7 +40,21 @@ Route::get('/auth/type', Type::class);
 Route::get('/auth/patient/login', PatientLogin::class);
 Route::get('/auth/doctor/login', DoctorLogin::class);
 
-Route::group(['prefix'=> 'admin'], function () {
+Route::get('/admin/login', AdminLogin::class);
+Route::middleware(['admin_only'])->prefix('admin')->group(function () {
+
+    Route::get('logout', [AuthController::class,'adminLogout']);
+
     Route::get('dashboard', Dashboard::class);
     Route::get('inventory', Inventory::class);
+    Route::get('doctor-account', DoctorAccount::class);
+
+    Route::get('setting', Setting::class);
+});
+Route::middleware(['doctor_only'])->prefix('doctor')->group(function () {
+    Route::get('dashboard', DoctorDashboard::class);
+    Route::get('schedule', Schedule::class);
+
+    Route::get('logout', [AuthController::class,'doctorLogout']);
+
 });

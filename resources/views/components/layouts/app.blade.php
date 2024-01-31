@@ -8,6 +8,7 @@
     <title>{{ $title ?? 'Sta Maria Dental Clinic' }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <style>
             /* Hide the scrollbar for Chrome, Safari and Opera */
@@ -30,7 +31,7 @@
             }
 
         </style>
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
     <style>
         * {

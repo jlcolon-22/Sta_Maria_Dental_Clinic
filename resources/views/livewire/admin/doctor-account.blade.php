@@ -3,7 +3,7 @@
 
     <x-admin.aside>
         <section x-data="main"
-            class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative" :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
+            class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  " :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
 
             <!-- Breadcrumb -->
             <nav class="flex " aria-label="Breadcrumb">
@@ -28,7 +28,7 @@
                                     stroke-width="2" d="m1 9 4-4-4-4" />
                             </svg>
                             <span
-                                class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Inventory</span>
+                                class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Doctor Accounts</span>
                         </div>
                     </li>
                 </ol>
@@ -38,9 +38,9 @@
 
             {{-- table --}}
             <div class="bg-white shadow-md rounded-md mt-7  p-5  ">
-                <h2 class="font-robotoBold">Inventory Management</h2>
+                <h2 class="font-robotoBold">Doctor Accounts</h2>
                 <div class="mt-5 py-2 flex items-center justify-between">
-                    <button class="py-2 px-4 bg-ylw text-white rounded" x-on:click="toggle">Add Product</button>
+                    <button class="py-2 px-4 bg-ylw text-white rounded" x-on:click="toggle">Add Doctor</button>
                     <form action="" class="relative w-fit">
                         <input type="tel" autocomplete="off"wire:model.live.debounce.500ms="search"
                             class="border rounded py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
@@ -62,28 +62,38 @@
                     <table class="w-full text-white  ">
                         <thead class="bg-btnDark ">
                             <tr class=" ">
-                                <th class="py-2 whitespace-nowrap text-center px-2">Product ID</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Product Name</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Quantity</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">ID</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Full Name</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Email</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Number</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Status</th>
 
                                 <th class="py-2 whitespace-nowrap text-center px-2">Action</th>
 
                             </tr>
                         </thead>
                         <tbody class="text-gray-900">
-                            @forelse ($inventories as $inventory)
+                            @forelse ($doctorAccounts as $doctor)
                                 <tr>
-                                    <td class="py-3 text-center px-2">{{ $inventory->id }}</td>
-                                    <td class="py-3 text-center px-2">{{ $inventory->product_name }}</td>
-                                    <td class="py-3 text-center px-2">{{ $inventory->quantity }}</td>
+                                    <td class="py-3 text-center px-2">{{ $doctor->id }}</td>
+                                    <td class="py-3 text-center px-2">{{ $doctor->fullname }}</td>
+                                    <td class="py-3 text-center px-2">{{ $doctor->email }}</td>
+                                    <td class="py-3 text-center px-2">{{ $doctor->number }}</td>
+                                    <td class="py-3 text-center px-2">
+                                       @if ($doctor->status)
+                                       <button wire:click='change_status({{ $doctor->id }})' class="bg-green-400 text-white py-1 rounded px-5 text-sm hover:opacity-85">Active</button>
+                                       @else
+                                       <button wire:click='change_status({{ $doctor->id }})' class="bg-red-400 text-white py-1 rounded px-5 text-sm hover:opacity-85">Inactive</button>
+                                       @endif
+                                    </td>
 
                                     <td class="py-3 text-center px-2 flex justify-center gap-x-2">
                                         <button class="text-green-500 font-robotoBold hover:underline"
-                                            x-on:click="edit" wire:click="edit({{ $inventory->id }})">Update</button>
+                                            x-on:click="edit" wire:click="edit({{ $doctor->id }})">Update</button>
 
                                         |
                                         <button class="text-red-500 font-robotoBold hover:underline"
-                                            x-on:click="destroy({{ $inventory->id }})">Delete</button>
+                                            x-on:click="destroy({{ $doctor->id }})">Delete</button>
                                     </td>
                                 </tr>
                             @empty
@@ -95,7 +105,7 @@
                         </tbody>
                     </table>
                     <div class="py-2">
-                        {{ $inventories->links('livewire::tailwind') }}
+                        {{ $doctorAccounts->links('livewire::tailwind') }}
                     </div>
                 </div>
             </div>
@@ -108,7 +118,7 @@
                 <form x-on:submit.prevent="submitForm" method="POST" x-show="add" x-transition
                     class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
                     <div class="flex justify-between items-center">
-                        <h1 class="font-robotoBold text-xl" x-text="update ? 'Update Product' : 'Add Product'">Add Product</h1>
+                        <h1 class="font-robotoBold text-xl" x-text="update ? 'Update Doctor Account' : 'Add Doctor Account'"></h1>
                         <button type="button" x-on:click="toggle">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -120,23 +130,51 @@
                         </button>
                     </div>
                     <div class="grid mt-6 ">
-                        <label for="" class="font-medium text-gray-800">Product Name<span
+                        <label for="" class="font-medium text-gray-800">Fullname<span
                                 class="text-red-600">*</span></label>
-                        <input type="text" autocomplete="off" wire:model="data.name"
+                        <input type="text" autocomplete="off" wire:model="fullname"
                             class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
-                            placeholder="ex: BETADINE">
+                           >
+                           @error('fullname')
+                               <small class="text-red-500">{{ $message }}</small>
+                           @enderror
                     </div>
                     <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Quantity<span
+                        <label for="" class="font-medium text-gray-800">Email<span
                                 class="text-red-600">*</span></label>
-                        <input type="number" min="1" value="1" wire:model="data.quantity"
+                        <input type="email"  wire:model="email"
                             autocomplete="off"
                             class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
-                            placeholder="1">
+                            >
+                            @error('email')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Number<span
+                                class="text-red-600">*</span></label>
+                        <input type="tel"  wire:model="number"
+                            autocomplete="off"
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
+                            >
+                            @error('number')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Password<span
+                                class="text-red-600">*</span></label>
+                        <input type="password"  wire:model="password"
+                            autocomplete="off"
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
+                            >
+                            @error('password')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
                     </div>
                     <div class="grid mt-4 ">
                         <button type="submit" class="border py-2   outline-none hover:opacity-70 text-white " :class="update ? 'bg-green-500 ' : 'bg-ylw'">
-                            <span  x-text="update ? 'Update' : 'Submit'" wire:loading.remove>
+                            <span x-text="update ? 'Update' : 'Submit'" wire:loading.remove>
 
                             </span>
                             <div wire:loading wire:loading.delay.longest>
@@ -172,14 +210,16 @@
 
             toggle() {
                 if (this.add) {
-                    $wire.data.name = '';
-                    $wire.data.quantity = 1;
+                    $wire.fullname = '';
+                    $wire.email = '';
+                    $wire.number = '';
+                    $wire.email = '';
                 }
                 this.add = !this.add
                 this.update = false;
             },
             destroy(id) {
-                console.log(id)
+
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -190,7 +230,7 @@
                     confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        $wire.delete(id);
+                        $wire.destroy(id);
                         Swal.fire({
                             title: "Deleted!",
                             text: "Your file has been deleted.",

@@ -1,5 +1,5 @@
-<div class="bg-[#f2f6fa] ">
-    <x-pages.header  />
+<div class="bg-[#f2f6fa] min-h-[100svh] ">
+
     {{-- main --}}
     <main class="py-20 text-primary">
         <div class="bg-white w-[40rem] mx-auto pb-20 pt-10 rounded shadow-md">
@@ -9,18 +9,18 @@
                     Sta.Maria Dental CLinic </h2>
             </div>
 
-            <h1 class="text-3xl font-robotoBold text-center  ">Doctor Login</h1>
+            <h1 class="text-3xl font-robotoBold text-center  ">Admin Login</h1>
+            @if (Session::has('error'))
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 d-400  w-[23rem] mx-auto" role="alert">
+                Please log in first to see this page!
+             </div>
+            @endif
             @if (Session::has('error-credentials'))
-            <div class="p-4 mb-4 text-sm font-bold text-red-800 rounded-lg bg-red-50 d-400  w-[23rem] mx-auto" role="alert">
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 d-400  w-[23rem] mx-auto" role="alert">
                 Wrong Credentials!
              </div>
             @endif
-            @if (Session::has('info'))
-            <div class="p-4 mb-4 text-sm font-bold text-blue-800 rounded-lg bg-blue-400  w-[23rem] mx-auto" role="alert">
-                Account Not Active
-             </div>
-            @endif
-            <form wire:submit='doctorLogin' class="grid  mt-4 " autocomplete="off">
+            <form  wire:submit='adminLogin' class="grid  mt-4 " autocomplete="off">
                 <div class="w-fit mx-auto grid relative ">
 
                     <div class="absolute left-1 top-0  px-2 py-[8.5px]">
@@ -31,12 +31,13 @@
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
                     </div>
-                    <input type="tel" autocomplete="off" wire:model='username'
+                    <input type="text" autocomplete="off" wire:model='email'
                         class="border text-center px-10 py-2 focus:border-ylw outline-none bg-gray-50 w-[23rem]"
                         placeholder="Username">
-                    @error('username')
-                        <small class="text-red-500">{{ $message }}</small>
-                    @enderror
+
+                        @error('email')
+                           <small class="text-red-500"> {{ $message }}</small>
+                        @enderror
                 </div>
                 <div x-data="{ password: false }" class="w-fit mx-auto grid relative mt-4 ">
 
@@ -48,12 +49,12 @@
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
                     </div>
-                    <input :type="password ? 'text' : 'password'" autocomplete="off" wire:model='password'
-                        class="border text-center px-10 py-2 focus:border-ylw outline-none bg-gray-50 w-[23rem]"
+                    <input :type="password ? 'text' : 'password'" wire:model='password'  autocomplete="off"
+                        class="border text-center px-10 py-2 focus:border-ylw outline-none bg-gray-50 mx-auto w-[23rem]"
                         placeholder="Password">
                         @error('password')
-                        <small class="text-red-500">{{ $message }}</small>
-                    @enderror
+                        <small class="text-red-500 w-[23rem]"> {{ $message }}</small>
+                     @enderror
                     <div class="absolute right-1 top-0  px-2 py-[8.5px]">
 
                         <input type="checkbox" id="eye" class="fill-btnPrimary hidden" x-model="password">
@@ -68,10 +69,10 @@
                         </label>
                     </div>
                 </div>
-                <div class="flex items-center justify-end w-[23rem] mx-auto">
+                {{-- <div class="flex items-center justify-end w-[23rem] mx-auto">
 
                     <a href="" class="text-blue-500 hover:underline">Forget password</a>
-                </div>
+                </div> --}}
 
                 <button class="bg-btnDark w-[23rem] mx-auto text-white py-2 mt-4">
                     <span wire:loading.class="hidden">Login</span>
@@ -84,5 +85,5 @@
         </div>
     </main>
 
-    <x-pages.footer />
+
 </div>
