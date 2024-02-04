@@ -89,15 +89,16 @@
                         right: 'today'
                     },
                     events: x,
-                    // validRange: function(nowDate) {
-                    //     // Calculate the current date
-                    //     var now = new Date(nowDate);
+                    hiddenDays: [ 0],
+                    validRange: function(nowDate) {
+                        // Calculate the current date
+                        var now = new Date(nowDate);
 
-                    //     // Set the valid range to start from the current date
-                    //     return {
-                    //         start: now.toISOString().split("T")[0], // Format: YYYY-MM-DD
-                    //     };
-                    // },
+                        // Set the valid range to start from the current date
+                        return {
+                            start: now.toISOString().split("T")[0], // Format: YYYY-MM-DD
+                        };
+                    },
                     // validRange: {
                     //     start: '2024-01-11'
                     // }

@@ -16,6 +16,7 @@ use App\Http\Controllers\AuthController;
 use App\Livewire\Admin\DoctorAccount;
 use App\Livewire\Admin\Setting;
 use App\Livewire\Doctor\Dashboard as DoctorDashboard;
+use App\Livewire\Doctor\DoctorSetting;
 use App\Livewire\Doctor\Schedule;
 
 /*
@@ -54,6 +55,7 @@ Route::middleware(['admin_only'])->prefix('admin')->group(function () {
 Route::middleware(['doctor_only'])->prefix('doctor')->group(function () {
     Route::get('dashboard', DoctorDashboard::class);
     Route::get('schedule', Schedule::class);
+    Route::get('setting', DoctorSetting::class);
 
     Route::get('logout', [AuthController::class,'doctorLogout']);
 

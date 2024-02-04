@@ -5,7 +5,9 @@ namespace App\Livewire\Doctor;
 use Livewire\Component;
 use App\Models\DoctorSchedule;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Lazy;
 
+#[Lazy]
 class Schedule extends Component
 {
 
@@ -28,6 +30,10 @@ class Schedule extends Component
 
         // $schedule = DoctorSchedule::where("doctor_id", Auth::guard('doctor')->id())->get();
         $this->dispatch('added',$value);
+    }
+    public function placeholder()
+    {
+        return view("livewire.loading");
     }
     public function render()
     {
