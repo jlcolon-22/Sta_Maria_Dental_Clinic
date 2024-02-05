@@ -84,7 +84,7 @@ class DoctorAccount extends Component
     }
     public function render()
     {
-        $doctorAccounts = ModelsDoctorAccount::where('fullname','LIKE', '%'.$this->search.'%')->orWhere('id','LIKE', '%'.$this->search.'%')->where('branch_id', Auth::guard('web')->id())->latest()->paginate(10);
+        $doctorAccounts = ModelsDoctorAccount::where('branch_id', Auth::guard('web')->id())->where('fullname','LIKE', '%'.$this->search.'%')->latest()->paginate(10);
         return view('livewire.admin.doctor-account',compact('doctorAccounts'));
     }
 }

@@ -18,6 +18,7 @@ use App\Livewire\Admin\Setting;
 use App\Livewire\Doctor\Dashboard as DoctorDashboard;
 use App\Livewire\Doctor\DoctorSetting;
 use App\Livewire\Doctor\Schedule;
+use App\Livewire\Pages\Appointment;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::get('/x',function(){
 });
 Route::get('/services', Services::class)->name('page_services')->lazy();
 Route::get('/location', Location::class)->name('page.location');
+Route::get('/appointment', Appointment::class)->name('page.appointment');
 // auth route
 Route::get('/auth/type', Type::class);
 Route::get('/auth/patient/login', PatientLogin::class);

@@ -70,7 +70,7 @@
                 </div>
                 <div class="flex items-center justify-end w-[23rem] mx-auto">
 
-                    <a href="" class="text-blue-500 hover:underline">Forget password</a>
+                    <a href="/auth/doctor/forget" class="text-blue-500 hover:underline">Forget password</a>
                 </div>
 
                 <button class="bg-btnDark w-[23rem] mx-auto text-white py-2 mt-4">

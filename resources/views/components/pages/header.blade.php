@@ -22,8 +22,8 @@
                 <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/location' ? 'w-full' : 'w-0'"></div>
             </div>
             <div class="relative mr-10">
-                <a href="" class="text-lg font-medium  hover:text-ylw transition-all ease-in-out duration-500 peer ">Appointment</a>
-                <div class="transition-all ease-in-out duration-500  bg-ylw w-0 h-[2px] peer-hover:w-full absolute bottom-0"></div>
+                <a href="/appointment" class="text-lg peer"  :class="path == '/appointment'  ? 'text-ylw font-bold' : 'font-medium'">Appointment</a>
+                <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/appointment' ? 'w-full' : 'w-0'"></div>
             </div>
 
             <a href="/auth/type" class="text-base rounded bg-btnPrimary px-6 py-2 ">Login</a>

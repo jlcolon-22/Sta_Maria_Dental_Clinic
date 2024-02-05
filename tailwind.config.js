@@ -15,6 +15,9 @@ export default {
         },
         fontFamily:{
             robotoBold: ['Roboto-Bold','sans-serif']
+        },
+        backgroundImage:{
+            'appointment': "url('/public/assets/logbg.png')",
         }
     },
   },

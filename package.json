@@ -21,6 +21,7 @@
         "@fullcalendar/list": "^6.1.10",
         "@fullcalendar/timegrid": "^6.1.10",
         "alpinejs": "^3.13.4",
+        "flatpickr": "^4.6.13",
         "sweetalert2": "^11.10.4",
         "swiper": "^11.0.5",
         "tailwindcss-animate": "^1.0.7"
