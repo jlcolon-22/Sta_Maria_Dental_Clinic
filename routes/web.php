@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Livewire\Admin\DoctorAccount;
 use App\Livewire\Admin\Setting;
+use App\Livewire\Auth\DoctorForget;
 use App\Livewire\Doctor\Dashboard as DoctorDashboard;
 use App\Livewire\Doctor\DoctorSetting;
 use App\Livewire\Doctor\Schedule;
@@ -41,7 +42,9 @@ Route::get('/appointment', Appointment::class)->name('page.appointment');
 // auth route
 Route::get('/auth/type', Type::class);
 Route::get('/auth/patient/login', PatientLogin::class);
+
 Route::get('/auth/doctor/login', DoctorLogin::class);
+Route::get('/auth/doctor/forget', DoctorForget::class);
 
 Route::get('/admin/login', AdminLogin::class);
 Route::middleware(['admin_only'])->prefix('admin')->group(function () {
