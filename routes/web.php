@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Auth\DoctorCode;
 use App\Livewire\Loading;
 use App\Livewire\Auth\Type;
 use App\Livewire\Auth\Login;
@@ -45,6 +46,8 @@ Route::get('/auth/patient/login', PatientLogin::class);
 
 Route::get('/auth/doctor/login', DoctorLogin::class);
 Route::get('/auth/doctor/forget', DoctorForget::class);
+Route::get('/auth/doctor/code/{id}', DoctorCode::class);
+
 
 Route::get('/admin/login', AdminLogin::class);
 Route::middleware(['admin_only'])->prefix('admin')->group(function () {
