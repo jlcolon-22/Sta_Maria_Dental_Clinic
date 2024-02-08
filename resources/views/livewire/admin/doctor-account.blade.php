@@ -133,7 +133,7 @@
                         <label for="" class="font-medium text-gray-800">Fullname<span
                                 class="text-red-600">*</span></label>
                         <input type="text" autocomplete="off" wire:model="fullname"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded "
                            >
                            @error('fullname')
                                <small class="text-red-500">{{ $message }}</small>
@@ -144,7 +144,7 @@
                                 class="text-red-600">*</span></label>
                         <input type="email"  wire:model="email"
                             autocomplete="off"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded "
                             >
                             @error('email')
                             <small class="text-red-500">{{ $message }}</small>
@@ -155,9 +155,23 @@
                                 class="text-red-600">*</span></label>
                         <input type="tel"  wire:model="number"
                             autocomplete="off"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded "
                             >
                             @error('number')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="my-4">
+                        <hr>
+                    </div>
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Username<span
+                                class="text-red-600">*</span></label>
+                        <input type="tel"  wire:model="username"
+                            autocomplete="off"
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded "
+                            >
+                            @error('username')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
@@ -166,14 +180,14 @@
                                 class="text-red-600">*</span></label>
                         <input type="password"  wire:model="password"
                             autocomplete="off"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded "
                             >
                             @error('password')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
                     </div>
                     <div class="grid mt-4 ">
-                        <button type="submit" class="border py-2   outline-none hover:opacity-70 text-white " :class="update ? 'bg-green-500 ' : 'bg-ylw'">
+                        <button type="submit" class="border py-2   outline-none hover:opacity-70 text-white rounded" :class="update ? 'bg-green-500 ' : 'bg-ylw'">
                             <span x-text="update ? 'Update' : 'Submit'" wire:loading.remove>
 
                             </span>
@@ -214,6 +228,7 @@
                     $wire.email = '';
                     $wire.number = '';
                     $wire.email = '';
+                    $wire.username = '';
                 }
                 this.add = !this.add
                 this.update = false;

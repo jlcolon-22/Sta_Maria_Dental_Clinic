@@ -10,6 +10,6 @@ class DoctorAccount extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
-    "fullname","email","branch_id","number","password","status",
+    "fullname","email","branch_id","number","password","status",'username',
     ];
 }

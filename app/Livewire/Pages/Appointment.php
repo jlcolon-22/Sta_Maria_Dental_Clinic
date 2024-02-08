@@ -5,8 +5,10 @@ namespace App\Livewire\Pages;
 use App\Models\DoctorAccount;
 use App\Models\DoctorSchedule;
 use App\Models\User;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
+#[Lazy]
 class Appointment extends Component
 {
     public $date = '';
@@ -44,8 +46,13 @@ class Appointment extends Component
     {
         dd($this->date);
     }
+    public function placeholder()
+    {
+        return view("livewire.loading");
+    }
     public function render()
     {
+        sleep(1);
         return view('livewire.pages.appointment');
     }
 }

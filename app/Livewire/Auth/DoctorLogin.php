@@ -17,7 +17,7 @@ class DoctorLogin extends Component
     public function doctorLogin()
     {
         $this->validate();
-        if(Auth::guard('doctor')->attempt(['fullname'=> $this->username,'password'=> $this->password]))
+        if(Auth::guard('doctor')->attempt(['username'=> $this->username,'password'=> $this->password]))
         {
             if(Auth::guard('doctor')->user()->status)
             {
@@ -36,6 +36,7 @@ class DoctorLogin extends Component
     }
     public function render()
     {
+        sleep(1);
         return view('livewire.auth.doctor-login');
     }
 }

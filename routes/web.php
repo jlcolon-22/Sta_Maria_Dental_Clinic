@@ -17,6 +17,7 @@ use App\Http\Controllers\AuthController;
 use App\Livewire\Admin\DoctorAccount;
 use App\Livewire\Admin\Setting;
 use App\Livewire\Auth\DoctorForget;
+use App\Livewire\Auth\PatientSignup;
 use App\Livewire\Doctor\Dashboard as DoctorDashboard;
 use App\Livewire\Doctor\DoctorSetting;
 use App\Livewire\Doctor\Schedule;
@@ -42,7 +43,9 @@ Route::get('/location', Location::class)->name('page.location');
 Route::get('/appointment', Appointment::class)->name('page.appointment');
 // auth route
 Route::get('/auth/type', Type::class);
+
 Route::get('/auth/patient/login', PatientLogin::class);
+Route::get('/auth/patient/signup', PatientSignup::class);
 
 Route::get('/auth/doctor/login', DoctorLogin::class);
 Route::get('/auth/doctor/forget', DoctorForget::class);
@@ -50,6 +53,9 @@ Route::get('/auth/doctor/code/{id}', DoctorCode::class);
 
 
 Route::get('/admin/login', AdminLogin::class);
+Route::get('/admin',function(){
+    return redirect('/admin/login');
+});
 Route::middleware(['admin_only'])->prefix('admin')->group(function () {
 
     Route::get('logout', [AuthController::class,'adminLogout']);

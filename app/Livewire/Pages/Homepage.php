@@ -16,6 +16,7 @@ class Homepage extends Component
     #[Title('Homepage')]
     public function render()
     {
+        sleep(1);
         return view('livewire.pages.homepage');
     }
 }

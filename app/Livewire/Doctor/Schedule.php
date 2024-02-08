@@ -38,6 +38,7 @@ class Schedule extends Component
     public function render()
     {
         $schedules = DoctorSchedule::where("doctor_id", Auth::guard('doctor')->id())->get();
+        sleep(1);
         return view('livewire.doctor.schedule',compact('schedules'));
     }
 }

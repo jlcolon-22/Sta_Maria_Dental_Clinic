@@ -23,9 +23,11 @@
 
                         <select wire:model='branch' wire:change='branch_change' class="border py-3 rounded  px-4 focus:border-ylw outline-none bg-gray-50 ">
                             <option value="">Choose...</option>
-                            @foreach ($allBranch as $branch)
+                            @forelse ($allBranch as $branch)
                             <option value="{{ $branch->id }}">{{ $branch->branch_name }}</option>
-                            @endforeach
+                            @empty
+                            <option value="">No result</option>
+                            @endforelse
 
                         </select>
                     </div>
@@ -73,10 +75,14 @@
                         <label for="" class="font-robotoBold text-sm ">Doctor:</label>
 
                         <select wire:model='doctor' wire:change='doctor_change'  class="border py-3 rounded  px-4 focus:border-ylw outline-none bg-gray-50 ">
-                            <option value="">Choose...</option>
-                            @foreach ($allDoctor as $doctor)
+                            <option value="" :selected="true">Choose..</option>
+                            @forelse ($allDoctor as $doctor)
                             <option value="{{  $doctor->id }}">{{  $doctor->fullname }}</option>
-                            @endforeach
+
+                            @empty
+                            <option value="">No Available Doctor!</option>
+
+                            @endforelse
                         </select>
                     </div>
 

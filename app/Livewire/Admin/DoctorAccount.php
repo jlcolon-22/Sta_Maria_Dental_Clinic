@@ -15,6 +15,7 @@ class DoctorAccount extends Component
     public $fullname = '';
     public $email = '';
     public $number = '';
+    public $username = '';
     public $password = '';
     public $search = '';
     public $id = '';
@@ -25,7 +26,8 @@ class DoctorAccount extends Component
             'password' => ['required', Password::min(8) ->numbers()->mixedCase()->letters()
             ->symbols()],
             'fullname' => ['required'],
-            'number' => ['required'],
+            'number' => 'required|numeric|digits:11',
+            'username' => ['required'],
         ];
     }
 
@@ -37,6 +39,7 @@ class DoctorAccount extends Component
             'number'=> $this->number,
             'password'=>Hash::make($this->password),
             'fullname'=> $this->fullname,
+            'username'=> $this->username,
             'branch_id'=>Auth::guard('web')->id()
         ]);
         $this->dispatch('added');
@@ -47,6 +50,7 @@ class DoctorAccount extends Component
         $this->fullname = $id->fullname;
         $this->email = $id->email;
         $this->number = $id->number;
+        $this->username = $id->username;
         $this->id = $id->id;
 
     }
@@ -56,6 +60,7 @@ class DoctorAccount extends Component
             'email'=> $this->email,
             'number'=> $this->number,
             'fullname'=> $this->fullname,
+            'username'=> $this->username,
 
         ]);
         if(!!$this->password)
@@ -85,6 +90,7 @@ class DoctorAccount extends Component
     public function render()
     {
         $doctorAccounts = ModelsDoctorAccount::where('branch_id', Auth::guard('web')->id())->where('fullname','LIKE', '%'.$this->search.'%')->latest()->paginate(10);
+        sleep(1);
         return view('livewire.admin.doctor-account',compact('doctorAccounts'));
     }
 }

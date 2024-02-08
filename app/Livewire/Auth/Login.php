@@ -8,6 +8,7 @@ class Login extends Component
 {
     public function render()
     {
+        sleep(1);
         return view('livewire.auth.login');
     }
 }
