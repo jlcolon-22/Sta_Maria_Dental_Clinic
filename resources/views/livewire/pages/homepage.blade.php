@@ -20,6 +20,7 @@
     },
 
 }) ">
+
     <div class="swiper text-violet-500 " x-ref="container" >
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper ">

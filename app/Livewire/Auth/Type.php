@@ -15,7 +15,7 @@ class Type extends Component
     }
     public function render()
     {
-        sleep(1);
+
         return view('livewire.auth.type');
     }
 }

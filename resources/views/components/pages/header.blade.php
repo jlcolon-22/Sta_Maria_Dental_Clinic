@@ -26,7 +26,11 @@
                 <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/appointment' ? 'w-full' : 'w-0'"></div>
             </div>
 
+            @if (Auth::guard('patient')->check())
+            <a href="/auth/type" class="text-base rounded bg-btnPrimary px-6 py-2 ">Account</a>
+            @else
             <a href="/auth/type" class="text-base rounded bg-btnPrimary px-6 py-2 ">Login</a>
+            @endif
         </nav>
     </div>
 </header>

@@ -44,7 +44,7 @@ class DoctorSetting extends Component
     }
     public function render()
     {
-        sleep(1);
+
         return view('livewire.doctor.doctor-setting');
     }
 }

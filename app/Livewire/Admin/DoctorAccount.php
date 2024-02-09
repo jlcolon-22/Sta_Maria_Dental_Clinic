@@ -90,7 +90,7 @@ class DoctorAccount extends Component
     public function render()
     {
         $doctorAccounts = ModelsDoctorAccount::where('branch_id', Auth::guard('web')->id())->where('fullname','LIKE', '%'.$this->search.'%')->latest()->paginate(10);
-        sleep(1);
+
         return view('livewire.admin.doctor-account',compact('doctorAccounts'));
     }
 }

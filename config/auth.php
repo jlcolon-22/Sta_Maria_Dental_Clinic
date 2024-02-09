@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\DoctorAccount;
+use App\Models\PatientAccount;
 
 return [
 
@@ -46,6 +47,10 @@ return [
             'driver' => 'session',
             'provider' => 'doctors',
         ],
+        'patient' => [
+            'driver' => 'session',
+            'provider' => 'patients',
+        ],
     ],
 
     /*
@@ -73,6 +78,10 @@ return [
         'doctors' => [
             'driver' => 'eloquent',
             'model' => DoctorAccount::class,
+        ],
+         'patients' => [
+            'driver' => 'eloquent',
+            'model' => PatientAccount::class,
         ],
 
         // 'users' => [

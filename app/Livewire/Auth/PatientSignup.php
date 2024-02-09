@@ -4,6 +4,9 @@ namespace App\Livewire\Auth;
 
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
+use App\Models\PatientAccount;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 #[Lazy]
@@ -29,9 +32,23 @@ class PatientSignup extends Component
     {
         return view("livewire.loading");
     }
+    public function store()
+    {
+        $this->validate();
+        $patient = PatientAccount::create([
+            'email'=> $this->email,
+            'number'=> $this->number,
+            'password'=>Hash::make($this->password),
+            'fullname'=> $this->fullname,
+            'username'=> $this->username,
+
+        ]);
+        Auth::guard('patient')->login($patient);
+        $this->dispatch('added');
+    }
     public function render()
     {
-        sleep(1);
+
         return view('livewire.auth.patient-signup');
     }
 }

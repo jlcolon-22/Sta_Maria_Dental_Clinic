@@ -68,7 +68,7 @@ class Inventory extends Component
     {
 
         $inventories = \App\Models\Inventory::where('product_name','LIKE', '%'.$this->search.'%')->orWhere('id','LIKE', '%'.$this->search.'%')->where('branch_id', Auth::guard('web')->id())->latest()->paginate(10);
-        sleep(1);
+
         return view('livewire.admin.inventory',compact('inventories'));
     }
 }

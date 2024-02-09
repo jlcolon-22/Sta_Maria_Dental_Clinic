@@ -58,7 +58,7 @@ class DoctorCode extends Component
     }
     public function render()
     {
-        sleep(1);
+
         return view('livewire.auth.doctor-code');
     }
 }

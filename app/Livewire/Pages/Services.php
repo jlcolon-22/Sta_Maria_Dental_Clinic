@@ -20,7 +20,7 @@ class Services extends Component
     }
     public function render()
     {
-        sleep(1);
+
         return view('livewire.pages.services');
     }
 }

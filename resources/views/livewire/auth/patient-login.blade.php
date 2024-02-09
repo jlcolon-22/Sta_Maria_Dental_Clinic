@@ -2,7 +2,7 @@
     <x-pages.header  />
     {{-- main --}}
     <main class="py-20 text-primary">
-        <div class="bg-white w-[40rem] mx-auto pb-20 pt-10 rounded shadow-md">
+        <div class="bg-white w-[35rem] mx-auto pb-20 pt-10 rounded shadow-md">
             <div class="flex items-center justify-center pb-10">
                 <img src="{{ asset('favicon.ico') }}" alt="">
                 <h2 class="text-4xl font-robotoBold">
@@ -10,8 +10,8 @@
             </div>
 
             <h1 class="text-3xl font-robotoBold text-center  ">Patient Login</h1>
-            <form  action="" class="grid  mt-4 " autocomplete="off">
-                <div class="w-fit mx-auto flex justify-center relative ">
+            <form  action="" class="space-y-3 px-10 pt-10" autocomplete="off">
+                <div class="grid relative ">
 
                     <div class="absolute left-1 top-0  px-2 py-[8.5px]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -22,10 +22,10 @@
                         </svg>
                     </div>
                     <input type="tel" autocomplete="off"
-                        class="border text-center px-10 py-2 focus:border-ylw outline-none bg-gray-50 w-[23rem]"
+                        class="border text-center px-10 py-2 focus:border-ylw outline-none bg-gray-50 "
                         placeholder="Username">
                 </div>
-                <div x-data="{ password: false }" class="w-fit mx-auto flex justify-center relative mt-4 ">
+                <div x-data="{ password: false }" class="grid relative mt-4 ">
 
                     <div class="absolute left-1 top-0  px-2 py-[8.5px]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -36,7 +36,7 @@
                         </svg>
                     </div>
                     <input :type="password ? 'text' : 'password'" autocomplete="off"
-                        class="border text-center px-10 py-2 focus:border-ylw outline-none bg-gray-50 w-[23rem]"
+                        class="border text-center px-10 py-2 focus:border-ylw outline-none bg-gray-50 "
                         placeholder="Password">
                     <div class="absolute right-1 top-0  px-2 py-[8.5px]">
 
@@ -52,12 +52,18 @@
                         </label>
                     </div>
                 </div>
-                <div class="flex items-center justify-end w-[23rem] mx-auto">
+                <div class="flex items-center justify-end  ">
 
                     <a href="" class="text-blue-500 hover:underline">Forget password</a>
                 </div>
 
-                <button class="bg-btnDark w-[23rem] mx-auto text-white py-2 mt-2">Login</button>
+                <div class="grid">
+                    <button class="bg-btnDark  text-white py-2 mt-2">Login</button>
+                </div>
+                <div class="flex items-center justify-center pt-4  ">
+
+                    <span >Don't have an account? <a href="/auth/patient/signup" class="text-blue-500 hover:underline font-robotoBold">Sign up</a></span>
+                </div>
             </form>
 
         </div>
