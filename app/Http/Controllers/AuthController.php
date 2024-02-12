@@ -22,4 +22,11 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
        return redirect('/auth/doctor/login');
     }
+    public function patientLogout(Request $request)
+    {
+        Auth::guard('patient')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+       return redirect('/auth/patient/login');
+    }
 }

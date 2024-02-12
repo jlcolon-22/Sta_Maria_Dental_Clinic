@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Admin\PatientBooked;
+use App\Livewire\Admin\PatientRequest;
 use App\Livewire\Auth\DoctorCode;
 use App\Livewire\Loading;
 use App\Livewire\Auth\Type;
@@ -12,6 +14,7 @@ use App\Livewire\Admin\Inventory;
 use App\Livewire\Auth\AdminLogin;
 use App\Livewire\Auth\DoctorLogin;
 use App\Livewire\Auth\PatientLogin;
+use App\Livewire\Patient\PatientAppointment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Livewire\Admin\DoctorAccount;
@@ -63,6 +66,8 @@ Route::middleware(['admin_only'])->prefix('admin')->group(function () {
     Route::get('dashboard', Dashboard::class);
     Route::get('inventory', Inventory::class);
     Route::get('doctor-account', DoctorAccount::class);
+    Route::get('patient-request', PatientRequest::class);
+    Route::get('patient-confirmed', PatientBooked::class);
 
     Route::get('setting', Setting::class);
 });
@@ -72,5 +77,11 @@ Route::middleware(['doctor_only'])->prefix('doctor')->group(function () {
     Route::get('setting', DoctorSetting::class);
 
     Route::get('logout', [AuthController::class,'doctorLogout']);
+
+});
+Route::middleware(['patient_only'])->prefix('patient')->group(function () {
+
+    Route::get('logout', [AuthController::class,'patientLogout']);
+    Route::get('appointment', PatientAppointment::class);
 
 });
