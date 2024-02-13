@@ -2,12 +2,15 @@
 
 namespace App\Livewire\Doctor;
 
-use Livewire\Attributes\Lazy;
 use Livewire\Component;
+use Livewire\Attributes\Lazy;
+use App\Models\PatientAppointment;
+use Illuminate\Support\Facades\Auth;
 
 #[Lazy]
 class Dashboard extends Component
 {
+    public $search = '';
     public function placeholder()
     {
         return view("livewire.loading");
@@ -16,6 +19,13 @@ class Dashboard extends Component
     public function render()
     {
 
-        return view('livewire.doctor.dashboard');
+        if(!!$this->search)
+        {
+         $appointments = PatientAppointment::where('doctor_id',Auth::guard('doctor')->id())->where('status',0)->whereDate('date',$this->search)->latest()->paginate(10);
+        }else{
+         $appointments = PatientAppointment::where('doctor_id',Auth::guard('doctor')->id())->where('status',0)->latest()->paginate(10);
+        }
+
+        return view('livewire.doctor.dashboard',compact('appointments'));
     }
 }

@@ -35,6 +35,7 @@
                                 <th class="py-2 whitespace-nowrap text-center px-2">Email</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Number</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Age</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
 
                                 <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Date | Time</th>
@@ -61,6 +62,7 @@
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->email }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->number }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->age }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->doctorInfo?->fullname }}</td>
 
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:m A') }}</td>

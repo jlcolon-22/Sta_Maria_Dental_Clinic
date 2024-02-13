@@ -21,7 +21,7 @@
                 </svg>
                 Dashboard
             </a>
-            <a href=""
+            {{-- <a href=""
                 class="flex gap-x-2  text-gray-500 py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +44,7 @@
                     <line x1="3" y1="18" x2="3.01" y2="18"></line>
                 </svg>
                 Booked
-            </a>
+            </a> --}}
             <a href="/doctor/schedule"
             class="flex gap-x-2   py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500"
             :class="path == '/doctor/schedule' ? 'text-gray-50 bg-btnDark' : 'text-gray-500'">
@@ -74,7 +74,7 @@
                     alt=""></button>
 
             <button class="relative group" x-on:click="dropdown = !dropdown">
-                <img src="{{ asset('assets/ceramic.jpg') }}"
+                <img src="{{ asset('assets/doctor_2785482.png') }}"
                     class="min-h-[3rem] max-h-[3rem] min-w-[3rem] max-w-[3rem]  rounded-full border-2 border-btnSecondary"
                     alt="">
 

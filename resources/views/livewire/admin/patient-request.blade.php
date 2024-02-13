@@ -30,8 +30,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 9 4-4-4-4" />
                             </svg>
-                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Doctor
-                                Accounts</span>
+                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Patients Request</span>
                         </div>
                     </li>
                 </ol>
@@ -68,13 +67,15 @@
 
 
                                 <th class="py-2 whitespace-nowrap text-center px-2">#</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Fullname</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Email</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Contact</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Age</th>
 
                                 <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Date | Time</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time
+                                </th>
 
 
                                 <th class="py-2 whitespace-nowrap text-center px-2">Action</th>
@@ -85,6 +86,7 @@
                             @forelse ($appointments as $appointment)
                                 <tr>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->id }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->doctorInfo->fullname }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->fullname }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->email }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->number }}</td>
@@ -117,7 +119,7 @@
                         </tbody>
                     </table>
                     <div class="py-2">
-                        {{-- {{ $appointments->links('livewire::tailwind') }}e --}}
+                        {{ $appointments->links('livewire::tailwind') }}
                     </div>
                 </div>
             </div>
@@ -346,8 +348,8 @@
                     });
                 })
                 Livewire.on('updated', () => {
-                    this.toggle();
 
+                    this.update = false;
                     Swal.fire({
                         position: "center",
                         icon: "success",

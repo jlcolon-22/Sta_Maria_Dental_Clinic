@@ -16,4 +16,8 @@ class PatientAppointment extends Model
     {
         return $this->belongsTo(User::class,'branch_id');
     }
+    public function doctorInfo()
+    {
+        return $this->belongsTo(DoctorAccount::class,'doctor_id');
+    }
 }

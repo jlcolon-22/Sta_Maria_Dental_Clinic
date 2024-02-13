@@ -58,6 +58,8 @@
     </div>
 
 
-        <livewire:patient.patient-setting />
+    @if (Auth::guard('patient')->check())
+    <livewire:patient.patient-setting />
+    @endif
 
 </header>

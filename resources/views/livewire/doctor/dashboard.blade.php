@@ -26,94 +26,81 @@
 
 
 
-            {{-- cards --}}
-            <div class="grid grid-cols-3 gap-x-10 mt-7 p-4">
-                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
-                    <div class="grid justify-center">
-                        <h1 class="text-primary font-robotoBold text-2xl text-center">USERS</h1>
-                        <p class="text-primary text-2xl">102 </p>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="w-[6rem] h-[6rem] text-primary">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-
-                </div>
-                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
-                    <div class="grid justify-center">
-                        <h1 class="text-primary font-robotoBold text-2xl text-center">Booked</h1>
-                        <p class="text-primary text-2xl">102 |</p>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="w-[6rem] h-[6rem] text-primary">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-
-                </div>
-                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
-                    <div class="grid justify-center">
-                        <h1 class="text-primary font-robotoBold text-2xl text-center">Doctors</h1>
-                        <p class="text-primary text-2xl">102 |</p>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="w-[6rem] h-[6rem] text-primary">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-
-                </div>
-
-            </div>
 
             {{-- table --}}
-            <div class="bg-white shadow-md rounded-md  mt-10  p-5  ">
-                <h2 class="font-robotoBold">Latest Request</h2>
-                <div class=" overflow-x-auto mt-5  relative">
-                    <table class="w-full text-white rounded-md ">
-                        <thead class="bg-btnDark  ">
-                            <tr>
+            <div class="bg-white shadow-md rounded-md mt-7  p-5  ">
+                <h2 class="font-robotoBold">Patient Request</h2>
+                <div class="py-2 flex items-center justify-end">
+
+                    <form action="" class="relative w-fit">
+                        <input type="date" autocomplete="off"wire:model.live.debounce.500ms="search"
+                            class="border rounded py-2 px-5 focus:border-ylw outline-none bg-gray-100 "
+                            placeholder="Search">
+                        {{-- <button
+                            class="absolute h-full w-[3rem] flex justify-center items-center top-0 right-0  bg-primary hover:opacity-75">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-[2rem] text-white">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </button> --}}
+                    </form>
+
+
+                </div>
+                <div class=" overflow-x-auto rounded-md  relative">
+                    <table class="w-full text-white  ">
+                        <thead class="bg-btnDark ">
+                            <tr class=" ">
+
+
                                 <th class="py-2 whitespace-nowrap text-center px-2">#</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Firstname</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Lastname</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Age</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Contact</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Fullname</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Email</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Contact</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Age</th>
+
                                 <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Action</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time
+                                </th>
+
+
+                                {{-- <th class="py-2 whitespace-nowrap text-center px-2">Action</th> --}}
 
                             </tr>
                         </thead>
                         <tbody class="text-gray-900">
-                            <tr>
-                                <td class="py-3 text-center px-2">22</td>
-                                <td class="py-3 text-center px-2">Joshua</td>
-                                <td class="py-3 text-center px-2">Aquino</td>
-                                <td class="py-3 text-center px-2">22</td>
-                                <td class="py-3 text-center px-2">091014210333</td>
-                                <td class="py-3 text-center px-2">joshua@gmail.com</td>
-                                <td class="py-3 text-center px-2">Root Canal Treatment</td>
-                                <td class="py-3 text-center px-2">2025-02-22 01:31 PM</td>
-                                <td class="py-3 text-center px-2 flex justify-center gap-x-2">
-                                    <button class="text-yellow-500 font-robotoBold">Update</button>
-                                    |
-                                    <button class="text-green-500 font-robotoBold">Confirm</button>
-                                    |
-                                    <button class="text-red-500 font-robotoBold">Drop</button>
-                                </td>
-                            </tr>
+                            @forelse ($appointments as $appointment)
+                                <tr>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->id }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->fullname }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->email }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->number }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->age }}</td>
+
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">
+                                        {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
+
+
+
+
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td class="py-3 text-gray-500 px-2">No Product Found!</td>
+                                </tr>
+                            @endforelse
 
                         </tbody>
                     </table>
+                    <div class="py-2">
+                        {{-- {{ $appointments->links('livewire::tailwind') }}e --}}
+                    </div>
                 </div>
             </div>
+
         </section>
 
     </x-doctor.aside>

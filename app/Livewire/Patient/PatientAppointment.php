@@ -31,9 +31,9 @@ class PatientAppointment extends Component
     {
         if(!!$this->search)
         {
-            $appointments = ModelsPatientAppointment::with('branchInfo')->where('patient_id',Auth::guard('patient')->id())->whereDate('date',$this->search)->latest()->paginate(10);
+            $appointments = ModelsPatientAppointment::with('branchInfo','doctorInfo')->where('patient_id',Auth::guard('patient')->id())->whereDate('date',$this->search)->latest()->paginate(10);
         }else{
-            $appointments = ModelsPatientAppointment::with('branchInfo')->where('patient_id',Auth::guard('patient')->id())->latest()->paginate(10);
+            $appointments = ModelsPatientAppointment::with('branchInfo','doctorInfo')->where('patient_id',Auth::guard('patient')->id())->latest()->paginate(10);
         }
         return view('livewire.patient.patient-appointment',compact('appointments'));
     }

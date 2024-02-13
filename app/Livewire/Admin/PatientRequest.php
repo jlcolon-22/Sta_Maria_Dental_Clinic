@@ -27,6 +27,7 @@ class PatientRequest extends Component
     public $email = '';
     public $number = '';
     public $age = '';
+    public $appId = '';
 
 
     public function mount()
@@ -56,6 +57,7 @@ class PatientRequest extends Component
     public function edit(PatientAppointment $id)
     {
 
+        $this->appId = $id->id;
         $this->fullname = $id->fullname;
         $this->email = $id->email;
         $this->number = $id->number;
@@ -79,13 +81,28 @@ class PatientRequest extends Component
 
         }
     }
+
+    public function update()
+    {
+        PatientAppointment::where('id', $this->appId)->update([
+            'email' => $this->email,
+            'fullname' => $this->fullname,
+            'number' => $this->number,
+            'doctor_id' => $this->doctor,
+            'age' => $this->age,
+            'date' => Carbon::parse($this->date),
+            'procedure' => $this->procedure,
+
+        ]);
+        $this->dispatch('updated');
+    }
     public function render()
     {
        if(!!$this->search)
        {
-        $appointments = PatientAppointment::where('branch_id',Auth::guard('web')->id())->where('status',0)->whereDate('date',$this->search)->latest()->paginate(10);
+        $appointments = PatientAppointment::with('doctorInfo')->where('branch_id',Auth::guard('web')->id())->where('status',0)->whereDate('date',$this->search)->latest()->paginate(10);
        }else{
-        $appointments = PatientAppointment::where('branch_id',Auth::guard('web')->id())->where('status',0)->latest()->paginate(10);
+        $appointments = PatientAppointment::with('doctorInfo')->where('branch_id',Auth::guard('web')->id())->where('status',0)->latest()->paginate(10);
        }
 
         return view('livewire.admin.patient-request',compact('appointments'));

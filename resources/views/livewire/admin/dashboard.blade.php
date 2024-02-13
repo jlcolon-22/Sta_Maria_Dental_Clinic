@@ -30,8 +30,8 @@
             <div class="grid grid-cols-3 gap-x-10 mt-7 p-4">
                 <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
                     <div class="grid justify-center">
-                        <h1 class="text-primary font-robotoBold text-2xl text-center">USERS</h1>
-                        <p class="text-primary text-2xl">102 </p>
+                        <h1 class="text-primary font-robotoBold text-2xl text-center">DOCTORS</h1>
+                        <p class="text-primary text-2xl">{{$doctorCount}} </p>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -44,7 +44,7 @@
                 <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
                     <div class="grid justify-center">
                         <h1 class="text-primary font-robotoBold text-2xl text-center">Booked</h1>
-                        <p class="text-primary text-2xl">102 |</p>
+                        <p class="text-primary text-2xl">{{$bookedCount}}</p>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -58,8 +58,8 @@
                 </div>
                 <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
                     <div class="grid justify-center">
-                        <h1 class="text-primary font-robotoBold text-2xl text-center">Doctors</h1>
-                        <p class="text-primary text-2xl">102 |</p>
+                        <h1 class="text-primary font-robotoBold text-2xl text-center">Request</h1>
+                        <p class="text-primary text-2xl">{{$requestCount}}</p>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -75,43 +75,52 @@
             {{-- table --}}
             <div class="bg-white shadow-md rounded-md  mt-10  p-5  ">
                 <h2 class="font-robotoBold">Latest Request</h2>
-                <div class=" overflow-x-auto mt-5  relative">
-                    <table class="w-full text-white rounded-md ">
-                        <thead class="bg-btnDark  ">
-                            <tr>
+                <div class=" overflow-x-auto rounded-md mt-5 relative">
+                    <table class="w-full text-white  ">
+                        <thead class="bg-btnDark ">
+                            <tr class=" ">
+
+
                                 <th class="py-2 whitespace-nowrap text-center px-2">#</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Firstname</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Lastname</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Age</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Contact</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Fullname</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Email</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Contact</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Age</th>
+
                                 <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Action</th>
+                                <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time	</th>
+
+
 
                             </tr>
                         </thead>
                         <tbody class="text-gray-900">
-                            <tr>
-                                <td class="py-3 text-center px-2">22</td>
-                                <td class="py-3 text-center px-2">Joshua</td>
-                                <td class="py-3 text-center px-2">Aquino</td>
-                                <td class="py-3 text-center px-2">22</td>
-                                <td class="py-3 text-center px-2">091014210333</td>
-                                <td class="py-3 text-center px-2">joshua@gmail.com</td>
-                                <td class="py-3 text-center px-2">Root Canal Treatment</td>
-                                <td class="py-3 text-center px-2">2025-02-22 01:31 PM</td>
-                                <td class="py-3 text-center px-2 flex justify-center gap-x-2">
-                                    <button class="text-yellow-500 font-robotoBold">Update</button>
-                                    |
-                                    <button class="text-green-500 font-robotoBold">Confirm</button>
-                                    |
-                                    <button class="text-red-500 font-robotoBold">Drop</button>
-                                </td>
-                            </tr>
+                            @forelse ($appointments as $appointment)
+                                <tr>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->id }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->doctorInfo->fullname }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->fullname }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->email }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->number }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->age }}</td>
+
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">
+                                        {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
+
+
+
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td class="py-3 text-gray-500 px-2">No Product Found!</td>
+                                </tr>
+                            @endforelse
 
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </section>

@@ -33,11 +33,13 @@
                 </svg>
                 Request
             </a>
-            <a href=""
-                class="flex gap-x-2  text-gray-500 py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500">
+            <a href="/admin/patient-confirmed"
+            class="flex gap-x-2   py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500"
+            :class="path == '/admin/patient-confirmed' ? 'text-gray-50 bg-btnDark' : 'text-gray-500'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="text-gray-500 group-hover:text-gray-50 transition-all ease-in-out duration-500">
+                    class=" group-hover:text-gray-50 transition-all ease-in-out duration-500"
+                    :class="path == '/admin/patient-confirmed' ? 'text-gray-50' : 'text-gray-500 '">
                     <line x1="8" y1="6" x2="21" y2="6"></line>
                     <line x1="8" y1="12" x2="21" y2="12"></line>
                     <line x1="8" y1="18" x2="21" y2="18"></line>
@@ -47,7 +49,7 @@
                 </svg>
                 Booked
             </a>
-            <a href=""
+            {{-- <a href=""
                 class="flex gap-x-2  text-gray-500 py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -58,7 +60,7 @@
                     <line x1="3" y1="10" x2="21" y2="10"></line>
                 </svg>
                 Schedule
-            </a>
+            </a> --}}
             <a href="/admin/doctor-account"
             class="flex gap-x-2   py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500"
             :class="path == '/admin/doctor-account' ? 'text-gray-50 bg-btnDark' : 'text-gray-500'">
@@ -103,7 +105,7 @@
                     alt=""></button>
 
             <button class="relative group" x-on:click="dropdown = !dropdown">
-                <img src="{{ asset('assets/ceramic.jpg') }}"
+                <img src="{{ asset('assets/software-engineer_6024190.png') }}"
                     class="min-h-[3rem] max-h-[3rem] min-w-[3rem] max-w-[3rem]  rounded-full border-2 border-btnSecondary"
                     alt="">
 
