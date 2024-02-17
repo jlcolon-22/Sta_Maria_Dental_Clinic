@@ -1,7 +1,7 @@
 <div>
     <x-pages.header  />
 
-    <section class=" bg-[#f2f6fa] pb-28 pt-20 text-primary" >
+    <section class=" bg-[#f2f6fa] pb-28 pt-20 text-primary px-2 lg:px-0" >
         <div x-data="{map: true}" class=" container mx-auto">
              {{-- table --}}
              <div class="bg-white shadow-md rounded-md  p-5  ">

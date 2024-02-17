@@ -5,8 +5,8 @@
 
 
     <x-admin.aside>
-        <section x-data="main(@entangle('date'),@entangle('doctorNotAvailable'))" class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  "
-            :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
+        <section x-data="main(@entangle('date'),@entangle('doctorNotAvailable'))" class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  "
+        :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
             <!-- Breadcrumb -->
             <nav class="flex " aria-label="Breadcrumb">
@@ -39,7 +39,7 @@
 
 
             {{-- table --}}
-            <div class="bg-white shadow-md rounded-md mt-7  p-5  ">
+            <div class="bg-white shadow-md rounded-md mt-7  p-5  overflow-hidden">
                 <h2 class="font-robotoBold">Patient Request</h2>
                 <div class="py-2 flex items-center justify-end">
 

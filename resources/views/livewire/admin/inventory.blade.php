@@ -3,7 +3,7 @@
 
     <x-admin.aside>
         <section x-data="main"
-            class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative" :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
+            class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative" :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
             <!-- Breadcrumb -->
             <nav class="flex " aria-label="Breadcrumb">
@@ -37,13 +37,14 @@
 
 
             {{-- table --}}
-            <div class="bg-white shadow-md rounded-md mt-7  p-5  ">
+            <div class="bg-white shadow-md rounded-md mt-7  p-5  overflow-hidden">
                 <h2 class="font-robotoBold">Inventory Management</h2>
-                <div class="mt-5 py-2 flex items-center justify-between">
-                    <button class="py-2 px-4 bg-ylw text-white rounded" x-on:click="toggle">Add Product</button>
+                <div class="mt-5 py-2 flex items-center justify-between gap-2">
+                    <button class="py-2 px-4 bg-ylw text-white rounded hidden sm:block" x-on:click="toggle">Add Product</button>
+                    <button class="py-2 px-4 bg-ylw text-white rounded block sm:hidden" x-on:click="toggle">Add</button>
                     <form action="" class="relative w-fit">
                         <input type="tel" autocomplete="off"wire:model.live.debounce.500ms="search"
-                            class="border rounded py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-100 "
+                            class="border rounded py-2 px-2 focus:border-ylw outline-none bg-gray-100 "
                             placeholder="Search">
                         {{-- <button
                             class="absolute h-full w-[3rem] flex justify-center items-center top-0 right-0  bg-primary hover:opacity-75">
@@ -103,7 +104,7 @@
 
             {{-- add modal --}}
             <div x-show="add"
-                class="fixed top-0 w-full min-h-[100svh] max-h-[100svh] flex justify-center overflow-y-auto bg-black/10 left-0 pt-20">
+                class="fixed top-0 w-full min-h-[100svh] max-h-[100svh] flex justify-center overflow-y-auto bg-black/10 left-0 pt-20 px-2">
 
                 <form x-on:submit.prevent="submitForm" method="POST" x-show="add" x-transition
                     class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">

@@ -1,27 +1,27 @@
-<header x-data="{setting: false}" class=" bg-primary h-[5rem] flex items-center">
-    <div class="container mx-auto flex justify-between items-center">
+<header x-data="{setting: false, mobile: false}" class=" bg-primary h-[5rem] flex items-center ">
+    <div class="  flex justify-between items-center w-full px-5 lg:px-0 lg:container lg:mx-auto">
         {{-- logo and clinic name --}}
         <a href="/" class="flex items-center gap-x-4">
-         <img src="{{ asset('favicon.ico') }}" alt="Clinic Logo">
-         <h2 class="text-3xl">Sta.Maria Dental Clinic</h2>
+         <img src="{{ asset('favicon.ico') }}" class="h-[2rem] lg:h-auto" alt="Clinic Logo">
+         <h2 class="text-xl lg:text-3xl">Sta.Maria Dental Clinic</h2>
        </a>
-        {{-- nav / links --}}
-        <nav x-data="{path: window.location.pathname}" class="flex items-center gap-x-7">
-            <div class="relative">
 
+        {{-- nav / links --}}
+        <nav x-transition :class="mobile ? '' : 'hidden'" x-data="{path: window.location.pathname}" class="absolute bg-primary p-5 h-fit space-y-3 top-[5rem] z-50 w-full  left-0  lg:p-0 lg:space-y-0 lg:w-fit lg:relative lg:top-0 lg:flex items-center gap-x-7">
+            <div class="relative w-fit">
                 <a href="/" class="text-lg  peer" :class="path == '/'  ? 'text-ylw font-bold' : 'font-medium'">HOME</a>
                 <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/' ? 'w-full' : 'w-0'"></div>
             </div>
-            <div class="relative">
+            <div class="relative w-fit">
                 <a href="/services"   class="text-lg peer" :class="path == '/services'  ? 'text-ylw font-bold' : 'font-medium'">SERVICES</a>
 
                 <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/services' ? 'w-full' : 'w-0'"></div>
             </div>
-            <div class="relative">
+            <div class="relative w-fit">
                 <a href="/location" class="text-lg peer"  :class="path == '/location'  ? 'text-ylw font-bold' : 'font-medium'">LOCATION</a>
                 <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/location' ? 'w-full' : 'w-0'"></div>
             </div>
-            <div class="relative mr-10">
+            <div class="relative mr-10 w-fit">
                 <a href="/appointment" class="text-lg peer"  :class="path == '/appointment'  ? 'text-ylw font-bold' : 'font-medium'">APPOINTMENT</a>
                 <div class="transition-all ease-in-out duration-500  bg-ylw  h-[2px] peer-hover:w-full absolute bottom-0 " :class="path == '/appointment' ? 'w-full' : 'w-0'"></div>
             </div>
@@ -33,7 +33,7 @@
 
                 {{-- dropdown --}}
 
-                <div x-show='dropdown' x-transition id="dropdownAvatar" class="z-10 absolute right-0 left-auto top-[3rem] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+                <div x-show='dropdown' x-transition id="dropdownAvatar" class="z-10 absolute right-auto left-0 lg:right-0 lg:left-auto top-[3rem] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
                     <div class="px-4 py-3 text-sm text-gray-900 ">
                       <div>{{ Auth::guard('patient')->user()->fullname }}</div>
                       <div class="font-medium truncate">{{ Auth::guard('patient')->user()->email }}</div>
@@ -52,9 +52,16 @@
                 </div>
             </button>
             @else
-            <a href="/auth/type" class="text-base rounded bg-btnPrimary px-6 py-2 ">Login</a>
+            <div class="relative">
+                <a href="/auth/type" class="text-base rounded bg-btnPrimary px-6 py-2 ">Login</a>
+            </div>
             @endif
         </nav>
+
+        {{-- burger menu --}}
+        <button x-on:click="mobile = !mobile" class="lg:hidden hover:opacity-55 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
     </div>
 
 

@@ -1,9 +1,12 @@
 <main class="flex max-h-[100svh]  " x-data="{ aside: true }">
-    <aside class="bg-white min-w-[17rem] max-w-[17rem] min-h-screen" :class="aside ? '' : '  hidden'">
+    {{-- :class="aside ? 'hidden lg:block' : ' block lg:hidden'" --}}
+    <aside class="bg-white min-w-[17rem] relative max-w-[17rem] min-h-screen" :class="aside ? 'hidden lg:block' : ' block lg:hidden'" >
         <div class="flex items-center pt-5 justify-center gap-x-2">
             <img src="{{ asset('favicon.ico') }}" alt="">
             <h1 class="text-4xl font-robotoBold  text-primary">STDC</h1>
         </div>
+        <button x-on:click="aside = !aside" class="hover:opacity-55 absolute top-[28px] right-2 lg:hidden"><img src="{{ asset('icons/menu.svg') }}"
+            alt=""></button>
         <h3 class="text-center  text-primary">(DOCTOR {{ Auth::guard('doctor')->user()->fullname }})</h3>
 
         {{-- links --}}
@@ -46,8 +49,8 @@
                 Booked
             </a> --}}
             <a href="/doctor/schedule"
-            class="flex gap-x-2   py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500"
-            :class="path == '/doctor/schedule' ? 'text-gray-50 bg-btnDark' : 'text-gray-500'">
+                class="flex gap-x-2   py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500"
+                :class="path == '/doctor/schedule' ? 'text-gray-50 bg-btnDark' : 'text-gray-500'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class=" group-hover:text-gray-50 transition-all ease-in-out duration-500"
@@ -67,10 +70,10 @@
     </aside>
 
     {{-- content section --}}
-    <section class="w-[100%]">
+    <section class="w-full ">
         {{-- top bar --}}
-        <nav x-data="{ dropdown: false }" class="bg-white w-full py-4 px-6 flex items-center justify-between h-[5rem]">
-            <button x-on:click="aside = !aside" class="hover:opacity-55"><img src="{{ asset('icons/menu.svg') }}"
+        <nav x-data="{ dropdown: false }" class="bg-white w-full py-4 px-6 flex items-center h-[5rem]" :class="aside ? ' justify-between' : ' justify-end'">
+            <button x-on:click="aside = !aside" class="hover:opacity-55 " :class="aside ? '' : 'hidden'"><img src="{{ asset('icons/menu.svg') }}"
                     alt=""></button>
 
             <button class="relative group" x-on:click="dropdown = !dropdown">

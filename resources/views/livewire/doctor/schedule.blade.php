@@ -10,10 +10,10 @@
 @endassets
 <div class="bg-[#f2f6fa] max-h-[100svh]  ">
 
-
+    {{-- :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'" --}}
     <x-doctor.aside>
-        <section x-data="main" class="text-gray-900  p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative"
-            :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
+        <section x-data="main" class="text-gray-900  py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative"
+             :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
             <!-- Breadcrumb -->
             <nav class="flex " aria-label="Breadcrumb">

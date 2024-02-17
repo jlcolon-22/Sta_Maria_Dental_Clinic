@@ -3,7 +3,7 @@
 
     <x-admin.aside>
         <section
-            class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative " :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
+            class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative " :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
 
             <!-- Breadcrumb -->
@@ -27,8 +27,8 @@
 
 
             {{-- cards --}}
-            <div class="grid grid-cols-3 gap-x-10 mt-7 p-4">
-                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-7 p-4 ">
+                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md overflow-hidden">
                     <div class="grid justify-center">
                         <h1 class="text-primary font-robotoBold text-2xl text-center">DOCTORS</h1>
                         <p class="text-primary text-2xl">{{$doctorCount}} </p>
@@ -41,7 +41,7 @@
                     </svg>
 
                 </div>
-                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
+                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md overflow-hidden">
                     <div class="grid justify-center">
                         <h1 class="text-primary font-robotoBold text-2xl text-center">Booked</h1>
                         <p class="text-primary text-2xl">{{$bookedCount}}</p>
@@ -56,7 +56,7 @@
                     </svg>
 
                 </div>
-                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md">
+                <div class="bg-gray-50 border shadow-md flex justify-between  p-4 rounded-md overflow-hidden">
                     <div class="grid justify-center">
                         <h1 class="text-primary font-robotoBold text-2xl text-center">Request</h1>
                         <p class="text-primary text-2xl">{{$requestCount}}</p>

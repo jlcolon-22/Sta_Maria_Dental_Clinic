@@ -1,13 +1,13 @@
-<div class="bg-[#f2f6fa] max-h-[100svh]  ">
+<div class="bg-[#f2f6fa] max-h-[100svh] overflow-x-hidden ">
 
 
     <x-doctor.aside>
         <section
-            class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  max-w-[calc(100svw-17rem)]">
+            class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  " :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
 
             <!-- Breadcrumb -->
-            <nav class="flex" aria-label="Breadcrumb">
+            <nav class="flex  " aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                     <li class="inline-flex items-center">
                         <a href="#"
@@ -29,7 +29,7 @@
 
             {{-- table --}}
             <div class="bg-white shadow-md rounded-md mt-7  p-5  ">
-                <h2 class="font-robotoBold">Patient Request</h2>
+                <h2 class="font-robotoBold ">Patient Request</h2>
                 <div class="py-2 flex items-center justify-end">
 
                     <form action="" class="relative w-fit">

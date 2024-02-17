@@ -1,48 +1,47 @@
-
 <div>
-    <x-pages.header  />
+    <x-pages.header />
 
     {{-- carousel --}}
-   <section x-data="{swiper: null}"  x-init="swiper = new Swiper($refs.container, {
+    <section x-data="{ swiper: null }" x-init="swiper = new Swiper($refs.container, {
 
-    direction: 'horizontal',
-    loop: true,
-
-
-    pagination: {
-        el: '.swiper-pagination',
-    },
+        direction: 'horizontal',
+        loop: true,
 
 
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-
-}) ">
-
-    <div class="swiper text-violet-500 " x-ref="container" >
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper ">
-            <!-- Slides -->
-            <img class="swiper-slide" src="{{ asset('carousel/1.jpeg') }}" alt="carousel image" />
-            <img class="swiper-slide" src="{{ asset('carousel/2.jpg') }}" alt="carousel image" />
-            <img class="swiper-slide" src="{{ asset('carousel/4.jpg') }}" alt="carousel image" />
+        pagination: {
+            el: '.swiper-pagination',
+        },
 
 
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+    })">
+
+        <div class="swiper text-violet-500 " x-ref="container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper ">
+                <!-- Slides -->
+                <img class="swiper-slide" src="{{ asset('carousel/1.jpeg') }}" alt="carousel image" />
+                <img class="swiper-slide" src="{{ asset('carousel/2.jpg') }}" alt="carousel image" />
+                <img class="swiper-slide" src="{{ asset('carousel/4.jpg') }}" alt="carousel image" />
+
+
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
 
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-    </div>
-
-   </section>
+    </section>
     {{-- schedule appointment --}}
     <section class="text-btnPrimary flex flex-col items-center gap-y-5 py-28">
-        <h2 class="text-6xl font-bold font-serif">Schedule your Appointment</h2>
+        <h2 class="text-4xl lg:text-6xl text-center font-bold font-serif">Schedule your Appointment</h2>
         <p class="text-center max-w-[25rem] text-lg">
             Book an appointment today and experience
             quality and safe dental journey. We’ve
@@ -70,8 +69,11 @@
         <h1 class="font-serif font-bold text-6xl text-center  z-20">Services</h1>
 
         {{-- card container --}}
-        <div  x-data="{ shown: false }" x-intersect.threshold.100="shown = true" class="container mx-auto grid grid-cols-3 gap-x-16 px-20 py-10 mt-10">
-            <a   href="/services#generals" class=" transition-all border border-white px-2 py-5  justify-center items-center flex-col group hover:border-ylw" :class="shown ? 'flex animate-in fade-in zoom-in  duration-100' : 'hidden'" >
+        <div x-data="{ shown: false }" x-intersect.threshold.100="shown = true"
+            class="lg:container lg:mx-auto  grid justify-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 px-5 lg:px-20 py-10 mt-10">
+            <a href="/services#generals"
+                class=" transition-all border border-white px-2 py-5  justify-center items-center flex-col group hover:border-ylw"
+                :class="shown ? 'flex animate-in fade-in zoom-in  duration-100' : 'hidden'">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
                     width="512" height="512" x="0" y="0" viewBox="0 0 496 496"
                     style="enable-background:new 0 0 512 512" xml:space="preserve"
@@ -87,7 +89,9 @@
                 </svg>
                 <h3 class="text-2xl group-hover:text-ylw group-hover:underline">General dentistry</h3>
             </a>
-            <a href="/services#Cosmetics" class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw" :class="shown ? 'flex animate-in fade-in zoom-in  duration-500' : 'hidden'">
+            <a href="/services#Cosmetics"
+                class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw"
+                :class="shown ? 'flex animate-in fade-in zoom-in  duration-500' : 'hidden'">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 64 64" style="enable-background:new 0 0 512 512" xml:space="preserve"
                     class="h-[5rem] fill-white group-hover:fill-ylw">
@@ -100,7 +104,8 @@
                 <h3 class="text-2xl group-hover:text-ylw group-hover:underline">Cosmetics</h3>
             </a>
             <a href="/services#Orthodontics"
-                class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw" :class="shown ? 'flex animate-in fade-in zoom-in  duration-1000' : 'hidden'">
+                class="border border-white px-2 py-5 flex justify-center items-center flex-col group hover:border-ylw"
+                :class="shown ? 'flex animate-in fade-in zoom-in  duration-1000' : 'hidden'">
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0"
                     y="0" viewBox="0 0 48 48" style="enable-background:new 0 0 512 512" xml:space="preserve"
                     class="h-[5rem] fill-white group-hover:fill-ylw">
@@ -118,41 +123,40 @@
     </section>
 
     {{-- location container --}}
-    <section class=" bg-[#f2f6fa] py-28">
-        <div x-data="{map: true}" class=" container mx-auto">
-            <h2 class="text-6xl font-bold text-center font-serif text-btnPrimary mb-6">Dental Clinic Locations</h2>
+    <section class=" bg-[#f2f6fa] pb-28 pt-16">
+        <div x-data="{ map: true }" class=" container mx-auto">
+            <h2 class="text-4xl lg:text-6xl font-bold text-center font-serif text-btnPrimary mb-6">Dental Clinic Locations</h2>
             <hr class="bg-black/20 min-h-[2px] w-full">
-            <div class="grid grid-cols-2 w-[30rem] mx-auto mt-10">
+            <div class="grid grid-cols-2 w-[20rem] lg:w-[30rem] mx-auto mt-10">
                 <button x-on:click="map = true" class=" py-2" :class="map ? 'bg-ylw' : 'bg-ylw/75'">Novaliches
                     Branch</button>
-                <button x-on:click="map = false" class=" py-2 " :class="!map ? 'bg-ylw' : 'bg-ylw/75'">Malabon Branch</button>
+                <button x-on:click="map = false" class=" py-2 " :class="!map ? 'bg-ylw' : 'bg-ylw/75'">Malabon
+                    Branch</button>
             </div>
 
 
-                <div x-show="map" x-transition class="px-20" id="map1">
-                    <h2 class="text-center text-black text-2xl mt-10">43 Camilo Osias Street, New haven Village,
-                        Novaliches Q.C.</h2>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2361.6082260672883!2d121.05200292024983!3d14.731355008708231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2sph!4v1678946646762!5m2!1sen!2sph"
-                        class="w-full border" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+            <div x-show="map" x-transition class="px-5 lg:px-20" id="map1">
+                <h2 class="text-center text-black text-2xl mt-10">43 Camilo Osias Street, New haven Village,
+                    Novaliches Q.C.</h2>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2361.6082260672883!2d121.05200292024983!3d14.731355008708231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e0!3m2!1sen!2sph!4v1678946646762!5m2!1sen!2sph"
+                    class="w-full border" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
 
 
-                <div x-show="!map" x-transition class="px-20" id="map2">
-                    <h2 class="text-center text-black text-2xl mt-10">168 Gen. Luna Street, Malabon, Metro Manila</h2>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d964.963551986337!2d120.94960032667348!3d14.664213907402948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4511cb0e409%3A0x24228184ec2ba42f!2s168%20Gen.%20Luna%20St%2C%20Malabon%2C%201470%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1680637820563!5m2!1sen!2sph"
-                        class="w-full border" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
+            <div x-show="!map" x-transition class="px-5 lg:px-20" id="map2">
+                <h2 class="text-center text-black text-2xl mt-10">168 Gen. Luna Street, Malabon, Metro Manila</h2>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d964.963551986337!2d120.94960032667348!3d14.664213907402948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4511cb0e409%3A0x24228184ec2ba42f!2s168%20Gen.%20Luna%20St%2C%20Malabon%2C%201470%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1680637820563!5m2!1sen!2sph"
+                    class="w-full border" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
 
         </div>
     </section>
 
     {{-- footer --}}
-   <x-pages.footer/>
+    <x-pages.footer />
 
 </div>
-
-

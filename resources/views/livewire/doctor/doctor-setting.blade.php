@@ -4,7 +4,7 @@
 
     <x-doctor.aside>
         <section  x-data="main"
-        class="text-gray-900 p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative" :class="aside ? ' max-w-[calc(100svw-17rem)]' : ' max-w-[100svw]'">
+        class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative" :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
         <!-- Breadcrumb -->
         <nav class="flex " aria-label="Breadcrumb">
@@ -37,32 +37,39 @@
 
         <div class="bg-white shadow-md rounded-md mt-7  p-5  ">
             <h2 class="font-robotoBold">Account Settings</h2>
-            <div class="mt-5 flex">
-                <img src="{{ asset('assets/admin.png') }}" class="h-[14rem] w-[14rem] rounded-full" alt="">
-                <form wire:submit.prevent='update' class="w-full px-10 pt-3 grid grid-cols-2 gap-10 ">
-                    <div>
-                        <label for="" class="font-medium text-gray-800">Branch Name</label>
+            <div class="mt-5 grid lg:flex">
+                <img src="{{ asset('assets/doctor_2785482.png') }}" class="h-[14rem] mx-auto w-[14rem] rounded-full" alt="">
+                <form wire:submit.prevent='update' class="w-full px-2 lg:px-10 pt-3 sm:grid sm:grid-cols-2 gap-10 ">
+                    <div class="grid">
+                        <label for="" class="font-medium text-gray-800">Fullname</label>
                         <input type="text" autocomplete="off" wire:model="name"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none  w-full  "
+                            class="border py-2 px-2 focus:border-ylw outline-none   "
                             :class="edit ? 'bg-gray-100 ' : 'bg-gray-300 opacity-55 '"
                             :disabled="edit ? false : true">
                     </div>
-                    <div>
-                        <label for="" class="font-medium text-gray-800">Branch Email</label>
+                    <div class="grid">
+                        <label for="" class="font-medium text-gray-800">Email</label>
                         <input type="email" autocomplete="off" wire:model="email"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none  w-full"
+                            class="border py-2 px-2 focus:border-ylw outline-none  w-full"
                             :class="edit ? 'bg-gray-100 ' : 'bg-gray-300 opacity-55 '"
                             :disabled="edit ? false : true">
                     </div>
                     <div>
-                        <label for="" class="font-medium text-gray-800">Branch Number</label>
+                        <label for="" class="font-medium text-gray-800">Phone Number</label>
                         <input type="tel" autocomplete="off" wire:model="number"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none  w-full"
+                            class="border py-2 px-2 focus:border-ylw outline-none  w-full"
+                            :class="edit ? 'bg-gray-100 ' : 'bg-gray-300 opacity-55 '"
+                            :disabled="edit ? false : true">
+                    </div>
+                    <div>
+                        <label for="" class="font-medium text-gray-800">Username</label>
+                        <input type="text" autocomplete="off" wire:model="username"
+                            class="border py-2 px-2 focus:border-ylw outline-none  w-full"
                             :class="edit ? 'bg-gray-100 ' : 'bg-gray-300 opacity-55 '"
                             :disabled="edit ? false : true">
                     </div>
                     <div x-data="{ password: false }" class=" relative">
-                        <label for="" class="font-medium text-gray-800">Branch Password</label>
+                        <label for="" class="font-medium text-gray-800">Password</label>
                         <input :type="password ? 'text' : 'password'" wire:model='password' autocomplete="off"
                             class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none  w-full"
                             placeholder="Password" :class="edit ? 'bg-gray-100 ' : 'bg-gray-300 opacity-55 '"
@@ -94,7 +101,7 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-end col-span-2 gap-x-2">
+                    <div class="flex justify-end col-span-2 gap-x-2 mt-4 sm:mt-0">
                         <button x-show="edit == false" type="button" x-on:click="edit = true"
                             class="bg-ylw text-white py-2 px-6 rounded hover:opacity-70">Edit</button>
                         <button x-show="edit == true" type="submit" x-on:click="edit = false"
@@ -128,8 +135,13 @@
                         position: "center",
                         icon: "success",
                         title: "Updated Successfully!",
-                        showConfirmButton: false,
-                        timer: 1500
+                        showConfirmButton: true,
+
+                    }).then((result)=>{
+                        if(result.isConfirmed)
+                        {
+                            location.reload();
+                        }
                     });
 
                 })

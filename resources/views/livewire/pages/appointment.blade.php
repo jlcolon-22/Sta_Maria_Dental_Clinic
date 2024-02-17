@@ -4,10 +4,16 @@
 <div>
     <x-pages.header />
 
-    <section x-data="main(@entangle('doctorNotAvailable'), @entangle('doctorSelect'))" class=" bg-[#f2f6fa] pb-28 pt-20">
+    <section x-data="main(@entangle('doctorNotAvailable'), @entangle('doctorSelect'))" class=" bg-[#f2f6fa] pb-28 pt-10 lg:pt-20 px-3">
 
-        <main class=" container mx-auto bg-white  grid grid-cols-2">
-            <div class="relative bg-primary z-0  p-10">
+        <div class="relative text-primary z-0 lg:hidden  pb-10">
+
+            <h1 class="text-3xl font-extrabold font-robotoBold text-center z-20 ">Appointment Request Form</h1>
+            <p class="text-sm text-center mt-2 w-[70%] mx-auto">Please be inform that this is not yet confirmed booking Our Patient Support Team will contact you to confirm your Appointment. Thank you</p>
+
+        </div>
+        <main class=" container mx-auto bg-white  grid grid-cols-1 lg:grid-cols-2">
+            <div class="relative bg-primary z-0 hidden lg:block p-10">
                 <img src="{{ asset('assets/logbg.png') }}"
                     class="absolute top-0 left-0 w-full h-full  object-cover opacity-20 -z-10" alt="">
                 <h1 class="text-5xl font-extrabold font-robotoBold text-center z-20 mt-10">Appointment Request Form</h1>

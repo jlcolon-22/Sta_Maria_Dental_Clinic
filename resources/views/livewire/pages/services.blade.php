@@ -14,23 +14,23 @@
 
 
         {{-- generals --}}
-        <section id="generals" class="container mx-auto  py-10 " >
+        <section id="generals" class="lg:container lg:mx-auto py-10 px-5" >
             <h1 class="text-primary text-center text-4xl font-bold ">General Services</h1>
             <p class="text-primary/85 text-center mb-4">Fast, simple and routine procedures to maintain oral health </p>
             <hr>
-            <div  x-data="{ gen: 1 }" class=" w-fit mx-auto  bg-white mt-4">
-                <div id="genBtnContainer" class="grid grid-cols-5 w-[60rem]">
+            <div  x-data="{ gen: 1 }" class="w-full lg:w-fit mx-auto  bg-white mt-4">
+                <div id="genBtnContainer" class="grid grid-cols-2 lg:grid-cols-5 w-full lg:w-[60rem]">
                     <button  x-on:click="gen = 1"
-                        class="whitespace-nowrap py-3 " :class="gen == 1 ? 'bg-white text-primary' : 'bg-ylw'">CONSULTATION </button>
-                    <button x-on:click="gen = 2"  class="whitespace-nowrap py-3   " :class="gen == 2 ? 'bg-white text-primary' : 'bg-ylw'">RESTORATION</button>
-                    <button  x-on:click="gen = 3"  class="whitespace-nowrap py-3" :class="gen == 3 ? 'bg-white text-primary' : 'bg-ylw'">ORAL
+                        class="whitespace-nowrap py-3 border-t border-x" :class="gen == 1 ? 'bg-white text-primary' : 'bg-ylw'">CONSULTATION </button>
+                    <button x-on:click="gen = 2"  class="whitespace-nowrap py-3 border-t border-x" :class="gen == 2 ? 'bg-white text-primary' : 'bg-ylw'">RESTORATION</button>
+                    <button  x-on:click="gen = 3"  class="whitespace-nowrap py-3 border-t border-x" :class="gen == 3 ? 'bg-white text-primary' : 'bg-ylw'">ORAL
                         PROPHYLAXIS</button>
-                    <button  x-on:click="gen = 4"  class="whitespace-nowrap py-3" :class="gen == 4 ? 'bg-white text-primary' : 'bg-ylw'">FLOURIDE</button>
-                    <button  x-on:click="gen = 5"  class="whitespace-nowrap py-3 " :class="gen == 5 ? 'bg-white text-primary' : 'bg-ylw'">EXTRACTION</button>
+                    <button  x-on:click="gen = 4"  class="whitespace-nowrap py-3 border-t border-x" :class="gen == 4 ? 'bg-white text-primary' : 'bg-ylw'">FLOURIDE</button>
+                    <button  x-on:click="gen = 5"  class="whitespace-nowrap py-3 border-t border-x" :class="gen == 5 ? 'bg-white text-primary' : 'bg-ylw'">EXTRACTION</button>
                 </div>
                 {{-- Dental Consultation --}}
-                <section id="gen1" x-show="gen == 1" x-transition class="w-[60rem] flex  shadow-md">
-                    <img src="{{ asset('assets/consult.jpg') }}" class="max-w-[40%] h-fit  pl-10" alt="">
+                <section id="gen1" x-show="gen == 1" x-transition class="w-full lg:w-[60rem] lg:flex  shadow-md">
+                    <img src="{{ asset('assets/consult.jpg') }}" class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10" alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Dental Consultation</h2>
                         <p class="text-primary/85 text-base mt-2">During a dental checkup or recall exam, your dentist
@@ -47,10 +47,10 @@
                     </div>
                 </section>
                 {{-- Dental Filling / Pasta --}}
-                <section id="gen2" x-show="gen == 2" x-transition class="w-[60rem] flex shadow-md">
+                <section id="gen2" x-show="gen == 2" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
 
                     <video controls muted src="{{ asset('video/pasta.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Dental Filling / Pasta</h2>
                         <p class="text-primary/85 text-base mt-2">A dental filling or also known as pasta is a way to
@@ -65,10 +65,10 @@
                     </div>
                 </section>
                 {{-- Oral Prophylaxis / Cleaning --}}
-                <section id="gen3"  x-show="gen == 3" x-transition class="w-[60rem] flex shadow-md">
+                <section id="gen3"  x-show="gen == 3" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
 
                     <video controls muted src="{{ asset('video/prophylaxis.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Oral Prophylaxis / Cleaning</h2>
                         <p class="text-primary/85 text-base mt-2"> An oral prophylaxis is a dental procedure that is
@@ -84,8 +84,8 @@
                     </div>
                 </section>
                 {{-- Flouride Therapy --}}
-                <section id="gen4"  x-show="gen == 4" x-transition class="w-[60rem] flex shadow-md">
-                    <img src="{{ asset('assets/flouride.png') }}" class="max-w-[40%] h-fit  pl-10 py-10" alt="">
+                <section id="gen4"  x-show="gen == 4" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
+                    <img src="{{ asset('assets/flouride.png') }}" class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10" alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Flouride Therapy</h2>
                         <p class="text-primary/85 text-base mt-2">Fluoride’s primary benefit is that it helps prevent
@@ -100,10 +100,10 @@
                     </div>
                 </section>
                 {{-- Tooth Extraction --}}
-                <section id="gen5"  x-show="gen == 5" x-transition class="w-[60rem] flex shadow-md">
+                <section id="gen5"  x-show="gen == 5" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
 
                     <video controls muted src="{{ asset('video/extraction.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Tooth Extraction</h2>
                         <p class="text-primary/85 text-base mt-2">You and your dentist may determine that you need a
@@ -123,22 +123,22 @@
         </section>
 
         {{-- Cosmetics --}}
-        <section id="Cosmetics" class="container mx-auto  py-10 ">
+        <section id="Cosmetics" class="lg:container lg:mx-auto py-10 px-5 ">
             <h1 class="text-primary text-center text-4xl font-bold ">Cosmetics </h1>
             <p class="text-primary/85 text-center mb-4">Be more confident and improve your smile</p>
             <hr>
             <div x-data="{cos: 1}" class=" w-fit mx-auto  bg-white mt-4">
-                <div id="cosBtnContainer" class="grid grid-cols-4 w-[60rem]">
-                    <button  x-on:click="cos = 1" class="whitespace-nowrap py-3" :class="cos == 1 ? 'bg-white text-primary' : 'bg-ylw'">VENEERS</button>
-                    <button  x-on:click="cos = 2" class="whitespace-nowrap py-3" :class="cos == 2 ? 'bg-white text-primary' : 'bg-ylw'">CROWN / BRIDGE</button>
-                    <button  x-on:click="cos = 3" class="whitespace-nowrap py-3" :class="cos == 3 ? 'bg-white text-primary' : 'bg-ylw'">DENTURES</button>
-                    <button  x-on:click="cos = 4" class="whitespace-nowrap py-3" :class="cos == 4 ? 'bg-white text-primary' : 'bg-ylw'">TEETH WHITENING</button>
+                <div id="cosBtnContainer" class="grid grid-cols-2 lg:grid-cols-4 w-full lg:w-[60rem]">
+                    <button  x-on:click="cos = 1" class="whitespace-nowrap py-3 border-t border-x" :class="cos == 1 ? 'bg-white text-primary' : 'bg-ylw'">VENEERS</button>
+                    <button  x-on:click="cos = 2" class="whitespace-nowrap py-3 border-t border-x" :class="cos == 2 ? 'bg-white text-primary' : 'bg-ylw'">CROWN / BRIDGE</button>
+                    <button  x-on:click="cos = 3" class="whitespace-nowrap py-3 border-t border-x" :class="cos == 3 ? 'bg-white text-primary' : 'bg-ylw'">DENTURES</button>
+                    <button  x-on:click="cos = 4" class="whitespace-nowrap py-3 border-t border-x" :class="cos == 4 ? 'bg-white text-primary' : 'bg-ylw'">TEETH WHITENING</button>
 
                 </div>
                 {{-- Veneers / Laminates --}}
-                <section id="cos1" x-show="cos == 1" x-transition class="w-[60rem] flex shadow-md">
+                <section id="cos1" x-show="cos == 1" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
                     <video controls muted src="{{ asset('video/veneers.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Veneers / Laminates</h2>
                         <p class="text-primary/85 text-base mt-2">A dental veneer is a thin layer or shell of material
@@ -153,10 +153,10 @@
                     </div>
                 </section>
                 {{-- Crown / Bridge --}}
-                <section id="cos2" x-show="cos == 2" x-transition class="w-[60rem] flex shadow-md">
+                <section id="cos2" x-show="cos == 2" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
 
                     <video controls muted src="{{ asset('video/bridge.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Crown / Bridge</h2>
                         <p class="text-primary/85 text-base mt-2">Dental crown or bridges are an natural looking option
@@ -173,10 +173,10 @@
                     </div>
                 </section>
                 {{-- Dentures --}}
-                <section id="cos3" x-show="cos == 3" x-transition class="w-[60rem] flex shadow-md">
+                <section id="cos3" x-show="cos == 3" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
 
                     <video controls muted src="{{ asset('video/denture.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Dentures</h2>
                         <p class="text-primary/85 text-base mt-2"> A denture is a removable replacement for missing
@@ -189,8 +189,8 @@
                     </div>
                 </section>
                 {{-- Laser Teeth Whitening --}}
-                <section id="cos4" x-show="cos == 4" x-transition class="w-[60rem] flex shadow-md">
-                    <img src="{{ asset('assets/laser.jpg') }}" class="max-w-[40%] h-fit  pl-10 py-10" alt="">
+                <section id="cos4" x-show="cos == 4" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
+                    <img src="{{ asset('assets/laser.jpg') }}" class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10" alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Laser Teeth Whitening</h2>
                         <p class="text-primary/85 text-base mt-2">Teeth whitening done in the dental office is the most
@@ -208,23 +208,23 @@
         </section>
 
         {{-- Orthodontics --}}
-        <section id="Orthodontics" class="container mx-auto  py-10 ">
+        <section id="Orthodontics" class="lg:container lg:mx-auto py-10 px-5 ">
             <h1 class="text-primary text-center text-4xl font-bold ">Orthodontics</h1>
             <p class="text-primary/85 text-center mb-4">Having straight teeth boosts the confidence </p>
             <hr>
             <div x-data="{ort: 1}" class=" w-fit mx-auto  bg-white mt-4">
-                <div id="ortBtnContainer" class="grid grid-cols-5 w-[60rem]">
-                    <button  x-on:click="ort = 1" class="whitespace-nowrap py-3" :class="ort == 1 ? 'bg-white text-primary' : 'bg-ylw'">CLEAR
+                <div id="ortBtnContainer" class="grid grid-cols-2 lg:grid-cols-5 w-full lg:w-[60rem]">
+                    <button  x-on:click="ort = 1" class="whitespace-nowrap py-3 border-t border-x" :class="ort == 1 ? 'bg-white text-primary' : 'bg-ylw'">CLEAR
                         ALIGNERS</button>
-                    <button  x-on:click="ort = 2" class="whitespace-nowrap py-3" :class="ort == 2 ? 'bg-white text-primary' : 'bg-ylw'">METALLIC</button>
-                    <button  x-on:click="ort = 3" class="whitespace-nowrap py-3" :class="ort == 3 ? 'bg-white text-primary' : 'bg-ylw'">CERAMIC</button>
-                    <button  x-on:click="ort = 4" class="whitespace-nowrap py-3" :class="ort == 4 ? 'bg-white text-primary' : 'bg-ylw'">SAPPHIRE</button>
-                    <button   x-on:click="ort = 5" class="whitespace-nowrap py-3" :class="ort == 5 ? 'bg-white text-primary' : 'bg-ylw'">SELF LIGATING</button>
+                    <button  x-on:click="ort = 2" class="whitespace-nowrap py-3 border-t border-x" :class="ort == 2 ? 'bg-white text-primary' : 'bg-ylw'">METALLIC</button>
+                    <button  x-on:click="ort = 3" class="whitespace-nowrap py-3 border-t border-x" :class="ort == 3 ? 'bg-white text-primary' : 'bg-ylw'">CERAMIC</button>
+                    <button  x-on:click="ort = 4" class="whitespace-nowrap py-3 border-t border-x" :class="ort == 4 ? 'bg-white text-primary' : 'bg-ylw'">SAPPHIRE</button>
+                    <button   x-on:click="ort = 5" class="whitespace-nowrap py-3 border-t border-x" :class="ort == 5 ? 'bg-white text-primary' : 'bg-ylw'">SELF LIGATING</button>
                 </div>
                 {{-- Clear Aligners --}}
-                <section id="ort1" x-show="ort == 1" x-transition class="w-[60rem] flex shadow-md">
+                <section id="ort1" x-show="ort == 1" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
                     <video controls muted src="{{ asset('video/aligners.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Clear Aligners</h2>
                         <p class="text-primary/85 text-base mt-2">Clear aligners is the newest form of having a
@@ -238,10 +238,10 @@
                     </div>
                 </section>
                 {{-- Metal Braces --}}
-                <section id="ort2" x-show="ort == 2" x-transition class="w-[60rem] flex shadow-md">
+                <section id="ort2" x-show="ort == 2" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
 
                     <video controls muted src="{{ asset('video/metal.mp4') }}"
-                        class="max-w-[40%] h-fit py-10 pl-10"></video>
+                        class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"></video>
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Metal Braces</h2>
                         <p class="text-primary/85 text-base mt-2">These are the metal brackets and wires that most
@@ -255,9 +255,9 @@
                     </div>
                 </section>
                 {{-- Ceramic Braces --}}
-                <section id="ort3" x-show="ort == 3" x-transition class="w-[60rem] flex shadow-md">
+                <section id="ort3" x-show="ort == 3" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
 
-                    <img src="{{ asset('assets/ceramic.jpg') }}" class="max-w-[40%] h-fit  pl-10 py-10"
+                    <img src="{{ asset('assets/ceramic.jpg') }}" class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"
                         alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Ceramic Braces</h2>
@@ -273,8 +273,8 @@
                     </div>
                 </section>
                 {{-- Sapphire Braces --}}
-                <section id="ort4" x-show="ort == 4" x-transition class="w-[60rem] flex shadow-md">
-                    <img src="{{ asset('assets/laser.jpg') }}" class="max-w-[40%] h-fit  pl-10 py-10"
+                <section id="ort4" x-show="ort == 4" x-transition class="w-full lg:w-[60rem] lg:flex shadow-md">
+                    <img src="{{ asset('assets/laser.jpg') }}" class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"
                         alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Sapphire Braces</h2>
@@ -288,9 +288,9 @@
                     </div>
                 </section>
                 {{-- Self Ligating Braces --}}
-                <section id="ort5"x-show="ort == 5" x-transition  class="w-[60rem] flex shadow-md">
+                <section id="ort5"x-show="ort == 5" x-transition  class="w-full lg:w-[60rem] lg:flex shadow-md">
 
-                    <img src="{{ asset('assets/ligited.png') }}" class="max-w-[40%] h-fit  pl-10 py-10"
+                    <img src="{{ asset('assets/ligited.png') }}" class="w-full lg:max-w-[40%] h-fit py-10 px-2 lg:pl-10"
                         alt="">
                     <div class="py-10 px-10">
                         <h2 class="text-primary text-3xl font-bold ">Self Ligating Braces</h2>

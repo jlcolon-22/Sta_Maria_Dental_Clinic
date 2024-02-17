@@ -23,6 +23,7 @@ class User extends Authenticatable
         'branch_location',
         'branch_number',
         'password',
+        'username'
     ];
 
     /**

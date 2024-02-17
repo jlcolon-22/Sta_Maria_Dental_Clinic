@@ -1,9 +1,11 @@
 <main class="flex max-h-[100svh]  " x-data="{ aside: true }">
-    <aside class="bg-white min-w-[17rem] max-w-[17rem] min-h-screen" :class="aside ? '' : '  hidden'">
+    <aside class="bg-white min-w-[17rem] relative max-w-[17rem] min-h-screen" :class="aside ? 'hidden lg:block' : ' block lg:hidden'" >
         <div class="flex items-center pt-5 justify-center gap-x-2">
             <img src="{{ asset('favicon.ico') }}" alt="">
             <h1 class="text-4xl font-robotoBold  text-primary">STDC</h1>
         </div>
+        <button x-on:click="aside = !aside" class="hover:opacity-55 absolute top-[28px] right-2 lg:hidden"><img src="{{ asset('icons/menu.svg') }}"
+            alt=""></button>
         <h3 class="text-center  text-primary">(ADMIN {{ Auth::guard('web')->user()->branch_name }})</h3>
 
         {{-- links --}}
@@ -100,8 +102,8 @@
     {{-- content section --}}
     <section class="w-[100%]">
         {{-- top bar --}}
-        <nav x-data="{ dropdown: false }" class="bg-white w-full py-4 px-6 flex items-center justify-between h-[5rem]">
-            <button x-on:click="aside = !aside" class="hover:opacity-55"><img src="{{ asset('icons/menu.svg') }}"
+        <nav x-data="{ dropdown: false }" class="bg-white w-full py-4 px-6 flex items-center  h-[5rem]" :class="aside ? ' justify-between' : ' justify-end'">
+            <button x-on:click="aside = !aside" class="hover:opacity-55" :class="aside ? '' : 'hidden'"><img src="{{ asset('icons/menu.svg') }}"
                     alt=""></button>
 
             <button class="relative group" x-on:click="dropdown = !dropdown">

@@ -15,11 +15,16 @@ class DoctorSetting extends Component
     public $name;
     public $number;
     public $password;
+
+    public $username;
     public function mount()
     {
         $this->email = Auth::guard('doctor')->user()->email;
         $this->number = Auth::guard('doctor')->user()->number;
         $this->name = Auth::guard('doctor')->user()->fullname;
+        $this->username = Auth::guard('doctor')->user()->username;
+
+
     }
     public function update()
     {
@@ -28,6 +33,7 @@ class DoctorSetting extends Component
             'fullname'=>$this->name,
             'email'=>$this->email,
             'number'=>$this->number,
+            'username'=>$this->username,
 
         ]);
         if(!!$this->password)

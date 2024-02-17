@@ -1,11 +1,11 @@
 <div class="bg-[#f2f6fa] min-h-[100svh] ">
 
     {{-- main --}}
-    <main class="py-20 text-primary">
-        <div class="bg-white w-[40rem] mx-auto pb-20 pt-10 rounded shadow-md">
+    <main class="py-20 text-primary p-2">
+        <div class="bg-white w-full sm:w-[40rem] mx-auto pb-20 pt-10 rounded shadow-md">
             <div class="flex items-center justify-center pb-10">
                 <img src="{{ asset('favicon.ico') }}" alt="">
-                <h2 class="text-4xl font-robotoBold">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-robotoBold">
                     Sta.Maria Dental CLinic </h2>
             </div>
 

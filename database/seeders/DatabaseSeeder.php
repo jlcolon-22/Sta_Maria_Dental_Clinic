@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'branch_name' => 'Fairview',
+            'username' => 'admin-Fairview',
             'branch_email' => 'Fairview@example.com',
             'branch_number' => '09123456789',
             'branch_location' => '168 Gen. Luna Street, Malabon, Metro Manila',
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::create([
             'branch_name' => 'Malabon',
+            'username' => 'admin-Malabon',
             'branch_email' => 'Malabon@example.com',
             'branch_number' => '09123456789',
             'branch_location' => 'Malabon',
