@@ -1,4 +1,5 @@
-<header x-data="{setting: false, mobile: false}" class=" bg-primary h-[5rem] flex items-center ">
+
+<header x-data='{setting: false, mobile: false,}'  class=" bg-primary h-[5rem] flex items-center ">
     <div class="  flex justify-between items-center w-full px-5 lg:px-0 lg:container lg:mx-auto">
         {{-- logo and clinic name --}}
         <a href="/" class="flex items-center gap-x-4">
@@ -64,9 +65,12 @@
         </button>
     </div>
 
-
     @if (Auth::guard('patient')->check())
-    <livewire:patient.patient-setting />
+    <div wire:ignore>
+        <livewire:patient.patient-setting />
+    </div>
     @endif
 
+
 </header>
+

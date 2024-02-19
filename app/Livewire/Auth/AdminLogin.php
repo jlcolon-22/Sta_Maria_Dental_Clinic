@@ -24,7 +24,7 @@ class AdminLogin extends Component
     public function adminLogin()
     {
         $this->validate();
-        if(Auth::guard('web')->attempt(['branch_name'=> $this->email,'password'=> $this->password]))
+        if(Auth::guard('web')->attempt(['username'=> $this->email,'password'=> $this->password]))
         {
             return redirect('/admin/dashboard');
         }else{

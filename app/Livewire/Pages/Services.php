@@ -5,7 +5,7 @@ namespace App\Livewire\Pages;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 
-#[Lazy]
+// #[Lazy]
 class Services extends Component
 {
     public $map = false;

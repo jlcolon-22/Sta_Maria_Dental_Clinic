@@ -82,7 +82,7 @@
                         <small class="text-red-500">{{ $message }}</small>
                     @enderror
                     <div class="flex items-center justify-end  ">
-                        <a href="" class="text-blue-500 hover:underline">Forget password</a>
+                        <a href="/auth/doctor/forget" class="text-blue-500 hover:underline">Forget password</a>
 
                     </div>
 
@@ -96,11 +96,11 @@
                         </div>
                     </button>
                 </div>
-                <div class="flex items-center justify-center pt-4  ">
+                {{-- <div class="flex items-center justify-center pt-4  ">
 
                     <span>Don't have an account? <a href="/auth/patient/signup"
                             class="text-blue-500 hover:underline font-robotoBold">Sign up</a></span>
-                </div>
+                </div> --}}
             </form>
 
         </div>

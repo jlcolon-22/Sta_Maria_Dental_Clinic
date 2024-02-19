@@ -1,24 +1,21 @@
-<div>
+@assets
+<script>
+    var botmanWidget = {
+        title: 'Sta.Maria Dental Clinic',
+        mainColor: '#1c98f7',
+        bubbleBackground: '#feba02',
+        color: 'white',
+        aboutText: 'Powered by SMDC'
+    };
+    </script>
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
+@endassets
+<div x-data="homeMain">
     <x-pages.header />
 
     {{-- carousel --}}
-    <section x-data="{ swiper: null }" x-init="swiper = new Swiper($refs.container, {
-
-        direction: 'horizontal',
-        loop: true,
-
-
-        pagination: {
-            el: '.swiper-pagination',
-        },
-
-
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-
-    })">
+    <section >
 
         <div class="swiper text-violet-500 " x-ref="container">
             <!-- Additional required wrapper -->
@@ -125,7 +122,8 @@
     {{-- location container --}}
     <section class=" bg-[#f2f6fa] pb-28 pt-16">
         <div x-data="{ map: true }" class=" container mx-auto">
-            <h2 class="text-4xl lg:text-6xl font-bold text-center font-serif text-btnPrimary mb-6">Dental Clinic Locations</h2>
+            <h2 class="text-4xl lg:text-6xl font-bold text-center font-serif text-btnPrimary mb-6">Dental Clinic
+                Locations</h2>
             <hr class="bg-black/20 min-h-[2px] w-full">
             <div class="grid grid-cols-2 w-[20rem] lg:w-[30rem] mx-auto mt-10">
                 <button x-on:click="map = true" class=" py-2" :class="map ? 'bg-ylw' : 'bg-ylw/75'">Novaliches
@@ -160,3 +158,35 @@
     <x-pages.footer />
 
 </div>
+
+@script
+
+    <script>
+
+        Alpine.data('homeMain', () => ({
+            swiper: null,
+            scripts: null,
+            init() {
+
+                this.swiper = new Swiper(this.$refs.container, {
+
+                    direction: 'horizontal',
+                    loop: true,
+
+
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+
+
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+
+                })
+            }
+        }))
+    </script>
+
+@endscript

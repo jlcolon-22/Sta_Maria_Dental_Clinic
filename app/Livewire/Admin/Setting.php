@@ -15,11 +15,13 @@ class Setting extends Component
     public $name;
     public $number;
     public $password;
+    public $username;
     public function mount()
     {
         $this->email = Auth::guard('web')->user()->branch_email;
         $this->number = Auth::guard('web')->user()->branch_number;
         $this->name = Auth::guard('web')->user()->branch_name;
+        $this->username = Auth::guard('web')->user()->username;
 
     }
     public function update()
@@ -29,12 +31,14 @@ class Setting extends Component
             'branch_name'=>$this->name,
             'branch_email'=>$this->email,
             'branch_number'=>$this->number,
+            'username'=>$this->username,
 
         ]);
         if(!!$this->password)
         {
+
             User::where('id',Auth::guard('web')->user()->id)->update([
-                'password'=>Hash::make($this->name),
+                'password'=>Hash::make($this->password),
             ]);
         }
         $this->dispatch('updated');

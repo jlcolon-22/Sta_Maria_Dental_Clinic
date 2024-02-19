@@ -1,18 +1,32 @@
 @assets
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-@endassets
-<div>
+    <script>
+        var botmanWidget = {
+            title: 'Sta.Maria Dental Clinic',
+            mainColor: '#1c98f7',
+            bubbleBackground: '#feba02',
+            color: 'white',
+            aboutText: 'Powered by SMDC'
+        };
+        </script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+
+    @endassets
+
+<div >
     <x-pages.header />
 
-    <section x-data="main(@entangle('doctorNotAvailable'), @entangle('doctorSelect'))" class=" bg-[#f2f6fa] pb-28 pt-10 lg:pt-20 px-3">
+    <section class=" bg-[#f2f6fa] pb-28 pt-10 lg:pt-20 px-3">
 
-        <div class="relative text-primary z-0 lg:hidden  pb-10">
+        <div  class="relative text-primary z-0 lg:hidden  pb-10">
 
             <h1 class="text-3xl font-extrabold font-robotoBold text-center z-20 ">Appointment Request Form</h1>
-            <p class="text-sm text-center mt-2 w-[70%] mx-auto">Please be inform that this is not yet confirmed booking Our Patient Support Team will contact you to confirm your Appointment. Thank you</p>
+
+            <p class="text-sm text-center mt-2 w-[70%] mx-auto">Please be inform that this is not yet confirmed booking
+                Our Patient Support Team will contact you to confirm your Appointment. Thank you</p>
 
         </div>
-        <main class=" container mx-auto bg-white  grid grid-cols-1 lg:grid-cols-2">
+        <main x-data="main(@entangle('doctorNotAvailable'), @entangle('doctorSelect'))" class=" container mx-auto bg-white  grid grid-cols-1 lg:grid-cols-2">
             <div class="relative bg-primary z-0 hidden lg:block p-10">
                 <img src="{{ asset('assets/logbg.png') }}"
                     class="absolute top-0 left-0 w-full h-full  object-cover opacity-20 -z-10" alt="">
@@ -22,7 +36,7 @@
                 <p class="text-lg text-center">your Appointment. Thank you</p>
             </div>
             <div class="p-10">
-                <form wire:submit.prevent='store' class="text-black space-y-4">
+                <form wire:submit='store' class="text-black space-y-4">
                     <div class="grid">
                         <label for="" class="font-robotoBold text-sm ">Branch:</label>
 
@@ -144,6 +158,9 @@
             dataPick: null,
             notDate: disabledDate,
             dateShow: doctorSelect,
+
+
+
             showDate() {
                 this.dataPick = flatpickr(this.$refs.date, {
                     minDate: "today",
@@ -156,6 +173,7 @@
                 })
 
             },
+
             init() {
 
 

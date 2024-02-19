@@ -20,7 +20,7 @@ class PatientSignup extends Component
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:doctor_accounts,email',
+            'email' => 'required|email|unique:patient_accounts,email',
             'password' => ['required', Password::min(8) ->numbers()->mixedCase()->letters()
             ->symbols()],
             'fullname' => ['required'],

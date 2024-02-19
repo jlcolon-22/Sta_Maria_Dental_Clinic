@@ -12,28 +12,28 @@ use Livewire\Attributes\Lazy;
 #[Lazy]
 class PatientSetting extends Component
 {
-    public $fullname = '';
-    public $email = '';
-    public $number = '';
+    public $pfullname = '';
+    public $pemail = '';
+    public $pnumber = '';
     public $username = '';
     public $password = '';
     public function mount()
     {
        if(Auth::guard('patient')->check()) {
-        $this->fullname = Auth::guard('patient')->user()->fullname;
-        $this->email = Auth::guard('patient')->user()->email;
-        $this->number = Auth::guard('patient')->user()->number;
+        $this->pfullname = Auth::guard('patient')->user()->fullname;
+        $this->pemail = Auth::guard('patient')->user()->email;
+        $this->pnumber = Auth::guard('patient')->user()->number;
         $this->username = Auth::guard('patient')->user()->username;
     }
     }
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:doctor_accounts,email',
+            'pemail' => 'required|email|unique:doctor_accounts,email',
             'password' => [ Password::min(8) ->numbers()->mixedCase()->letters()
             ->symbols()],
-            'fullname' => ['required'],
-            'number' => 'required|numeric|digits:11',
+            'pfullname' => ['required'],
+            'pnumber' => 'required|numeric|digits:11',
             'username' => ['required'],
         ];
     }
@@ -41,10 +41,10 @@ class PatientSetting extends Component
     {
         $this->validate();
         PatientAccount::query()->where('id', Auth::guard('patient')->id())->update([
-            'email'=> $this->email,
-            'number'=> $this->number,
+            'email'=> $this->pemail,
+            'number'=> $this->pnumber,
 
-            'fullname'=> $this->fullname,
+            'fullname'=> $this->pfullname,
             'username'=> $this->username,
         ]);
         if(!!$this->password)

@@ -1,30 +1,31 @@
 <?php
 
-use App\Livewire\Admin\PatientBooked;
-use App\Livewire\Admin\PatientRequest;
-use App\Livewire\Auth\DoctorCode;
 use App\Livewire\Loading;
 use App\Livewire\Auth\Type;
 use App\Livewire\Auth\Login;
+use App\Livewire\Admin\Setting;
 use App\Livewire\Pages\Homepage;
 use App\Livewire\Pages\Location;
 use App\Livewire\Pages\Services;
 use App\Livewire\Admin\Dashboard;
 use App\Livewire\Admin\Inventory;
 use App\Livewire\Auth\AdminLogin;
-use App\Livewire\Auth\DoctorLogin;
-use App\Livewire\Auth\PatientLogin;
-use App\Livewire\Patient\PatientAppointment;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Livewire\Admin\DoctorAccount;
-use App\Livewire\Admin\Setting;
-use App\Livewire\Auth\DoctorForget;
-use App\Livewire\Auth\PatientSignup;
-use App\Livewire\Doctor\Dashboard as DoctorDashboard;
-use App\Livewire\Doctor\DoctorSetting;
+use App\Livewire\Auth\DoctorCode;
 use App\Livewire\Doctor\Schedule;
+use App\Livewire\Auth\DoctorLogin;
+use App\Livewire\Auth\DoctorForget;
+use App\Livewire\Auth\PatientLogin;
 use App\Livewire\Pages\Appointment;
+use App\Livewire\Auth\PatientSignup;
+use App\Livewire\Admin\DoctorAccount;
+use App\Livewire\Admin\PatientBooked;
+use Illuminate\Support\Facades\Route;
+use App\Livewire\Admin\PatientRequest;
+use App\Livewire\Doctor\DoctorSetting;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BotManController;
+use App\Livewire\Patient\PatientAppointment;
+use App\Livewire\Doctor\Dashboard as DoctorDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,3 +86,6 @@ Route::middleware(['patient_only'])->prefix('patient')->group(function () {
     Route::get('appointment', PatientAppointment::class);
 
 });
+
+
+Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);

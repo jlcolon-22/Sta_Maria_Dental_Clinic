@@ -32,23 +32,26 @@
 
         </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
     <style>
         * {
             font-family: 'Roboto', sans-serif;
         }
 
     </style>
+    @livewireStyles
+
 
 
 </head>
 
 <body class="text-gray-50">
 
+
     {{ $slot }}
-    @stack('scripts')
+    @stack('s')
 
     @livewireScripts
+
 </body>
 
 

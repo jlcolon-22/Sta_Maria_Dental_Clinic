@@ -5,7 +5,7 @@ namespace App\Livewire\Pages;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
-#[Lazy]
+// #[Lazy]
 class Location extends Component
 {
     public function placeholder()

@@ -12,7 +12,7 @@ use App\Models\PatientAccount;
 use App\Models\PatientAppointment;
 use Illuminate\Support\Facades\Auth;
 
-#[Lazy]
+// #[Lazy]
 class Appointment extends Component
 {
     public $date = '';

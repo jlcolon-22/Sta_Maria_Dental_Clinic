@@ -1,3 +1,6 @@
+@push('scripts')
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+@endpush
 <div class="bg-[#f2f6fa] ">
     <x-pages.header  />
     {{-- main --}}
@@ -38,7 +41,7 @@
 
                 </div>
 
-                <button type="button" wire:click='resend' class="text-blue-500 underline text-left">resend</button>
+                <button type="button" wire:click='resend' class="text-blue-500 underline text-left  w-fit h-fit">resend</button>
 
 
                 <button class="bg-red-500 w-[23rem] mx-auto text-white py-2 mt-4">

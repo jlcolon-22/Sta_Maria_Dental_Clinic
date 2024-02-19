@@ -1,3 +1,16 @@
+@assets
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+<script>
+    var botmanWidget = {
+        title: 'Sta.Maria Dental Clinic',
+        mainColor: '#1c98f7',
+        bubbleBackground: '#feba02',
+        color: 'white',
+        aboutText: 'Powered by SMDC'
+    };
+    </script>
+
+@endassets
 <div class="bg-[#f2f6fa]">
     {{-- include header --}}
     <x-pages.header  />
@@ -311,3 +324,4 @@
     <x-pages.footer />
 
 </div>
+

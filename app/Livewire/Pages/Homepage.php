@@ -6,7 +6,7 @@ use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\Attributes\Title;
 
-#[Lazy]
+// #[Lazy]
 class Homepage extends Component
 {
     public function placeholder()
