@@ -7,9 +7,12 @@ use Livewire\Component;
 use App\Models\DoctorAccount;
 use Livewire\Attributes\Lazy;
 use Livewire\WithFileUploads;
+use App\Mail\sendNotification;
 use App\Models\DoctorSchedule;
 use App\Models\PatientAppointment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 
 #[Lazy]
 class PatientRequest extends Component
@@ -42,9 +45,27 @@ class PatientRequest extends Component
     }
     public function confirmAppointment(PatientAppointment $id)
     {
+
+        $response = Http::post('https://api.semaphore.co/api/v4/messages', [
+            'apikey' => 'a1398f27fe149bb183094ecc07c84de6',
+
+            'message' => 'Upcoming appointment at Sta. Maria Dental Clinic for '.$id->procedure .' on '.Carbon::parse($id->date)->format('Y-m-d').' at '.Carbon::parse($id->date)->format('h:m A').'. Contact us for any adjustments. Regards, Sta. Maria Dental Clinic.',
+            'number'=>$id->number,
+            'sendername' => 'SEMAPHORE'
+        ]);
+        $data = [
+            'name' => $id->fullname,
+            'procedure' => $id->procedure,
+            'datetime' => $id->date,
+
+
+        ];
+
+        Mail::to($id->email)->send(new sendNotification($data));
         $id->update([
             'status' => 1
         ]);
+
         $this->dispatch('confirm');
     }
     public function rejectAppointment(PatientAppointment $id)

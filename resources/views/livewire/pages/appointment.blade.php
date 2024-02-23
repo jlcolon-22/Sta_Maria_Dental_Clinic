@@ -120,7 +120,7 @@
                                 <option value="{{ $doctor->id }}">{{ $doctor->fullname }}</option>
 
                             @empty
-                                <option value="">No Available Doctor!</option>
+                                <option value="no_available">No Available Doctor!</option>
                             @endforelse
                         </select>
                         @error('doctor')
@@ -161,12 +161,16 @@
 
 
 
-            showDate() {
+            showDate(dd) {
+
                 this.dataPick = flatpickr(this.$refs.date, {
                     minDate: "today",
                     enableTime: true,
+                    minTime:'11',
+                    maxTime:'19',
+                    time_24hr: true,
                     dateFormat: "Y-m-d h:i K",
-                    disable: this.notDate,
+                    disable: dd,
                     locale: {
                         firstDayOfWeek: 1
                     }
@@ -178,12 +182,26 @@
 
 
                 this.$watch('notDate', () => {
-                    if (this.dateShow) {
 
-                        this.showDate()
+                    if (this.dateShow) {
+                        if(this.notDate[0] == 'no_available')
+                        {
+                            const date = new Date();
+
+                            let day = date.getDate() ;
+                            let month = date.getMonth() + 1;
+                            let year = date.getFullYear();
+
+                            this.showDate([`${year}-${month}-${day - 1}`]);
+                        }else{
+                            this.showDate(this.notDate)
+                        }
+
+
 
                     }
                 })
+
 
                 Livewire.on('loginfirst', () => {
 

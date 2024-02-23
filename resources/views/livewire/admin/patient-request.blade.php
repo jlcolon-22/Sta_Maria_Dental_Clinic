@@ -5,8 +5,9 @@
 
 
     <x-admin.aside>
-        <section x-data="main(@entangle('date'),@entangle('doctorNotAvailable'))" class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  "
-        :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
+        <section x-data="main(@entangle('date'), @entangle('doctorNotAvailable'))"
+            class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  "
+            :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
             <!-- Breadcrumb -->
             <nav class="flex " aria-label="Breadcrumb">
@@ -30,7 +31,8 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 9 4-4-4-4" />
                             </svg>
-                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Patients Request</span>
+                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Patients
+                                Request</span>
                         </div>
                     </li>
                 </ol>
@@ -86,7 +88,8 @@
                             @forelse ($appointments as $appointment)
                                 <tr>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->id }}</td>
-                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->doctorInfo->fullname }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->doctorInfo->fullname }}
+                                    </td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->fullname }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->email }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->number }}</td>
@@ -208,7 +211,7 @@
                     <div class="grid mt-2 ">
                         <label for="" class="font-medium text-gray-800">Doctor<span
                                 class="text-red-600">*</span></label>
-                        <select wire:model='doctor'  wire:change='doctor_change'
+                        <select wire:model='doctor' wire:change='doctor_change'
                             class="border py-3 rounded  px-4 focus:border-ylw outline-none bg-gray-50 ">
                             <option value="" :selected="true">Choose..</option>
                             @forelse ($allDoctor as $doctor)
@@ -225,8 +228,8 @@
                     <div class="grid mt-2 ">
                         <label for="" class="font-medium text-gray-800">Doctor<span
                                 class="text-red-600">*</span></label>
-                                <input x-ref="date" wire:model='date' type="text"
-                                class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
+                        <input x-ref="date" wire:model='date' type="text"
+                            class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
                         @error('password')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
@@ -253,31 +256,56 @@
 
 @script
     <script>
-        Alpine.data('main', (date,disabledDate) => ({
+        Alpine.data('main', (date, disabledDate) => ({
             dataPick: null,
             notDate: disabledDate,
             update: false,
             notDate: disabledDate,
-            dDate:date,
+            dDate: date,
             submitForm() {
 
                 $wire.update();
 
             },
             confirm(id) {
+                // Swal.fire({
+                //     title: "Do you want to confirm it?",
+                //     showCancelButton: true,
+                //     confirmButtonText: "Confirm",
+                //     confirmButtonColor: "#22c55e",
+                //     denyButtonText: `Don't save`
+                // }).then((result) => {
+
+                //     if (result.isConfirmed) {
+                //         $wire.confirmAppointment(id);
+
+                //     }
+                // });
                 Swal.fire({
-                    title: "Do you want to confirm it?",
+                    title: 'Do you want to confirm it?',
                     showCancelButton: true,
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+
                     confirmButtonText: "Confirm",
                     confirmButtonColor: "#22c55e",
-                    denyButtonText: `Don't save`
+                    showLoaderOnConfirm: true,
+                    preConfirm: async (login) => {
+                        return await $wire.confirmAppointment(id);
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
                 }).then((result) => {
-
-                    if (result.isConfirmed) {
-                        $wire.confirmAppointment(id);
-
+                    if (result.value) {
+                        Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Data successfully transfer!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     }
-                });
+                })
             },
             reject(id) {
                 Swal.fire({
@@ -322,11 +350,14 @@
                     locale: {
                         firstDayOfWeek: 1
                     },
-                    defaultDate:this.dDate,
+                    defaultDate: this.dDate,
                 })
 
             },
             init() {
+
+
+
                 this.showDate();
 
                 this.$watch('dDate', () => {

@@ -17,6 +17,7 @@ use App\Livewire\Auth\DoctorForget;
 use App\Livewire\Auth\PatientLogin;
 use App\Livewire\Pages\Appointment;
 use App\Livewire\Auth\PatientSignup;
+use Illuminate\Support\Facades\Http;
 use App\Livewire\Admin\DoctorAccount;
 use App\Livewire\Admin\PatientBooked;
 use Illuminate\Support\Facades\Route;
@@ -89,3 +90,12 @@ Route::middleware(['patient_only'])->prefix('patient')->group(function () {
 
 
 Route::match(['get', 'post'], 'botman', [BotManController::class, 'handle']);
+Route::get('/send',function()
+{
+    $response = Http::post('https://api.semaphore.co/api/v4/messages', [
+        'apikey' => 'a1398f27fe149bb183094ecc07c84de6',
+        'message' => 'ddsadad',
+        'number'=>'09705078270',
+        'sendername' => 'SEMAPHORE'
+    ]);
+});

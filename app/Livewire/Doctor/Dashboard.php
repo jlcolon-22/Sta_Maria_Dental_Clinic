@@ -21,9 +21,9 @@ class Dashboard extends Component
 
         if(!!$this->search)
         {
-         $appointments = PatientAppointment::where('doctor_id',Auth::guard('doctor')->id())->where('status',0)->whereDate('date',$this->search)->latest()->paginate(10);
+         $appointments = PatientAppointment::where('doctor_id',Auth::guard('doctor')->id())->where('status',1)->whereDate('date',$this->search)->latest()->paginate(10);
         }else{
-         $appointments = PatientAppointment::where('doctor_id',Auth::guard('doctor')->id())->where('status',0)->latest()->paginate(10);
+         $appointments = PatientAppointment::where('doctor_id',Auth::guard('doctor')->id())->where('status',1)->latest()->paginate(10);
         }
 
         return view('livewire.doctor.dashboard',compact('appointments'));

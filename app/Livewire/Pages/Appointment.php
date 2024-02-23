@@ -62,10 +62,22 @@ class Appointment extends Component
             $this->date = '';
             $this->doctorNotAvailable = [];
             $notavailable = DoctorSchedule::where('doctor_id', $this->doctor)->get('date');
-            foreach ($notavailable as $not) {
-                $this->doctorNotAvailable[] = $not->date;
+            if(count($notavailable) > 0)
+            {
+                foreach ($notavailable as $not) {
+                    $this->doctorNotAvailable[] = $not->date;
+                }
+            }else{
+                $this->doctorNotAvailable = ['no_available'];
             }
+
             $this->doctorSelect = true;
+        }
+        if($this->doctor == 'no_available')
+        {
+            $this->doctor = '';
+            $this->date = '';
+            $this->doctorSelect = false;
         }
     }
     public function store()

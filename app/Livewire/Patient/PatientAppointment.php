@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Patient;
 
+use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
+use App\Models\DoctorSchedule;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PatientAppointment as ModelsPatientAppointment;
-use Livewire\WithPagination;
 
 
 #[Lazy]
@@ -14,6 +16,36 @@ class PatientAppointment extends Component
 {
     use WithPagination;
     public $search ='';
+    public $date ='';
+    public $doctorNotAvailable = [];
+
+    public $appointmentId = '';
+
+    public function showResched($id, $appId)
+    {
+        $this->doctorNotAvailable = [];
+        $this->date = '';
+        $this->appointmentId = '';
+        $notavailable = DoctorSchedule::where('doctor_id', $id)->get('date');
+        $this->appointmentId = $appId;
+        if(count($notavailable) > 0)
+        {
+            foreach ($notavailable as $not) {
+                $this->doctorNotAvailable[] = $not->date;
+            }
+        }else{
+            $this->doctorNotAvailable = ['no_available'];
+        }
+
+    }
+    public function resched()
+    {
+        \App\Models\PatientAppointment::where('id', $this->appointmentId)->update([
+            'date'=>Carbon::parse($this->date),
+            'status'=>0
+        ]);
+        $this->dispatch('updated');
+    }
     public function placeholder()
     {
         return view("livewire.loading");

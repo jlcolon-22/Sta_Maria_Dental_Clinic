@@ -29,7 +29,8 @@
 
             {{-- table --}}
             <div class="bg-white shadow-md rounded-md mt-7  p-5  ">
-                <h2 class="font-robotoBold ">Patient Request</h2>
+                <h2 class="font-robotoBold ">Confirmed Booked
+                </h2>
                 <div class="py-2 flex items-center justify-end">
 
                     <form action="" class="relative w-fit">
