@@ -5,7 +5,7 @@ namespace App\Livewire\Auth;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
-#[Lazy]
+// #[Lazy]
 class Type extends Component
 {
     public function placeholder()

@@ -2,8 +2,9 @@
 
 
     <x-doctor.aside>
-        <section
-            class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  " :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
+        <section x-data='main'
+            class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  "
+            :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
 
             <!-- Breadcrumb -->
@@ -65,7 +66,7 @@
                                 <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time
                                 </th>
-
+                                <th class="py-2 whitespace-nowrap text-center px-2">Action</th>
 
                                 {{-- <th class="py-2 whitespace-nowrap text-center px-2">Action</th> --}}
 
@@ -84,7 +85,10 @@
                                     <td class="py-3 text-center px-2 text-sm">
                                         {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
 
-
+                                    <td class="py-3 text-center px-2 text-sm">
+                                        <button x-on:click='showPatientHistory({{ $appointment->patient_id }})' class="text-blue-500 font-robotoBold hover:underline">View
+                                            History</button>
+                                    </td>
 
 
                                 </tr>
@@ -102,9 +106,76 @@
                 </div>
             </div>
 
+            {{-- modal --}}
+            <div class="fixed top-0 left-0 w-full min-h-[100svh] max-h-[100svh] bg-black/45 flex justify-center pt-20 z-50"
+                :class="showHistory ? 'block' : 'hidden'">
+
+
+                <div
+                    class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
+                    <div class="flex justify-between items-center">
+                        <h1 class="font-robotoBold text-xl text-primary">Patient History
+                        </h1>
+                        <button type="button" x-on:click="showHistory = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-red-600">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class=" overflow-x-auto max-h-[20rem] rounded-md  relative mt-5">
+                        <table class="w-full text-white  " >
+                            <thead class="bg-btnDark  sticky top-0">
+                                <tr class=" ">
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Date | Time</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-900 ">
+
+
+                                @forelse ($patientHistory as $history)
+                                 <tr>
+
+                                    <td class="py-3 text-center px-2 text-sm">{{ $history->doctorInfo->fullname }}
+                                    </td>
+                                    <td class="py-3 text-center px-2 text-sm">{{ $history->procedure }}</td>
+                                    <td class="py-3 text-center px-2 text-sm">
+                                        {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
+                                </tr>
+                                @empty
+                                    <tr>
+                                        <td class="py-3 text-gray-500 px-2">No Found!</td>
+                                    </tr>
+                                @endforelse
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
         </section>
 
     </x-doctor.aside>
 
 
 </div>
+@script
+    <script>
+        Alpine.data('main', () => ({
+            showHistory: false,
+            async showPatientHistory(id)
+            {
+                await $wire.showHistory(id);
+                this.showHistory = !this.showHistory;
+            }
+        }))
+    </script>
+@endscript

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\PatientAppointment as ModelsPatientAppointment;
 
 
-#[Lazy]
+// #[Lazy]
 class PatientAppointment extends Component
 {
     use WithPagination;

@@ -32,6 +32,14 @@ class PatientRequest extends Component
     public $age = '';
     public $appId = '';
 
+    public $patientHistory = [];
+
+
+    public function showHistory($id)
+    {
+        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id',$id)->latest()->get();
+
+    }
 
     public function mount()
     {

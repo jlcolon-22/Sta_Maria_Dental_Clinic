@@ -5,7 +5,9 @@
         mainColor: '#1c98f7',
         bubbleBackground: '#feba02',
         color: 'white',
-        aboutText: 'Powered by SMDC'
+        aboutText: ' ',
+        introMessage: 'Welcome to Sta.Maria Dental Clinic',
+        chatServer: '/botman'
     };
     </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>

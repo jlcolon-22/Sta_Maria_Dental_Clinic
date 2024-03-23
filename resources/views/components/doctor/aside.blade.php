@@ -72,8 +72,8 @@
     {{-- content section --}}
     <section class="w-full ">
         {{-- top bar --}}
-        <nav x-data="{ dropdown: false }" class="bg-white w-full py-4 px-6 flex items-center h-[5rem]" :class="aside ? ' justify-between' : ' justify-end'">
-            <button x-on:click="aside = !aside" class="hover:opacity-55 " :class="aside ? '' : 'hidden'"><img src="{{ asset('icons/menu.svg') }}"
+        <nav x-data="{ dropdown: false }" class="bg-white w-full py-4 px-6 flex items-center h-[5rem]" :class="aside ? ' justify-between' : ' justify-end lg:justify-between'">
+            <button x-on:click="aside = !aside" class="hover:opacity-55 " :class="aside ? '' : 'hidden lg:block'"><img src="{{ asset('icons/menu.svg') }}"
                     alt=""></button>
 
             <button class="relative group" x-on:click="dropdown = !dropdown">

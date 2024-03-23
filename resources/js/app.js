@@ -4,7 +4,11 @@ import Alpine from 'alpinejs'
 import intersect from '@alpinejs/intersect'
 import swal from 'sweetalert2';
 window.Swal = swal;
+import Swiper from 'swiper/bundle';
 
+// import styles bundle
+import 'swiper/css/bundle';
+window.Swiper = Swiper;
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';

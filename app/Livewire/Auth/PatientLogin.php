@@ -7,7 +7,7 @@ use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 
-#[Lazy]
+// #[Lazy]
 class PatientLogin extends Component
 {
     #[Validate('required')]

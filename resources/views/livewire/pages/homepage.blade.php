@@ -5,7 +5,9 @@
         mainColor: '#1c98f7',
         bubbleBackground: '#feba02',
         color: 'white',
-        aboutText: 'Powered by SMDC'
+        aboutText: ' ',
+        introMessage: 'Welcome to Sta.Maria Dental Clinic',
+        chatServer: '/botman'
     };
     </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
@@ -21,9 +23,9 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper ">
                 <!-- Slides -->
-                <img class="swiper-slide" src="{{ asset('carousel/1.jpeg') }}" alt="carousel image" />
-                <img class="swiper-slide" src="{{ asset('carousel/2.jpg') }}" alt="carousel image" />
-                <img class="swiper-slide" src="{{ asset('carousel/4.jpg') }}" alt="carousel image" />
+                <img class="swiper-slide object cover " src="{{ asset('images/433514133_928776258791380_5435786334616816008_n.jpg') }}" alt="carousel image"  />
+                <img class="swiper-slide object cover " src="{{ asset('images/433347775_1219403109020743_2623202800896340617_n.jpg') }}" alt="carousel image" />
+                <img class="swiper-slide object cover object-bottom" src="{{ asset('images/430925840_1193205698318052_1521885814298108106_n.jpg') }}" alt="carousel image" />
 
 
             </div>

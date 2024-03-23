@@ -103,7 +103,9 @@
 
                                     <td class="py-3 text-center px-2 flex justify-center gap-x-2 text-sm">
 
-
+                                        <button x-on:click='showPatientHistory({{ $appointment->patient_id }})'
+                                            class="text-blue-500 font-robotoBold hover:underline whitespace-nowrap">View
+                                            History</button>
                                         <button class="text-yellow-500 font-robotoBold hover:underline"
                                             x-on:click="edit({{ $appointment->id }})">Update</button>
                                         <button class="text-green-500 font-robotoBold hover:underline"
@@ -127,7 +129,60 @@
                 </div>
             </div>
 
+            {{-- modal --}}
+            <div class="fixed top-0 left-0 w-full min-h-[100svh] max-h-[100svh] bg-black/45 flex justify-center pt-20 z-50"
+                :class="showHistory ? 'block' : 'hidden'">
 
+
+                <div class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
+                    <div class="flex justify-between items-center">
+                        <h1 class="font-robotoBold text-xl text-primary">Patient History
+                        </h1>
+                        <button type="button" x-on:click="showHistory = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-red-600">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class=" overflow-x-auto max-h-[20rem] rounded-md  relative mt-5">
+                        <table class="w-full text-white  ">
+                            <thead class="bg-btnDark  sticky top-0">
+                                <tr class=" ">
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Date | Time</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-900 ">
+
+
+                                @forelse ($patientHistory as $history)
+                                    <tr>
+
+                                        <td class="py-3 text-center px-2 text-sm">{{ $history->doctorInfo->fullname }}
+                                        </td>
+                                        <td class="py-3 text-center px-2 text-sm">{{ $history->procedure }}</td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                            {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td class="py-3 text-gray-500 px-2">No Found!</td>
+                                    </tr>
+                                @endforelse
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
             {{-- add modal --}}
             <div x-show="update"
                 class="fixed top-0 w-full min-h-[100svh] max-h-[100svh] flex justify-center overflow-y-auto bg-black/10 left-0 py-20">
@@ -137,9 +192,9 @@
                     <div class="flex justify-between items-center">
                         <h1 class="font-robotoBold text-xl">Update Request</h1>
                         <button type="button" x-on:click="toggle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="text-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <line x1="15" y1="9" x2="9" y2="15"></line>
                                 <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -262,6 +317,12 @@
             update: false,
             notDate: disabledDate,
             dDate: date,
+            showHistory: false,
+            async showPatientHistory(id)
+            {
+                await $wire.showHistory(id);
+                this.showHistory = !this.showHistory;
+            },
             submitForm() {
 
                 $wire.update();
@@ -298,12 +359,12 @@
                 }).then((result) => {
                     if (result.value) {
                         Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Data successfully transfer!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                            position: "center",
+                            icon: "success",
+                            title: "Data successfully transfer!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                 })
             },

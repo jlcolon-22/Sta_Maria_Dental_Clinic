@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Livewire\Attributes\Lazy;
 
-#[Lazy]
+// #[Lazy]
 class PatientSetting extends Component
 {
     public $pfullname = '';

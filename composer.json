@@ -9,6 +9,7 @@
         "botman/botman": "^2.8",
         "botman/driver-web": "^1.5",
         "guzzlehttp/guzzle": "^7.2",
+        "jantinnerezo/livewire-alert": "^3.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",

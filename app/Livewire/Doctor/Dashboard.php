@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Auth;
 class Dashboard extends Component
 {
     public $search = '';
+    public $patientHistory = [];
+
+    public function showHistory($id)
+    {
+        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id',$id)->latest()->get();
+
+    }
     public function placeholder()
     {
         return view("livewire.loading");

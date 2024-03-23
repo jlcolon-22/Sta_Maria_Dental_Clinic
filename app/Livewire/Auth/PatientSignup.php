@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
-#[Lazy]
+// #[Lazy]
 class PatientSignup extends Component
 {
     public $fullname = '';
