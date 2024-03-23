@@ -1,0 +1,23 @@
+{
+  "public/font/Roboto-Bold.ttf": {
+    "file": "assets/Roboto-Bold-SrW5_Vou.ttf",
+    "src": "public/font/Roboto-Bold.ttf"
+  },
+  "public/font/Roboto-Regular.ttf": {
+    "file": "assets/Roboto-Regular-R3gZys7A.ttf",
+    "src": "public/font/Roboto-Regular.ttf"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-DqfmRTnk.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-L9ko_Fi2.css"
+    ],
+    "file": "assets/app-6Ud8GK2Y.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
