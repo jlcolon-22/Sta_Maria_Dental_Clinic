@@ -1,31 +1,36 @@
 @assets
-<script>
-    var botmanWidget = {
-        title: 'Sta.Maria Dental Clinic',
-        mainColor: '#1c98f7',
-        bubbleBackground: '#feba02',
-        color: 'white',
-        aboutText: ' ',
-        introMessage: 'Welcome to Sta.Maria Dental Clinic',
-        chatServer: '/botman'
-    };
+    <script>
+        var botmanWidget = {
+            title: 'Sta.Maria Dental Clinic',
+            mainColor: '#1c98f7',
+            bubbleBackground: '#feba02',
+            color: 'white',
+            aboutText: ' ',
+            introMessage: 'Welcome to Sta.Maria Dental Clinic',
+            chatServer: '/botman'
+        };
     </script>
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
-
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 @endassets
 <div x-data="homeMain">
     <x-pages.header />
 
     {{-- carousel --}}
-    <section >
+    <section>
 
         <div class="swiper text-violet-500 " x-ref="container">
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper ">
                 <!-- Slides -->
-                <img class="swiper-slide object cover " src="{{ asset('images/433514133_928776258791380_5435786334616816008_n.jpg') }}" alt="carousel image"  />
-                <img class="swiper-slide object cover " src="{{ asset('images/433347775_1219403109020743_2623202800896340617_n.jpg') }}" alt="carousel image" />
-                <img class="swiper-slide object cover object-bottom" src="{{ asset('images/430925840_1193205698318052_1521885814298108106_n.jpg') }}" alt="carousel image" />
+                <img class="swiper-slide object cover "
+                    src="{{ asset('images/433514133_928776258791380_5435786334616816008_n.jpg') }}"
+                    alt="carousel image" />
+                <img class="swiper-slide object cover "
+                    src="{{ asset('images/433347775_1219403109020743_2623202800896340617_n.jpg') }}"
+                    alt="carousel image" />
+                <img class="swiper-slide object cover object-bottom"
+                    src="{{ asset('images/430925840_1193205698318052_1521885814298108106_n.jpg') }}"
+                    alt="carousel image" />
 
 
             </div>
@@ -120,6 +125,80 @@
         <img src="{{ asset('assets/teeth.png.png') }}" class="absolute -right-52 top-32 -z-10 opacity-20 h-[40rem]"
             alt="">
     </section>
+    {{-- our team --}}
+    <section class="text-btnPrimary flex flex-col items-center gap-y-5 py-28">
+        <div class=" max-w-screen-lg mx-auto">
+            <div class="text-center mb-16">
+                <p class="mt-4 text-sm leading-7 text-gray-500 font-regular">
+                    THE TEAM
+                </p>
+                <h3 class="text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900">
+                    Our<span class="text-btnPrimary"> Team</span>
+                </h3>
+            </div>
+
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-20 ">
+
+
+                <div class="max-w-sm w-full lg:max-w-full lg:flex mx-auto my-10">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                        style="background-image: url('{{ asset('doctor/Dr Edna Cruz Sta Maria.jpg') }}');"
+                        title="Woman holding a mug">
+                    </div>
+                    <div
+                        class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4">
+                        <div class="">
+                            <a href="#"
+                                class="text-gray-900 font-bold text-xl mb-2 hover:text-indigo-600 transition duration-500 ease-in-out">Dr. Edna Cruz Sta. Maria</a>
+                            <p class="text-sm text-gray-600">
+                                Dentist &amp; Orthodontist
+                            </p>
+                            <p class="text-gray-500 text-sm mt-4">Dr. Edna Cruz Sta. Maria is a Dentist and Orthodontist in Nagkaisang Nayaon, Quezon City and has an experience of more than 40 years in these fields.
+                            </p>
+
+                            <div class="my-4 flex">
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class=" max-w-sm w-full lg:max-w-full lg:flex mx-auto my-10    ">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center"
+                        style="background-image: url('{{ asset('doctor/Dr Danica C Sta Maria.jpg') }}');"
+                        title="Woman holding a mug">
+                    </div>
+                    <div
+                        class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4">
+                        <div class="">
+                            <a href="#"
+                                class="text-gray-900 font-bold text-xl mb-2 hover:text-indigo-600 transition duration-500 ease-in-out">Dr. Danica C. Sta Maria</a>
+                            <p class="text-sm text-gray-600">
+                                Dentist &amp; Orthodontist
+                            </p>
+                            <p class="text-gray-500 text-sm mt-4">Dr. Danica C. Sta Maria is an Orthodontist in Concepcion, Malabon and has an experience of 7 years in this field.
+                            </p>
+
+                            <div class="my-4 flex">
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     {{-- location container --}}
     <section class=" bg-[#f2f6fa] pb-28 pt-16">
@@ -162,9 +241,7 @@
 </div>
 
 @script
-
     <script>
-
         Alpine.data('homeMain', () => ({
             swiper: null,
             scripts: null,
@@ -190,5 +267,4 @@
             }
         }))
     </script>
-
 @endscript
