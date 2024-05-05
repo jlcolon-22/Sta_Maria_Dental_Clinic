@@ -51,7 +51,7 @@
             quality and safe dental journey. We’ve
             got some promos and freebies too!
         </p>
-        <a href="" class="bg-btnPrimary px-6 py-2 rounded text-white">Book Now</a>
+        <a href="/appointment" class="bg-btnPrimary px-6 py-2 rounded text-white">Book Now</a>
 
 
     </section>

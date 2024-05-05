@@ -18,9 +18,9 @@
             <h1 class="text-2xl font-bold">Links</h1>
             <div class="space-y-3 mt-7 pl-4">
                <li class="list-disc"> <a href="/" class="text-sm text-gray-300 hover:underline hover:text-ylw  transition-colors ease-in-out duration-300">HOME</a></li>
-               <li class="list-disc"> <a href="/" class="text-sm text-gray-300 hover:underline hover:text-ylw  transition-colors ease-in-out duration-300">SERVICES</a></li>
-               <li class="list-disc"> <a href="/" class="text-sm text-gray-300 hover:underline hover:text-ylw  transition-colors ease-in-out duration-300">LOCATION</a></li>
-               <li class="list-disc"> <a href="/" class="text-sm text-gray-300 hover:underline hover:text-ylw  transition-colors ease-in-out duration-300">APPOINTMENT</a></li>
+               <li class="list-disc"> <a href="/services" class="text-sm text-gray-300 hover:underline hover:text-ylw  transition-colors ease-in-out duration-300">SERVICES</a></li>
+               <li class="list-disc"> <a href="/location" class="text-sm text-gray-300 hover:underline hover:text-ylw  transition-colors ease-in-out duration-300">LOCATION</a></li>
+               <li class="list-disc"> <a href="/appointment" class="text-sm text-gray-300 hover:underline hover:text-ylw  transition-colors ease-in-out duration-300">APPOINTMENT</a></li>
             </div>
         </div>
         <div class="col-span-2 lg:hidden">
