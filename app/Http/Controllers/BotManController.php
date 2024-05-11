@@ -97,12 +97,36 @@ class BotManController extends Controller
 
             if (strpos($keyword, 'located') !== false || strpos($keyword, 'location') !== false) {
                 $bot->reply('Answer: Our clinics are located in two (2) locations which are in 43 Camilo Osias Street, New Haven Village, Novaliches Q.C. for the Fairview Branch and 168 Gen. Luna Street, Malabon, Metro Manila for the Malabon Branch. You can also use Google maps to locate us. Our website is www.stamariadentalclinic.com');
-            } elseif (strpos($keyword, 'appointment') !== false) {
+            } elseif (strpos($keyword, 'make appointment') !== false) {
                 $bot->reply('Answer: We welcome walk-in patients or simply fill out our appointment form or give us a call or text at 0917-8926273.');
             } elseif (strpos($keyword, 'dental services') !== false) {
                 $bot->reply('Answer: Sta. Maria Dental Clinic is a full-service dental clinic, with a range of dental treatments on offer, including general dental for the whole family, cosmetic dentistry, and restorative dental procedures like implants and dentures. Have a look through our services section for a better understanding of everything we’re able to do for you.');
             } elseif (strpos($keyword, 'procedure') !== false) {
                 $bot->reply('Answer: Call us at 0917-8926273. You’ll find our staff friendly and more than happy to take your questions.');
+            } elseif (strpos($keyword, 'pain-free') !== false || strpos($keyword, 'dental practice') !== false) {
+                $bot->reply('Answer: Yes. We provide a Profound Numbing Guarantee, an assurance that your treatment will be a pain-free and comfortable experience. If you do begin to feel pain, we’ll immediately pause the treatment to administer more anesthetic, and only continue when we’re confident that you’ll be comfortable.');
+            } elseif (strpos($keyword, 'family') !== false && strpos($keyword, 'treatment') !== false) {
+                $bot->reply('Answer: Our clinic is purpose-built to accommodate your entire family on the same day. We regularly treat patients of all ages and take the time to understand their unique dental and medical histories before providing treatment. Most of our patients consider us as their primary dentists to schedule routine dental appointments for their families and themselves.');
+            } elseif (strpos($keyword, 'offer orthodontics') !== false || strpos($keyword, 'orthodontics') !== false) {
+                $bot->reply('Answer: Yes! We offer reliable and cost-effective orthodontic treatment to bring crooked teeth and gradually move them into the ideal position.');
+            } elseif (strpos($keyword, 'dental implants') !== false || strpos($keyword, 'implants') !== false) {
+                $bot->reply('Answer: We are experts in dental implants, from single implants to full implant dentures, to restore normal function and appearance to your mouth.');
+            } elseif (strpos($keyword, 'cosmetic dentistry') !== false || strpos($keyword, 'cosmetic') !== false) {
+                $bot->reply('Answer: We offer a full array of cosmetic dental procedures, including teeth whitening, aligners, dental crowns, dental bonding, and even full mouth reconstructions to completely transform your smile.');
+            } elseif (strpos($keyword, 'your credentials') !== false || strpos($keyword, 'credentials') !== false) {
+                $bot->reply('Answer: Our doctors have obtained their D.M.D. degrees. In addition, they’ve completed advanced training in many areas of general and surgical dentistry. We’re affiliated with the Philippine Dental Association (PDA). As well as being the main choice for family dentistry by our patients in the Quezon City and Malabon areas.');
+            } elseif (strpos($keyword, 'I’m scared of the dentist. Can you help me?') !== false || strpos($keyword, 'I’m scared') !== false) {
+                $bot->reply('Answer: We are ready & eager to help you. Our experienced professionals (dentist & staff) provide patients with utmost care throughout their visit. Once your dental anxiety is taken care of, only then we shall proceed with treatment procedures.');
+            } elseif (strpos($keyword, 'Is it every patient has the same fee and costs for the same treatment') !== false || strpos($keyword, 'fee') !== false) {
+                $bot->reply('Answer: Not at all, every patient has a different situation or condition, some patients required more treatment procedures, and some required less.');
+            } elseif (strpos($keyword, 'How long will it take to get an appointment') !== false || strpos($keyword, 'How long') !== false) {
+                $bot->reply('Answer: We aim to be able to see you in our clinic within one (1) to two (2) days of your initial call. If you are in need of an emergency appointment, we will do our best to see you on the same day. If we are unable to treat your specific emergency, we work closely with specialists in the area and will get you to a provider who can help.');
+            } elseif (strpos($keyword, 'Do you offer emergency appointments?') !== false || strpos($keyword, 'emergency appointments') !== false) {
+                $bot->reply('Answer: Yes, if you call on a day, we are open, we will do everything we can to see you the same day.');
+            } elseif (strpos($keyword, 'I need to cancel an appointment, what do I do?') !== false || strpos($keyword, 'cancel appointment') !== false) {
+                $bot->reply('Answer: Please call us at the clinic as soon as possible to cancel and reschedule your appointment.  Please let us know no later than 24 hours prior to your appointment.  Your appointment is reserved for you and no one else–we respect your time, and request the same in return.');
+            } elseif (strpos($keyword, 'Do I need to floss every day?') !== false || strpos($keyword, 'floss') !== false) {
+                $bot->reply('Answer: Only floss the teeth you want to keep! Flossing requires more than just passing it through the space between your teeth.  Once you pass the floss between where your teeth contact, it’s important to then hug the floss around one of the teeth and advance it under the gumline.  Then hug the floss to the other tooth and advance it under the gumline.  It’s 3 steps! Floss contact, hug one tooth, then hug the other tooth.');
             } else {
 
                 $question = Question::create("FAQs")
