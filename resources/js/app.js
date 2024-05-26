@@ -15,6 +15,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";
 
 window.flatpickr = flatpickr;
 window.Calendar = Calendar;
