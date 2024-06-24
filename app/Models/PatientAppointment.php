@@ -9,7 +9,7 @@ class PatientAppointment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'fullname','age','email','status','number','procedure','patient_id','doctor_id','branch_id','date'
+        'fullname','age','email','status','number','procedure','patient_id','doctor_id','branch_id','date','image','description'
     ];
 
     public function branchInfo()

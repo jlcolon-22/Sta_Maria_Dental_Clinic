@@ -1,5 +1,5 @@
 @assets
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> --}}
 @endassets
 <div class="bg-[#f2f6fa] max-h-[100svh]  ">
 
@@ -134,7 +134,7 @@
                 :class="showHistory ? 'block' : 'hidden'">
 
 
-                <div class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
+                <div class="bg-white shadow-md border w-[25rem] sm:w-[40rem] h-fit p-3 rounded-md">
                     <div class="flex justify-between items-center">
                         <h1 class="font-robotoBold text-xl text-primary">Patient History
                         </h1>
@@ -155,6 +155,8 @@
                                     <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
                                     <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
                                     <th class="py-2 whitespace-nowrap text-center px-2">Date | Time</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Image</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Description</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-900 ">
@@ -168,6 +170,12 @@
                                         <td class="py-3 text-center px-2 text-sm">{{ $history->procedure }}</td>
                                         <td class="py-3 text-center px-2 text-sm">
                                             {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                            <a href="{{ asset('/storage/history/'.$history->image) }}" class="border-2" target="_blank" rel="noopener noreferrer">
+                                                <img src="{{ asset('/storage/history/'.$history->image) }}" class="w-[5rem] h-[5rem]" alt="">
+                                            </a></td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                           <article> {{ $history->description }}</article></td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -281,7 +289,7 @@
                         @enderror
                     </div>
                     <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Doctor<span
+                        <label for="" class="font-medium text-gray-800">Date<span
                                 class="text-red-600">*</span></label>
                         <input x-ref="date" wire:model='date' type="text"
                             class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">

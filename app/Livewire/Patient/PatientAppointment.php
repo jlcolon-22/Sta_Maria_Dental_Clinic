@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
 use App\Models\DoctorSchedule;
+
 use Illuminate\Support\Facades\Auth;
 use App\Models\PatientAppointment as ModelsPatientAppointment;
 
@@ -24,6 +25,14 @@ class PatientAppointment extends Component
     public function showResched($id, $appId)
     {
         $this->doctorNotAvailable = [];
+        $alreadyAppointment = \App\Models\PatientAppointment::select('date','doctor_id')->where('doctor_id', $id)->whereDate('date','>=', Carbon::now())->get();
+        if(count($alreadyAppointment) > 0)
+        {
+            foreach ($alreadyAppointment as $already) {
+
+                $this->doctorNotAvailable[] = Carbon::parse($already->date)->format('Y-m-d');
+            }
+        }
         $this->date = '';
         $this->appointmentId = '';
         $notavailable = DoctorSchedule::where('doctor_id', $id)->get('date');
@@ -33,8 +42,6 @@ class PatientAppointment extends Component
             foreach ($notavailable as $not) {
                 $this->doctorNotAvailable[] = $not->date;
             }
-        }else{
-            $this->doctorNotAvailable = ['no_available'];
         }
 
     }

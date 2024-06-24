@@ -85,9 +85,13 @@
                                     <td class="py-3 text-center px-2 text-sm">
                                         {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
 
-                                    <td class="py-3 text-center px-2 text-sm">
-                                        <button x-on:click='showPatientHistory({{ $appointment->patient_id }})' class="text-blue-500 font-robotoBold hover:underline">View
+                                    <td class="py-3 text-center px-2 space-x-3 text-sm">
+                                        <button x-on:click='showPatientHistory({{ $appointment->patient_id }})'
+                                            class="text-blue-500 font-robotoBold hover:underline">View
                                             History</button>
+                                        <button x-on:click='showUploadModal({{ $appointment->id }})'
+                                            class="text-green-500 font-robotoBold hover:underline">
+                                            Upload</button>
                                     </td>
 
 
@@ -111,8 +115,7 @@
                 :class="showHistory ? 'block' : 'hidden'">
 
 
-                <div
-                    class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
+                <div class="bg-white shadow-md border w-[25rem] sm:w-[40rem] h-fit p-3 rounded-md">
                     <div class="flex justify-between items-center">
                         <h1 class="font-robotoBold text-xl text-primary">Patient History
                         </h1>
@@ -127,26 +130,34 @@
                         </button>
                     </div>
                     <div class=" overflow-x-auto max-h-[20rem] rounded-md  relative mt-5">
-                        <table class="w-full text-white  " >
+                        <table class="w-full text-white  ">
                             <thead class="bg-btnDark  sticky top-0">
                                 <tr class=" ">
                                     <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
                                     <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
                                     <th class="py-2 whitespace-nowrap text-center px-2">Date | Time</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Image</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Description</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-900 ">
 
 
                                 @forelse ($patientHistory as $history)
-                                 <tr>
+                                    <tr>
 
-                                    <td class="py-3 text-center px-2 text-sm">{{ $history->doctorInfo->fullname }}
-                                    </td>
-                                    <td class="py-3 text-center px-2 text-sm">{{ $history->procedure }}</td>
-                                    <td class="py-3 text-center px-2 text-sm">
-                                        {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
-                                </tr>
+                                        <td class="py-3 text-center px-2 text-sm">{{ $history->doctorInfo->fullname }}
+                                        </td>
+                                        <td class="py-3 text-center px-2 text-sm">{{ $history->procedure }}</td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                            {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                            <a href="{{ asset('/storage/history/'.$history->image) }}" class="border-2" target="_blank" rel="noopener noreferrer">
+                                                <img src="{{ asset('/storage/history/'.$history->image) }}" class="w-[5rem] h-[5rem]" alt="">
+                                            </a></td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                           <article> {{ $history->description }}</article></td>
+                                    </tr>
                                 @empty
                                     <tr>
                                         <td class="py-3 text-gray-500 px-2">No Found!</td>
@@ -155,6 +166,62 @@
 
                             </tbody>
                         </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="fixed top-0 left-0 w-full min-h-[100svh] max-h-[100svh] bg-black/45 flex justify-center pt-20 z-50"
+                :class="showUpload ? 'block' : 'hidden'">
+
+
+                <div class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
+                    <div class="flex justify-between items-center">
+                        <h1 class="font-robotoBold text-xl text-primary">Upload FIle
+                        </h1>
+                        <button type="button" x-on:click="showUpload = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-red-600">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class=" overflow-x-auto max-h-[20rem] rounded-md  relative mt-5">
+                        <form wire:submit.prevent='uploadFile' enctype="multipart/form-data">
+                            <div class="grid mt-2 ">
+                                <label for="" class="font-medium text-gray-800">Image<span
+                                        class="text-red-600">*</span></label>
+                                <input type="file" wire:model="image" autocomplete="off" accept="image/*"
+                                    class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
+                                @error('number')
+                                    <small class="text-red-500">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="grid mt-2 ">
+                                <label for="" class="font-medium text-gray-800">Description<span
+                                        class="text-red-600">*</span></label>
+                                <textarea wire:model='description' id="" cols="2" rows="2" required
+                                    class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded "></textarea>
+                                @error('number')
+                                    <small class="text-red-500">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="grid mt-4 ">
+                                <button type="submit"
+                                    class="border py-2   outline-none hover:opacity-70 bg-ylw text-white rounded">
+                                    <span wire:loading.class='hidden'>
+                                        Submit
+                                    </span>
+                                    <div wire:loading wire:target='uploadFile' wire:loading.delay.longest>
+                                        loading .....
+                                    </div>
+                                </button>
+                            </div>
+                        </form>
 
                     </div>
 
@@ -171,10 +238,28 @@
     <script>
         Alpine.data('main', () => ({
             showHistory: false,
-            async showPatientHistory(id)
-            {
+            showUpload: false,
+            async showPatientHistory(id) {
                 await $wire.showHistory(id);
                 this.showHistory = !this.showHistory;
+            },
+            async showUploadModal(id) {
+                await $wire.set('ids', id);
+                await $wire.edit(id);
+                this.showUpload = !this.showUpload;
+            },
+            init()
+            {
+                Livewire.on('added', () => {
+                    this.showUpload = !this.showUpload;
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Submitted Successfully!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
             }
         }))
     </script>

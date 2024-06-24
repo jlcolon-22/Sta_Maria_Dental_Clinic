@@ -23,6 +23,8 @@ return new class extends Migration
             $table->unsignedBigInteger('doctor_id');
             $table->dateTime('date')->nullable();
             $table->boolean('status')->default(false);
+            $table->text('image')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

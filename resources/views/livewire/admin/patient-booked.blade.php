@@ -2,7 +2,7 @@
 
 
     <x-admin.aside>
-        <section x-data="main"
+        <section x-data="main(@entangle('date'), @entangle('doctorNotAvailable'))"
             class="text-gray-900 py-10 px-5  lg:p-10 max-h-[calc(100svh-5rem)] overflow-y-auto relative  "
             :class="aside ? 'w-full lg:max-w-[calc(100svw-17rem)] ' : 'max-w-[calc(100svw-17rem)] lg:max-w-[100%] min-w-[100%]'">
 
@@ -92,10 +92,13 @@
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
                                     <td class="py-3 text-center px-2 text-sm">
                                         {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
-                                        <td class="py-3 text-center px-2 text-sm">
-                                            <button x-on:click='showPatientHistory({{ $appointment->patient_id }})' class="text-blue-500 font-robotoBold hover:underline">View
-                                                History</button>
-                                        </td>
+                                    <td class="py-3 text-center px-2 text-sm">
+                                        <button class="text-yellow-500 font-robotoBold hover:underline"
+                                            x-on:click="edit({{ $appointment->id }})">Update</button>
+                                        <button x-on:click='showPatientHistory({{ $appointment->patient_id }})'
+                                            class="text-blue-500 font-robotoBold hover:underline">View
+                                            History</button>
+                                    </td>
 
 
                                 </tr>
@@ -118,7 +121,7 @@
                 :class="showHistory ? 'block' : 'hidden'">
 
 
-                <div class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
+                <div class="bg-white shadow-md border w-[25rem] sm:w-[40rem] h-fit p-3 rounded-md">
                     <div class="flex justify-between items-center">
                         <h1 class="font-robotoBold text-xl text-primary">Patient History
                         </h1>
@@ -139,6 +142,8 @@
                                     <th class="py-2 whitespace-nowrap text-center px-2">Doctor</th>
                                     <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
                                     <th class="py-2 whitespace-nowrap text-center px-2">Date | Time</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Image</th>
+                                    <th class="py-2 whitespace-nowrap text-center px-2">Description</th>
                                 </tr>
                             </thead>
                             <tbody class="text-gray-900 ">
@@ -152,6 +157,12 @@
                                         <td class="py-3 text-center px-2 text-sm">{{ $history->procedure }}</td>
                                         <td class="py-3 text-center px-2 text-sm">
                                             {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                            <a href="{{ asset('/storage/history/'.$history->image) }}" class="border-2" target="_blank" rel="noopener noreferrer">
+                                                <img src="{{ asset('/storage/history/'.$history->image) }}" class="w-[5rem] h-[5rem]" alt="">
+                                            </a></td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                           <article> {{ $history->description }}</article></td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -167,6 +178,126 @@
                 </div>
 
             </div>
+
+            {{-- add modal --}}
+            <div x-show="update"
+                class="fixed top-0 w-full min-h-[100svh] max-h-[100svh] flex justify-center overflow-y-auto bg-black/10 left-0 py-20">
+
+                <form x-on:submit.prevent="submitForm" method="POST" x-show="update" x-transition
+                    class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
+                    <div class="flex justify-between items-center">
+                        <h1 class="font-robotoBold text-xl">Update Request</h1>
+                        <button type="button" x-on:click="toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="grid mt-6 ">
+                        <label for="" class="font-medium text-gray-800">Fullname<span
+                                class="text-red-600">*</span></label>
+                        <input type="text" autocomplete="off" wire:model="fullname"
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
+                        @error('fullname')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Age<span
+                                class="text-red-600">*</span></label>
+                        <input type="tel" wire:model="age" autocomplete="off"
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
+                        @error('number')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Phone Number<span
+                                class="text-red-600">*</span></label>
+                        <input type="tel" wire:model="number" autocomplete="off"
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
+                        @error('number')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Email Address<span
+                                class="text-red-600">*</span></label>
+                        <input type="email" wire:model="email" autocomplete="off"
+                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
+                        @error('email')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Procedure<span
+                                class="text-red-600">*</span></label>
+                        <select wire:model='procedure'
+                            class="border py-3 rounded  px-4 focus:border-ylw outline-none bg-gray-50 ">
+                            <option hidden disabled selected value=""> -- select an option -- </option>
+                            <option value="braces">Braces</option>
+                            <option value="cleaning">Cleaning (Oral Prophylaxis)</option>
+                            <option value="consultation">Consultation</option>
+                            <option value="clear Aligners">Clear Aligners</option>
+                            <option value="Crowns-Veneers">Crowns / Veneers</option>
+                            <option value="Dental Implant">Dental Implant</option>
+                            <option value="Extraction">Extraction</option>
+                            <option value="Pasta / Filling">Pasta / Filling</option>
+                            <option value="Root Canal Treatment">Root Canal Treatment</option>
+                            <option value="Surgery">Surgery</option>
+                            <option value="Teeth Whitening">Teeth Whitening</option>
+                            <option value="Xray">Xray</option>
+                        </select>
+                        @error('username')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Doctor<span
+                                class="text-red-600">*</span></label>
+                        <select wire:model='doctor' wire:change='doctor_change'
+                            class="border py-3 rounded  px-4 focus:border-ylw outline-none bg-gray-50 ">
+                            <option value="" :selected="true">Choose..</option>
+                            @forelse ($allDoctor as $doctor)
+                                <option value="{{ $doctor->id }}">{{ $doctor->fullname }}</option>
+
+                            @empty
+                                <option value="">No Available Doctor!</option>
+                            @endforelse
+                        </select>
+                        @error('password')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="grid mt-2 ">
+                        <label for="" class="font-medium text-gray-800">Date<span
+                                class="text-red-600">*</span></label>
+                        <input x-ref="date" wire:model='date' type="text"
+                            class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
+                        @error('password')
+                            <small class="text-red-500">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="grid mt-4 ">
+                        <button type="submit"
+                            class="border py-2   outline-none hover:opacity-70 bg-ylw text-white rounded">
+                            <span wire:loading.class='hidden'>
+                                Update
+                            </span>
+                            <div wire:loading wire:loading.delay.longest>
+                                loading .....
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </section>
 
     </x-admin.aside>
@@ -176,26 +307,82 @@
 
 @script
     <script>
-        Alpine.data('main', () => ({
-            add: false,
+        Alpine.data('main', (date, disabledDate) => ({
+            dataPick: null,
+            notDate: disabledDate,
             update: false,
+            notDate: disabledDate,
+            dDate: date,
             showHistory: false,
             async showPatientHistory(id)
             {
-
                 await $wire.showHistory(id);
                 this.showHistory = !this.showHistory;
             },
             submitForm() {
-                if (this.update) {
-                    $wire.update();
-                } else {
-                    $wire.store();
-                }
+
+                $wire.update();
+
             },
-            edit() {
-                this.add = !this.add
+            confirm(id) {
+                // Swal.fire({
+                //     title: "Do you want to confirm it?",
+                //     showCancelButton: true,
+                //     confirmButtonText: "Confirm",
+                //     confirmButtonColor: "#22c55e",
+                //     denyButtonText: `Don't save`
+                // }).then((result) => {
+
+                //     if (result.isConfirmed) {
+                //         $wire.confirmAppointment(id);
+
+                //     }
+                // });
+                Swal.fire({
+                    title: 'Do you want to confirm it?',
+                    showCancelButton: true,
+                    inputAttributes: {
+                        autocapitalize: 'off'
+                    },
+
+                    confirmButtonText: "Confirm",
+                    confirmButtonColor: "#22c55e",
+                    showLoaderOnConfirm: true,
+                    preConfirm: async (login) => {
+                        return await $wire.confirmAppointment(id);
+                    },
+                    allowOutsideClick: () => !Swal.isLoading()
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Data successfully transfer!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                })
+            },
+            reject(id) {
+                Swal.fire({
+                    title: "Do you want to reject it?",
+                    showCancelButton: true,
+                    confirmButtonText: "Reject",
+                    confirmButtonColor: "#ef4444",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+
+                    if (result.isConfirmed) {
+                        $wire.rejectAppointment(id);
+                        Swal.fire("Data Rejected!", "", "success");
+                    }
+                });
+            },
+            edit(id) {
+                $wire.edit(id);
                 this.update = true;
+
             },
 
             toggle() {
@@ -209,28 +396,35 @@
                 this.add = !this.add
                 this.update = false;
             },
-            destroy(id) {
+            showDate() {
+                this.dataPick = flatpickr(this.$refs.date, {
+                    minDate: "today",
 
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $wire.destroy(id);
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                        });
-                    }
-                });
+                    enableTime: true,
+                    dateFormat: "Y-m-d h:i K",
+
+                    disable: this.notDate,
+                    locale: {
+                        firstDayOfWeek: 1
+                    },
+                    defaultDate: this.dDate,
+                })
+
             },
             init() {
+
+
+
+                this.showDate();
+
+                this.$watch('dDate', () => {
+                    console.log(this.dDate)
+                    this.showDate();
+                })
+                this.$watch('notDate', () => {
+                    this.showDate();
+                })
+
                 Livewire.on('added', () => {
                     this.toggle();
                     Swal.fire({
@@ -242,8 +436,8 @@
                     });
                 })
                 Livewire.on('updated', () => {
-                    this.toggle();
 
+                    this.update = false;
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -253,8 +447,21 @@
                     });
 
                 })
+                Livewire.on('confirm', () => {
 
-            }
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Data successfully transfer!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+
+            },
+
+
         }))
     </script>
 @endscript
+

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use App\Models\DoctorAccount as ModelsDoctorAccount;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\PatientAppointment as ModelPatientAppointment;
 #[Lazy]
 class DoctorAccount extends Component
 {
@@ -81,6 +81,7 @@ class DoctorAccount extends Component
 
     public function destroy(ModelsDoctorAccount $id)
     {
+        ModelPatientAppointment::where('doctor_id',$id->id)->delete();
         $id->delete();
     }
     public function placeholder()
