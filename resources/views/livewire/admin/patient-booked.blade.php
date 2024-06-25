@@ -158,9 +158,16 @@
                                         <td class="py-3 text-center px-2 text-sm">
                                             {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
                                         <td class="py-3 text-center px-2 text-sm">
+                                            @if (!!$history->image)
                                             <a href="{{ asset('/storage/history/'.$history->image) }}" class="border-2" target="_blank" rel="noopener noreferrer">
                                                 <img src="{{ asset('/storage/history/'.$history->image) }}" class="w-[5rem] h-[5rem]" alt="">
-                                            </a></td>
+                                            </a>
+                                            @else
+
+                                                <img src="{{ asset('images/noimage.png') }}" class="w-[4rem] h-[4rem]" alt="">
+
+                                            @endif
+                                        </td>
                                         <td class="py-3 text-center px-2 text-sm">
                                            <article> {{ $history->description }}</article></td>
                                     </tr>

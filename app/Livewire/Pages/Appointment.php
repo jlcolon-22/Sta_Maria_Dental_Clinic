@@ -85,6 +85,7 @@ class Appointment extends Component
             $this->doctorSelect = true;
 
         }
+
         if($this->doctor == 'no_available')
         {
             $this->doctor = '';
