@@ -98,6 +98,8 @@
                                         <button x-on:click='showPatientHistory({{ $appointment->patient_id }})'
                                             class="text-blue-500 font-robotoBold hover:underline">View
                                             History</button>
+                                            <button wire:click='destroyRequest({{ $appointment->id }})'
+                                                class="text-red-500 font-robotoBold hover:underline">Delete</button>
                                     </td>
 
 
@@ -410,7 +412,10 @@
                     enableTime: true,
                     dateFormat: "Y-m-d h:i K",
 
-                    disable: this.notDate,
+                    disable:
+                    [...this.notDate, function(date) {
+       return (date.getDay() === 0 || date.getDay() === 6);
+    }],
                     locale: {
                         firstDayOfWeek: 1
                     },
@@ -438,6 +443,16 @@
                         position: "center",
                         icon: "success",
                         title: "Created Successfully!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                Livewire.on('deleted', () => {
+                    this.toggle();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Deleted Successfully!",
                         showConfirmButton: false,
                         timer: 1500
                     });

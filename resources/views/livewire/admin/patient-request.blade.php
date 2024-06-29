@@ -422,7 +422,10 @@
                     enableTime: true,
                     dateFormat: "Y-m-d h:i K",
 
-                    disable: this.notDate,
+                    disable:
+                    [...this.notDate, function(date) {
+       return (date.getDay() === 0 || date.getDay() === 6);
+    }],
                     locale: {
                         firstDayOfWeek: 1
                     },

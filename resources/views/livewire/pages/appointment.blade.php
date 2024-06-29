@@ -167,6 +167,7 @@
 
             showDate(dd) {
 
+
                 this.dataPick = flatpickr(this.$refs.date, {
                     minDate: "today",
                     enableTime: true,
@@ -174,7 +175,9 @@
                     maxTime:'19',
                     time_24hr: true,
                     dateFormat: "Y-m-d h:i K",
-                    disable: dd,
+                    disable: [...dd, function(date) {
+       return (date.getDay() === 0 || date.getDay() === 6);
+    }],
                     locale: {
                         firstDayOfWeek: 1
                     }
@@ -198,6 +201,7 @@
 
                             this.showDate([`${year}-${month}-${day - 1}`]);
                         }else{
+
                             this.showDate(this.notDate)
                         }
 

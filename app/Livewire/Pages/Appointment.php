@@ -57,14 +57,14 @@ class Appointment extends Component
     public function doctor_change()
     {
         $this->doctorNotAvailable = [];
-        $alreadyAppointment = PatientAppointment::select('date')->whereDate('date','>=', Carbon::now())->get();
-        if(count($alreadyAppointment) > 0)
-        {
-            foreach ($alreadyAppointment as $already) {
+        // $alreadyAppointment = PatientAppointment::select('date')->whereDate('date','>=', Carbon::now())->get();
+        // if(count($alreadyAppointment) > 0)
+        // {
+        //     foreach ($alreadyAppointment as $already) {
 
-                $this->doctorNotAvailable[] = Carbon::parse($already->date)->format('Y-m-d');
-            }
-        }
+        //         $this->doctorNotAvailable[] = Carbon::parse($already->date)->format('Y-m-d');
+        //     }
+        // }
 
         if (!!$this->doctor) {
             $notavailable = [];

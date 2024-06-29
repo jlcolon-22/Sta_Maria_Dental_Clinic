@@ -257,15 +257,18 @@
             },
             init()
             {
-                Livewire.on('added', () => {
+                Livewire.on('added', async () => {
                     this.showUpload = !this.showUpload;
-                    Swal.fire({
+                    await Swal.fire({
                         position: "center",
                         icon: "success",
                         title: "Submitted Successfully!",
                         showConfirmButton: false,
                         timer: 1500
                     });
+
+                    location.reload()
+
                 })
             }
         }))

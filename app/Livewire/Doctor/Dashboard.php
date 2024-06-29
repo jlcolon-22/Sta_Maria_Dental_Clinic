@@ -22,7 +22,7 @@ class Dashboard extends Component
 
     public function showHistory($id)
     {
-        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id', $id)->latest()->get();
+        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id', $id)->where('status',1)->orderByDesc('date')->get();
     }
     public function uploadFile()
     {
@@ -41,7 +41,9 @@ class Dashboard extends Component
                 'description' => $this->description
             ]);
         }
+
         $this->dispatch('added');
+
         // $this->redirect('/doctor/dashboard');
     }
 
