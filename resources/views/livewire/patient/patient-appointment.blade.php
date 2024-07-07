@@ -69,9 +69,12 @@
                                         @elseif($appointment->status == 1)
                                             <span
                                                 class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded ">Approved</span>
-                                        @else
+                                        @elseif($appointment->status == 3)
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded ">Canceled</span>
+                                                @elseif($appointment->status == 4)
+                                                <span
+                                                class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded ">Finish</span>
                                         @endif
                                     </td>
                                     <td class="py-3 text-center px-2 text-sm">
@@ -181,7 +184,7 @@
                     time_24hr: true,
                     dateFormat: "Y-m-d h:i K",
                     disable: [...dd, function(date) {
-       return (date.getDay() === 0 || date.getDay() === 6);
+       return date.getDay() === 0;
     }],
                     locale: {
                         firstDayOfWeek: 1

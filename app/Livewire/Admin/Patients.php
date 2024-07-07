@@ -4,16 +4,20 @@ namespace App\Livewire\Admin;
 
 use Carbon\Carbon;
 use Livewire\Component;
-use App\Models\DoctorAccount;
 use Livewire\Attributes\Lazy;
 use App\Models\DoctorSchedule;
 use App\Models\PatientAppointment;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DoctorAccount;
+use Livewire\Attributes\Url;
 
 #[Lazy]
-class PatientBooked extends Component
+class Patients extends Component
 {
+    #[Url]
     public $search = '';
+    #[Url(as: 'q')]
+    public $searchName = '';
     public $patientHistory = [];
     public $allDoctor = [];
 
@@ -89,17 +93,7 @@ class PatientBooked extends Component
     }
     public function showHistory($id)
     {
-        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id',$id)->orderByDesc('date')->where(function($q){
-            return $q->where('status',1)->orWhere('status',4);
-        })->get();
-
-    }
-    public function finish(PatientAppointment $id)
-    {
-        $id->update([
-            'status' => 4
-        ]);
-        $this->dispatch('finish');
+        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id',$id)->orderByDesc('date')->where('status',4)->get();
 
     }
     public function placeholder()
@@ -110,11 +104,10 @@ class PatientBooked extends Component
     {
         if(!!$this->search)
         {
-         $appointments = PatientAppointment::with('doctorInfo')->where('branch_id',Auth::guard('web')->id())->where('status',1)->whereDate('date',$this->search)->latest()->paginate(10);
+         $appointments = PatientAppointment::with('doctorInfo')->where('fullname','LIKE','%'.$this->searchName.'%')->where('branch_id',Auth::guard('web')->id())->where('status',4)->whereDate('date',$this->search)->latest()->paginate(10);
         }else{
-         $appointments = PatientAppointment::with('doctorInfo')->where('branch_id',Auth::guard('web')->id())->where('status',1)->latest()->paginate(10);
+         $appointments = PatientAppointment::with('doctorInfo')->where('fullname','LIKE','%'.$this->searchName.'%')->where('branch_id',Auth::guard('web')->id())->where('status',4)->latest()->paginate(10);
         }
-
-        return view('livewire.admin.patient-booked',compact('appointments'));
+        return view('livewire.admin.patients',compact('appointments'));
     }
 }

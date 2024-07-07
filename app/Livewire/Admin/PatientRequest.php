@@ -37,7 +37,7 @@ class PatientRequest extends Component
 
     public function showHistory($id)
     {
-        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id',$id)->where('status',1)->orderByDesc('date')->get();
+        $this->patientHistory = PatientAppointment::with('doctorInfo')->where('patient_id',$id)->where('status',4)->orderByDesc('date')->get();
 
     }
 

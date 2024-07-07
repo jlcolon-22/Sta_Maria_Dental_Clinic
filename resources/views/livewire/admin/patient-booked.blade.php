@@ -42,6 +42,7 @@
                 <div class="py-2 flex items-center justify-end">
 
                     <form action="" class="relative w-fit">
+
                         <input type="date" autocomplete="off"wire:model.live.debounce.500ms="search"
                             class="border rounded py-2 px-5 focus:border-ylw outline-none bg-gray-100 "
                             placeholder="Search">
@@ -92,14 +93,19 @@
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
                                     <td class="py-3 text-center px-2 text-sm">
                                         {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
-                                    <td class="py-3 text-center px-2 text-sm">
+                                    <td class="py-3 flex items-center text-center gap-2 px-2 text-sm">
                                         <button class="text-yellow-500 font-robotoBold hover:underline"
                                             x-on:click="edit({{ $appointment->id }})">Update</button>
+
+                                        <button wire:click='finish({{ $appointment->id }})'
+                                            class="text-green-500 font-robotoBold hover:underline">Finish</button>
+
                                         <button x-on:click='showPatientHistory({{ $appointment->patient_id }})'
-                                            class="text-blue-500 font-robotoBold hover:underline">View
+                                            class="text-blue-500 font-robotoBold hover:underline whitespace-nowrap">View
                                             History</button>
-                                            <button wire:click='destroyRequest({{ $appointment->id }})'
-                                                class="text-red-500 font-robotoBold hover:underline">Delete</button>
+
+                                        <button wire:click='destroyRequest({{ $appointment->id }})'
+                                            class="text-red-500 font-robotoBold hover:underline">Delete</button>
                                     </td>
 
 
@@ -161,17 +167,19 @@
                                             {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
                                         <td class="py-3 text-center px-2 text-sm">
                                             @if (!!$history->image)
-                                            <a href="{{ asset('/storage/history/'.$history->image) }}" class="border-2" target="_blank" rel="noopener noreferrer">
-                                                <img src="{{ asset('/storage/history/'.$history->image) }}" class="w-[5rem] h-[5rem]" alt="">
-                                            </a>
+                                                <a href="{{ asset('/storage/history/' . $history->image) }}"
+                                                    class="border-2" target="_blank" rel="noopener noreferrer">
+                                                    <img src="{{ asset('/storage/history/' . $history->image) }}"
+                                                        class="w-[5rem] h-[5rem]" alt="">
+                                                </a>
                                             @else
-
-                                                <img src="{{ asset('images/noimage.png') }}" class="w-[4rem] h-[4rem]" alt="">
-
+                                                <img src="{{ asset('images/noimage.png') }}"
+                                                    class="w-[4rem] h-[4rem]" alt="">
                                             @endif
                                         </td>
                                         <td class="py-3 text-center px-2 text-sm">
-                                           <article> {{ $history->description }}</article></td>
+                                            <article> {{ $history->description }}</article>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -323,8 +331,7 @@
             notDate: disabledDate,
             dDate: date,
             showHistory: false,
-            async showPatientHistory(id)
-            {
+            async showPatientHistory(id) {
                 await $wire.showHistory(id);
                 this.showHistory = !this.showHistory;
             },
@@ -412,10 +419,9 @@
                     enableTime: true,
                     dateFormat: "Y-m-d h:i K",
 
-                    disable:
-                    [...this.notDate, function(date) {
-       return (date.getDay() === 0 || date.getDay() === 6);
-    }],
+                    disable: [...this.notDate, function(date) {
+                        return date.getDay() === 0;
+                    }],
                     locale: {
                         firstDayOfWeek: 1
                     },
@@ -479,6 +485,17 @@
                         timer: 1500
                     });
                 })
+                Livewire.on('finish', () => {
+
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Data successfully transfer!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+
 
             },
 
@@ -486,4 +503,3 @@
         }))
     </script>
 @endscript
-

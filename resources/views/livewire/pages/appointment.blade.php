@@ -176,7 +176,7 @@
                     time_24hr: true,
                     dateFormat: "Y-m-d h:i K",
                     disable: [...dd, function(date) {
-       return (date.getDay() === 0 || date.getDay() === 6);
+       return date.getDay() === 0;
     }],
                     locale: {
                         firstDayOfWeek: 1

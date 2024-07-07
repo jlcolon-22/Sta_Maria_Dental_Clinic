@@ -24,6 +24,21 @@
                 </svg>
                 Dashboard
             </a>
+            <a href="/doctor/patients"
+                class="flex gap-x-2   py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500"
+                :class="path == '/doctor/patients' ? 'text-gray-50 bg-btnDark' : 'text-gray-500'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round"
+                class=" group-hover:text-gray-50 transition-all ease-in-out duration-500"
+                :class="path == '/doctor/patients' ? 'text-gray-50' : 'text-gray-500 '">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+                Patients
+            </a>
             {{-- <a href=""
                 class="flex gap-x-2  text-gray-500 py-3 px-4  rounded-md group hover:text-gray-50 hover:bg-btnDark transition-all ease-in-out duration-500">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

@@ -28,6 +28,7 @@ use App\Livewire\Doctor\DoctorSetting;
 use App\Http\Controllers\AuthController;
 use App\Livewire\Auth\DoctorResetMessage;
 use App\Http\Controllers\BotManController;
+use App\Livewire\Admin\Patients;
 use App\Livewire\Auth\DoctorResetPassword;
 use App\Livewire\Auth\PatientResetPassword;
 use App\Livewire\Patient\PatientAppointment;
@@ -81,11 +82,13 @@ Route::middleware(['admin_only'])->prefix('admin')->group(function () {
     Route::get('doctor-account', DoctorAccount::class);
     Route::get('patient-request', PatientRequest::class);
     Route::get('patient-confirmed', PatientBooked::class);
+    Route::get('patients', Patients::class);
 
     Route::get('setting', Setting::class);
 });
 Route::middleware(['doctor_only'])->prefix('doctor')->group(function () {
     Route::get('dashboard', DoctorDashboard::class);
+    Route::get('patients', \App\Livewire\Doctor\Patients::class);
     Route::get('schedule', Schedule::class);
     Route::get('setting', DoctorSetting::class);
 

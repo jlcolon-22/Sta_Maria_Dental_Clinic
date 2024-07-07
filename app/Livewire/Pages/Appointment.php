@@ -46,6 +46,13 @@ class Appointment extends Component
     public function mount()
     {
         $this->allBranch = User::select('branch_name', 'id')->get();
+        if (Auth::guard("patient")->check()) {
+            $this->fullname = Auth::guard("patient")->user()->fullname;
+            $this->number = Auth::guard("patient")->user()->number;
+            $this->email = Auth::guard("patient")->user()->email;
+
+        }
+
     }
     public function branch_change()
     {
@@ -78,9 +85,9 @@ class Appointment extends Component
                     $this->doctorNotAvailable[] = $not->date;
                 }
             }
-            // else{
-            //     $this->doctorNotAvailable = ['no_available'];
-            // }
+            else{
+                $this->doctorNotAvailable = ['no_available'];
+            }
 
             $this->doctorSelect = true;
 

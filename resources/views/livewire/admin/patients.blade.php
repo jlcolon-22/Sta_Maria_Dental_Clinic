@@ -1,6 +1,3 @@
-@assets
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> --}}
-@endassets
 <div class="bg-[#f2f6fa] max-h-[100svh]  ">
 
 
@@ -31,8 +28,8 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 9 4-4-4-4" />
                             </svg>
-                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Patients
-                                Request</span>
+                            <span
+                                class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Patients</span>
                         </div>
                     </li>
                 </ol>
@@ -40,12 +37,14 @@
 
 
 
-            {{-- table --}}
-            <div class="bg-white shadow-md rounded-md mt-7  p-5  overflow-hidden">
-                <h2 class="font-robotoBold">Patient Request</h2>
+            <div class="bg-white shadow-md rounded-md mt-7  p-5 overflow-hidden  ">
+                <h2 class="font-robotoBold">Patients</h2>
                 <div class="py-2 flex items-center justify-end">
 
                     <form action="" class="relative w-fit">
+                        <input type="search" autocomplete="off"wire:model.live.debounce.500ms="searchName"
+                        class="border rounded py-2 px-5 focus:border-ylw outline-none bg-gray-100 "
+                        placeholder="Search">
                         <input type="date" autocomplete="off"wire:model.live.debounce.500ms="search"
                             class="border rounded py-2 px-5 focus:border-ylw outline-none bg-gray-100 "
                             placeholder="Search">
@@ -76,11 +75,9 @@
                                 <th class="py-2 whitespace-nowrap text-center px-2">Age</th>
 
                                 <th class="py-2 whitespace-nowrap text-center px-2">Procedure</th>
-                                <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time
-                                </th>
-
-
+                                <th class="py-2 whitespace-nowrap text-center px-2">Pref Date & Time </th>
                                 <th class="py-2 whitespace-nowrap text-center px-2">Action</th>
+
 
                             </tr>
                         </thead>
@@ -98,22 +95,15 @@
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
                                     <td class="py-3 text-center px-2 text-sm">
                                         {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
-
-
-
-                                    <td class="py-3 text-center px-2 flex justify-center gap-x-2 text-sm">
+                                    <td class="py-3 text-center px-2 text-sm">
 
                                         <button x-on:click='showPatientHistory({{ $appointment->patient_id }})'
-                                            class="text-blue-500 font-robotoBold hover:underline whitespace-nowrap">View
+                                            class="text-blue-500 font-robotoBold hover:underline">View
                                             History</button>
-                                        <button class="text-yellow-500 font-robotoBold hover:underline"
-                                            x-on:click="edit({{ $appointment->id }})">Update</button>
-                                        <button class="text-green-500 font-robotoBold hover:underline"
-                                            x-on:click="confirm({{ $appointment->id }})">Confirm</button>
-                                        <button class="text-red-500 font-robotoBold hover:underline"
-                                            x-on:click="reject({{ $appointment->id }})">Reject</button>
 
                                     </td>
+
+
                                 </tr>
                             @empty
                                 <tr>
@@ -198,125 +188,8 @@
                 </div>
 
             </div>
-            {{-- add modal --}}
-            <div x-show="update"
-                class="fixed top-0 w-full min-h-[100svh] max-h-[100svh] flex justify-center overflow-y-auto bg-black/10 left-0 py-20">
-
-                <form x-on:submit.prevent="submitForm" method="POST" x-show="update" x-transition
-                    class="bg-white shadow-md border w-[30rem] h-fit p-3 rounded-md">
-                    <div class="flex justify-between items-center">
-                        <h1 class="font-robotoBold text-xl">Update Request</h1>
-                        <button type="button" x-on:click="toggle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <line x1="15" y1="9" x2="9" y2="15"></line>
-                                <line x1="9" y1="9" x2="15" y2="15"></line>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="grid mt-6 ">
-                        <label for="" class="font-medium text-gray-800">Fullname<span
-                                class="text-red-600">*</span></label>
-                        <input type="text" autocomplete="off" wire:model="fullname"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
-                        @error('fullname')
-                            <small class="text-red-500">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Age<span
-                                class="text-red-600">*</span></label>
-                        <input type="tel" wire:model="age" autocomplete="off"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
-                        @error('number')
-                            <small class="text-red-500">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Phone Number<span
-                                class="text-red-600">*</span></label>
-                        <input type="tel" wire:model="number" autocomplete="off"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
-                        @error('number')
-                            <small class="text-red-500">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Email Address<span
-                                class="text-red-600">*</span></label>
-                        <input type="email" wire:model="email" autocomplete="off"
-                            class="border py-2 pl-2 pr-[3.1rem] focus:border-ylw outline-none bg-gray-50 rounded ">
-                        @error('email')
-                            <small class="text-red-500">{{ $message }}</small>
-                        @enderror
-                    </div>
 
 
-                    <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Procedure<span
-                                class="text-red-600">*</span></label>
-                        <select wire:model='procedure'
-                            class="border py-3 rounded  px-4 focus:border-ylw outline-none bg-gray-50 ">
-                            <option hidden disabled selected value=""> -- select an option -- </option>
-                            <option value="braces">Braces</option>
-                            <option value="cleaning">Cleaning (Oral Prophylaxis)</option>
-                            <option value="consultation">Consultation</option>
-                            <option value="clear Aligners">Clear Aligners</option>
-                            <option value="Crowns-Veneers">Crowns / Veneers</option>
-                            <option value="Dental Implant">Dental Implant</option>
-                            <option value="Extraction">Extraction</option>
-                            <option value="Pasta / Filling">Pasta / Filling</option>
-                            <option value="Root Canal Treatment">Root Canal Treatment</option>
-                            <option value="Surgery">Surgery</option>
-                            <option value="Teeth Whitening">Teeth Whitening</option>
-                            <option value="Xray">Xray</option>
-                        </select>
-                        @error('username')
-                            <small class="text-red-500">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Doctor<span
-                                class="text-red-600">*</span></label>
-                        <select wire:model='doctor' wire:change='doctor_change'
-                            class="border py-3 rounded  px-4 focus:border-ylw outline-none bg-gray-50 ">
-                            <option value="" :selected="true">Choose..</option>
-                            @forelse ($allDoctor as $doctor)
-                                <option value="{{ $doctor->id }}">{{ $doctor->fullname }}</option>
-
-                            @empty
-                                <option value="">No Available Doctor!</option>
-                            @endforelse
-                        </select>
-                        @error('password')
-                            <small class="text-red-500">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="grid mt-2 ">
-                        <label for="" class="font-medium text-gray-800">Date<span
-                                class="text-red-600">*</span></label>
-                        <input x-ref="date" wire:model='date' type="text"
-                            class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
-                        @error('password')
-                            <small class="text-red-500">{{ $message }}</small>
-                        @enderror
-                    </div>
-                    <div class="grid mt-4 ">
-                        <button type="submit"
-                            class="border py-2   outline-none hover:opacity-70 bg-ylw text-white rounded">
-                            <span wire:loading.class='hidden'>
-                                Update
-                            </span>
-                            <div wire:loading wire:loading.delay.longest>
-                                loading .....
-                            </div>
-                        </button>
-                    </div>
-                </form>
-            </div>
         </section>
 
     </x-admin.aside>
@@ -425,8 +298,7 @@
                     disable:
                     [...this.notDate, function(date) {
        return date.getDay() === 0;
-    }],
-                    locale: {
+    }],           locale: {
                         firstDayOfWeek: 1
                     },
                     defaultDate: this.dDate,
@@ -453,6 +325,16 @@
                         position: "center",
                         icon: "success",
                         title: "Created Successfully!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                })
+                Livewire.on('deleted', () => {
+                    this.toggle();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Deleted Successfully!",
                         showConfirmButton: false,
                         timer: 1500
                     });
@@ -486,3 +368,4 @@
         }))
     </script>
 @endscript
+

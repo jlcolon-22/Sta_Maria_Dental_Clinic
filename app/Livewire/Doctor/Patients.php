@@ -3,16 +3,20 @@
 namespace App\Livewire\Doctor;
 
 use Livewire\Component;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Lazy;
+use Livewire\WithFileUploads;
 use App\Models\PatientAppointment;
 use Illuminate\Support\Facades\Auth;
-use Livewire\WithFileUploads;
 
 #[Lazy]
-class Dashboard extends Component
+class Patients extends Component
 {
     use WithFileUploads;
+    #[Url(as:'date')]
     public $search = '';
+    #[Url(as:'q')]
+    public $searchName = '';
     public $patientHistory = [];
 
     public $image;
@@ -61,13 +65,11 @@ class Dashboard extends Component
 
     public function render()
     {
-
         if (!!$this->search) {
-            $appointments = PatientAppointment::where('doctor_id', Auth::guard('doctor')->id())->where('status', 1)->whereDate('date', $this->search)->latest()->paginate(10);
+            $appointments = PatientAppointment::where('doctor_id', Auth::guard('doctor')->id())->where('fullname','LIKE','%'.$this->searchName.'%')->where('status', 4)->whereDate('date', $this->search)->latest()->paginate(10);
         } else {
-            $appointments = PatientAppointment::where('doctor_id', Auth::guard('doctor')->id())->where('status', 1)->latest()->paginate(10);
+            $appointments = PatientAppointment::where('doctor_id', Auth::guard('doctor')->id())->where('fullname','LIKE','%'.$this->searchName.'%')->where('status', 4)->latest()->paginate(10);
         }
-
-        return view('livewire.doctor.dashboard', compact('appointments'));
+        return view('livewire.doctor.patients', compact('appointments'));
     }
 }
