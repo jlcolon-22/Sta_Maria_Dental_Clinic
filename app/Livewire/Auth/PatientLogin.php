@@ -24,7 +24,14 @@ class PatientLogin extends Component
         $this->validate();
         if(Auth::guard('patient')->attempt(['username'=> $this->username,'password'=> $this->password]))
         {
-            return redirect('/');
+            if(!Auth::guard('patient')->user()->verify)
+            {
+                Auth::guard('patient')->logout();
+                session()->flash('not_verify', 'true');
+            }else{
+                return redirect('/');
+            }
+
         }else{
             session()->flash('error-credentials', 'true');
         }

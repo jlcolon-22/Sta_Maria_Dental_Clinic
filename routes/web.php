@@ -31,6 +31,7 @@ use App\Http\Controllers\BotManController;
 use App\Livewire\Admin\Patients;
 use App\Livewire\Auth\DoctorResetPassword;
 use App\Livewire\Auth\PatientResetPassword;
+use App\Livewire\Auth\Verification;
 use App\Livewire\Patient\PatientAppointment;
 use App\Livewire\Doctor\Dashboard as DoctorDashboard;
 
@@ -58,6 +59,7 @@ Route::get('/appointment', Appointment::class)->name('page.appointment');
 Route::get('/auth/type', Type::class);
 
 Route::get('/auth/patient/login', PatientLogin::class);
+Route::get('/auth/patient/account/verification/{id}', Verification::class)->name('patient.verification');
 Route::get('/auth/patient/signup', PatientSignup::class);
 Route::get('/auth/patient/forget', PatientForget::class);
 Route::get('/auth/patient/reset_password/{id}',PatientResetPassword::class);

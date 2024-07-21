@@ -103,9 +103,9 @@
                                         <button x-on:click='showPatientHistory({{ $appointment->patient_id }})'
                                             class="text-blue-500 font-robotoBold hover:underline whitespace-nowrap">View
                                             History</button>
-
+{{--
                                         <button wire:click='destroyRequest({{ $appointment->id }})'
-                                            class="text-red-500 font-robotoBold hover:underline">Delete</button>
+                                            class="text-red-500 font-robotoBold hover:underline">Delete</button> --}}
                                     </td>
 
 

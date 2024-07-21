@@ -107,7 +107,10 @@
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->number }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->age }}</td>
 
-                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
+                                    <td class="py-3 text-left px-2 text-sm">
+                                        @foreach (json_decode($appointment->procedure ) as $procedure)
+                                         <li class="appearance-none"> {{ $procedure }}</li>
+                                    @endforeach</td>
                                     <td class="py-3 text-center px-2 text-sm">
                                         {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
 

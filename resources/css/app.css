@@ -15,3 +15,6 @@
     font-style: normal;
 }
 
+.appointment_select{
+    @apply border py-1 border-black/50 focus:border-ylw outline-none rounded-md bg-gray-50 !important;
+}

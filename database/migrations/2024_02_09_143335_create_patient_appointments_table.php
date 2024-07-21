@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('number');
             $table->bigInteger('age');
-            $table->string('procedure');
+            $table->json('procedure');
             $table->unsignedBigInteger('doctor_id');
             $table->dateTime('date')->nullable();
             $table->boolean('status')->default(false);

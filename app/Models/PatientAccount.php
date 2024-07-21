@@ -10,7 +10,7 @@ class PatientAccount extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $fillable = [
-        "fullname","email","number","password","status",'username',
+        "fullname","email","number","password","status",'username','age'
     ];
 
 }

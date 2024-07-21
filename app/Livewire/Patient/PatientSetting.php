@@ -15,24 +15,27 @@ class PatientSetting extends Component
     public $pfullname = '';
     public $pemail = '';
     public $pnumber = '';
+    public $page = '';
     public $username = '';
     public $password = '';
     public function mount()
     {
-       if(Auth::guard('patient')->check()) {
-        $this->pfullname = Auth::guard('patient')->user()->fullname;
-        $this->pemail = Auth::guard('patient')->user()->email;
-        $this->pnumber = Auth::guard('patient')->user()->number;
-        $this->username = Auth::guard('patient')->user()->username;
-    }
+        if (Auth::guard('patient')->check()) {
+            $this->pfullname = Auth::guard('patient')->user()->fullname;
+            $this->pemail = Auth::guard('patient')->user()->email;
+            $this->pnumber = Auth::guard('patient')->user()->number;
+            $this->page = (int)Auth::guard('patient')->user()->age;
+            $this->username = Auth::guard('patient')->user()->username;
+        }
     }
     public function rules()
     {
         return [
             'pemail' => 'required|email|unique:doctor_accounts,email',
-            'password' => [ Password::min(8) ->numbers()->mixedCase()->letters()
-            ->symbols()],
+            'password' => [Password::min(8)->numbers()->mixedCase()->letters()
+                ->symbols()],
             'pfullname' => ['required'],
+            'page' => ['required'],
             'pnumber' => 'required|numeric|digits:11',
             'username' => ['required'],
         ];
@@ -41,25 +44,23 @@ class PatientSetting extends Component
     {
         $this->validate();
         PatientAccount::query()->where('id', Auth::guard('patient')->id())->update([
-            'email'=> $this->pemail,
-            'number'=> $this->pnumber,
+            'email' => $this->pemail,
+            'number' => $this->pnumber,
+            'age' => $this->page,
 
-            'fullname'=> $this->pfullname,
-            'username'=> $this->username,
+            'fullname' => $this->pfullname,
+            'username' => $this->username,
         ]);
-        if(!!$this->password)
-        {
+        if (!!$this->password) {
             PatientAccount::query()->where('id', Auth::guard('patient')->id())->update([
-            'password'=>Hash::make($this->password),
-                ]);
+                'password' => Hash::make($this->password),
+            ]);
         }
         $this->dispatch('updated');
     }
     public function placeholder()
     {
         return view("livewire.loading");
-
-
     }
     public function render()
     {

@@ -37,6 +37,15 @@
                         @enderror
                 </div>
                 <div class="grid " >
+                    <label for="" class="font-robotoBold text-sm ">Age<span class="text-red-500">*</span></label>
+                    <input type="number" wire:model='page'
+                        class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 "
+                        >
+                        @error('page')
+                        <small class="text-red-500">{{$message}}</small>
+                        @enderror
+                </div>
+                <div class="grid " >
                     <label for="" class="font-robotoBold text-sm ">Username<span class="text-red-500">*</span></label>
                     <input type="text" wire:model='username'
                         class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 "

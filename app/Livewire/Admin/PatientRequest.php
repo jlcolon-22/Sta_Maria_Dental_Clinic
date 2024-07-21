@@ -4,6 +4,7 @@ namespace App\Livewire\Admin;
 
 use Carbon\Carbon;
 use Livewire\Component;
+use Filament\Forms\Form;
 use App\Models\DoctorAccount;
 use Livewire\Attributes\Lazy;
 use Livewire\WithFileUploads;
@@ -13,10 +14,15 @@ use App\Models\PatientAppointment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 #[Lazy]
-class PatientRequest extends Component
+class PatientRequest extends Component implements HasForms
 {
+    use InteractsWithForms;
+
     use WithFileUploads;
     public $search = '';
     public $allDoctor = [];
@@ -25,7 +31,7 @@ class PatientRequest extends Component
     public $date = '';
     public $branch = '';
     public $doctor = '';
-    public $procedure = '';
+    public $procedure = [];
     public $fullname = '';
     public $email = '';
     public $number = '';
@@ -51,15 +57,51 @@ class PatientRequest extends Component
 
 
     }
+    public function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Select::make('procedure')
+                    ->multiple()
+                    ->native()
+                    ->options([
+
+                        'braces' => 'Braces',
+                        'cleaning' => 'Cleaning (Oral Prophylaxis)',
+                        'consultation' => 'Consultation',
+                        'clear Aligners' => 'Clear Aligners',
+                        'Crowns-Veneers' => 'Crowns / Veneers',
+                        'Dental Implant' => 'Dental Implant',
+                        'Extraction' => 'Extraction',
+                        'Pasta / Filling' => 'Pasta / Filling',
+                        'Root Canal Treatment' => 'Root Canal Treatment',
+                        'Surgery' => 'Surgery',
+                        'Teeth Whitening' => 'Teeth Whitening',
+                        'Xray' => 'Xray',
+                    ])->extraAttributes(['class' => 'appointment_select']) ->placeholder('-- select an option --') ->live()->required()
+
+
+
+                // ...
+            ])
+          ;
+    }
     public function confirmAppointment(PatientAppointment $id)
     {
+        $x = json_decode($id->procedure);
+        $y = [];
+      foreach($x as $value)
+      {
+        $y[] = "$value,";
+      }
+
 
         $response = Http::post('https://api.semaphore.co/api/v4/messages', [
             'apikey' => 'a1398f27fe149bb183094ecc07c84de6',
 
-            'message' => 'Upcoming appointment at Sta. Maria Dental Clinic for '.$id->procedure .' on '.Carbon::parse($id->date)->format('Y-m-d').' at '.Carbon::parse($id->date)->format('h:m A').'. Contact us for any adjustments. Regards, Sta. Maria Dental Clinic.',
+            'message' => 'Upcoming appointment at Sta. Maria Dental Clinic for **('.implode('', $y).')** on '.Carbon::parse($id->date)->format('Y-m-d').' at '.Carbon::parse($id->date)->format('h:m A').'. Contact us for any adjustments. Regards, Sta. Maria Dental Clinic.',
             'number'=>$id->number,
-            'sendername' => 'SEMAPHORE'
+            'sendername' => 'StaMariaDC'
         ]);
         $data = [
             'name' => $id->fullname,
@@ -92,7 +134,7 @@ class PatientRequest extends Component
         $this->number = $id->number;
         $this->age = $id->age;
         $this->date = Carbon::parse($id->date)->format('Y-m-d h:i A');
-        $this->procedure = $id->procedure;
+        $this->procedure = json_decode($id->procedure);
         $this->doctor = $id->doctor_id;
         $this->doctor_change();
     }

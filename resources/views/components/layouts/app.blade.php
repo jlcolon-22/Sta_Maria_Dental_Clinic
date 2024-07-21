@@ -38,8 +38,9 @@
         }
 
     </style>
-    @livewireStyles
+     @filamentStyles
 
+    @livewireStyles
 
 
 </head>
@@ -50,8 +51,9 @@
     {{ $slot }}
     @stack('s')
 
-    @livewireScripts
 
+    @livewireScripts
+    @filamentScripts
 </body>
 
 

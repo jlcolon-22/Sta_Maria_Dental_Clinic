@@ -95,7 +95,10 @@
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->number }}</td>
                                     <td class="py-3 text-center px-2 text-sm">{{ $appointment->age }}</td>
 
-                                    <td class="py-3 text-center px-2 text-sm">{{ $appointment->procedure }}</td>
+                                    <td class="py-3 text-left px-2 text-sm">
+                                        @foreach (json_decode($appointment->procedure ) as $procedure)
+                                         <li class="appearance-none"> {{ $procedure }}</li>
+                                    @endforeach</td>
                                     <td class="py-3 text-center px-2 text-sm">
                                         {{ Carbon\Carbon::parse($appointment->date)->format('M d, Y  h:i A') }}</td>
 
@@ -167,7 +170,10 @@
 
                                         <td class="py-3 text-center px-2 text-sm">{{ $history->doctorInfo->fullname }}
                                         </td>
-                                        <td class="py-3 text-center px-2 text-sm">{{ $history->procedure }}</td>
+                                        <td class="py-3 text-center px-2 text-sm">
+                                            @foreach (json_decode($history->procedure ) as $procedure)
+                                             <li class="appearance-none"> {{ $procedure }}</li>
+                                        @endforeach</td>
                                         <td class="py-3 text-center px-2 text-sm">
                                             {{ Carbon\Carbon::parse($history->date)->format('M d, Y  h:m A') }}</td>
                                         <td class="py-3 text-center px-2 text-sm">
@@ -254,8 +260,8 @@
                         @enderror
                     </div>
 
-
-                    <div class="grid mt-2 ">
+                    {{ $this->form }}
+                    {{-- <div class="grid mt-2 ">
                         <label for="" class="font-medium text-gray-800">Procedure<span
                                 class="text-red-600">*</span></label>
                         <select wire:model='procedure'
@@ -277,7 +283,7 @@
                         @error('username')
                             <small class="text-red-500">{{ $message }}</small>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="grid mt-2 ">
                         <label for="" class="font-medium text-gray-800">Doctor<span
                                 class="text-red-600">*</span></label>

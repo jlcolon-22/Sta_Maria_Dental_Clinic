@@ -11,18 +11,16 @@
             introMessage: 'Welcome to Sta.Maria Dental Clinic',
             chatServer: '/botman'
         };
-        </script>
+    </script>
     <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+@endassets
 
-
-    @endassets
-
-<div >
+<div>
     <x-pages.header />
 
     <section class=" bg-[#f2f6fa] pb-28 pt-10 lg:pt-20 px-3">
 
-        <div  class="relative text-primary z-0 lg:hidden  pb-10">
+        <div class="relative text-primary z-0 lg:hidden  pb-10">
 
             <h1 class="text-3xl font-extrabold font-robotoBold text-center z-20 ">Appointment Request Form</h1>
 
@@ -55,7 +53,7 @@
 
                         </select>
                         @error('branch')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="grid">
@@ -63,7 +61,7 @@
                         <input type="text" wire:model='fullname' autocomplete="off"
                             class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
                         @error('fullname')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -72,7 +70,7 @@
                         <input type="number" wire:model='age'
                             class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
                         @error('age')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="grid">
@@ -80,7 +78,7 @@
                         <input type="tel" wire:model='number'
                             class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
                         @error('number')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="grid">
@@ -88,10 +86,14 @@
                         <input type="email" wire:model='email'
                             class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
                         @error('email')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm text-sm">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="grid">
+                    {{ $this->form }}
+                    {{-- @error('procedure')
+                    <p class="text-red-600 text-sm">{{ $message }}</p>
+                @enderror --}}
+                    {{-- <div class="grid">
                         <label for="" class="font-robotoBold text-sm ">Procedure:</label>
 
                         <select wire:model='procedure'
@@ -111,9 +113,9 @@
                             <option value="Xray">Xray</option>
                         </select>
                         @error('procedure')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="grid">
                         <label for="" class="font-robotoBold text-sm ">Doctor:</label>
 
@@ -128,7 +130,7 @@
                             @endforelse
                         </select>
                         @error('doctor')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -138,7 +140,7 @@
                         <input x-ref="date" wire:model='date' type="text"
                             class="border  py-2.5 px-4 rounded focus:border-ylw outline-none bg-gray-50 ">
                         @error('date')
-                            <small class="text-red-500">{{ $message }}</small>
+                            <p class="text-red-600 text-sm">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -171,13 +173,13 @@
                 this.dataPick = flatpickr(this.$refs.date, {
                     minDate: "today",
                     enableTime: true,
-                    minTime:'11',
-                    maxTime:'19',
+                    minTime: '11',
+                    maxTime: '19',
                     time_24hr: true,
                     dateFormat: "Y-m-d h:i K",
                     disable: [...dd, function(date) {
-       return date.getDay() === 0;
-    }],
+                        return date.getDay() === 0;
+                    }],
                     locale: {
                         firstDayOfWeek: 1
                     }
@@ -191,16 +193,15 @@
                 this.$watch('notDate', () => {
 
                     if (this.dateShow) {
-                        if(this.notDate[0] == 'no_available')
-                        {
+                        if (this.notDate[0] == 'no_available') {
                             const date = new Date();
 
-                            let day = date.getDate() ;
+                            let day = date.getDate();
                             let month = date.getMonth() + 1;
                             let year = date.getFullYear();
 
                             this.showDate([`${year}-${month}-${day - 1}`]);
-                        }else{
+                        } else {
 
                             this.showDate(this.notDate)
                         }

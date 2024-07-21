@@ -32,6 +32,11 @@
                         Wrong Credentials!
                     </div>
                 @endif
+                @if (Session::has('not_verify'))
+                    <div class="p-4 mb-4 text-sm font-bold text-yellow-800 rounded-lg bg-yellow-200  " role="alert">
+                        Email address not verified. Please verify your email to log in
+                    </div>
+                @endif
 
                 @if (Session::has('error'))
                     <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
